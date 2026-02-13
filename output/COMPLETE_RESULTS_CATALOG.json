@@ -1,0 +1,289 @@
+[
+  {
+    "id": 1,
+    "name": "Lovelock Chain",
+    "type": "Theorem",
+    "status": "PROVEN",
+    "p_value": null,
+    "effect_size": null,
+    "novelty": "NEW",
+    "strength": "\u2713\u2713\u2713",
+    "description": "CI \u2192 unique gravity via Lovelock (1971)"
+  },
+  {
+    "id": 2,
+    "name": "Amari Chain",
+    "type": "Theorem",
+    "status": "PROVEN",
+    "p_value": null,
+    "novelty": "NEW",
+    "strength": "\u2713\u2713\u2713",
+    "description": "Persistence \u2192 unique dynamics via Amari (1998)"
+  },
+  {
+    "id": 3,
+    "name": "Purification \u2192 QM",
+    "type": "Theorem",
+    "status": "PROVEN",
+    "p_value": null,
+    "novelty": "BREAKTHROUGH",
+    "strength": "\u2713\u2713\u2713",
+    "description": "QM from 4 axioms {1,2,3,5}, LD consequence"
+  },
+  {
+    "id": 4,
+    "name": "Fisher = Riemann",
+    "type": "Theorem",
+    "status": "PROVEN",
+    "novelty": "Consequence",
+    "strength": "\u2713\u2713\u2713",
+    "description": "Metric identity (follows from Theorems 1+2)"
+  },
+  {
+    "id": 5,
+    "name": "Arrow of Time",
+    "type": "Theorem",
+    "status": "PROVEN",
+    "novelty": "Consequence",
+    "strength": "\u2713\u2713\u2713",
+    "description": "dL/dt \u2264 0, deterministic (not statistical)"
+  },
+  {
+    "id": 6,
+    "name": "Purification Axiom",
+    "type": "Experiment",
+    "status": "VERIFIED",
+    "p_value": "<0.001",
+    "effect_size": "100% (200/200 at N=20,006)",
+    "novelty": "NEW",
+    "strength": "\u2713\u2713\u2713",
+    "description": "Scale-independent, fundamental property"
+  },
+  {
+    "id": 7,
+    "name": "LD Emergence",
+    "type": "Experiment",
+    "status": "VERIFIED",
+    "p_value": "<0.001",
+    "effect_size": "0% \u2192 78% null (N growth)",
+    "novelty": "NEW",
+    "strength": "\u2713\u2713\u2713",
+    "description": "Emergent property, breaks at scale"
+  },
+  {
+    "id": 8,
+    "name": "Cross-Program Prediction",
+    "type": "Experiment",
+    "status": "VERIFIED",
+    "p_value": "0.0002",
+    "effect_size": "\u03c1=0.47",
+    "novelty": "NEW",
+    "strength": "\u2713\u2713",
+    "description": "Shannon theorem + empirical"
+  },
+  {
+    "id": 9,
+    "name": "Coarse Unitarity",
+    "type": "Experiment",
+    "status": "VERIFIED",
+    "p_value": "<0.001",
+    "effect_size": "dev=0.000 (k=2-10)",
+    "novelty": "NEW",
+    "strength": "\u2713\u2713",
+    "description": "Effective QM verified"
+  },
+  {
+    "id": 10,
+    "name": "Gram PD",
+    "type": "Experiment",
+    "status": "VERIFIED",
+    "p_value": "<0.001",
+    "novelty": "Verification",
+    "strength": "\u2713",
+    "description": "All hypergraphs (Axiom 2 robust)"
+  },
+  {
+    "id": 11,
+    "name": "\u03b1 ~ Observer Quality",
+    "type": "Experiment",
+    "status": "VERIFIED",
+    "p_value": "<0.0001",
+    "effect_size": "r=-0.64",
+    "novelty": "NEW",
+    "strength": "\u2713\u2713",
+    "description": "\u03b1 measures observer, not environment"
+  },
+  {
+    "id": 12,
+    "name": "Metacognition \u2260 Prediction",
+    "type": "Experiment",
+    "status": "VERIFIED",
+    "p_value": "<0.001",
+    "effect_size": "9.1 vs 0 detections",
+    "novelty": "NEW",
+    "strength": "\u2713\u2713",
+    "description": "First predictor/observer distinction"
+  },
+  {
+    "id": 13,
+    "name": "Emergent Loss",
+    "type": "Experiment",
+    "status": "VERIFIED",
+    "p_value": "<0.001",
+    "effect_size": "5.7\u00d7",
+    "strength": "\u2713"
+  },
+  {
+    "id": 14,
+    "name": "Spectral Time Separation",
+    "type": "Experiment",
+    "status": "VERIFIED",
+    "p_value": "<0.01",
+    "effect_size": "32% gap",
+    "strength": "\u2713"
+  },
+  {
+    "id": 15,
+    "name": "Diff-Structure Time",
+    "type": "Experiment",
+    "status": "VERIFIED",
+    "p_value": "<0.001",
+    "strength": "\u2713"
+  },
+  {
+    "id": 16,
+    "name": "Temporal Shock",
+    "type": "Experiment",
+    "status": "VERIFIED",
+    "p_value": "<0.01",
+    "strength": "\u2713"
+  },
+  {
+    "id": 17,
+    "name": "Observation=Compression",
+    "type": "Experiment",
+    "status": "VERIFIED",
+    "p_value": "0.003",
+    "strength": "\u2713"
+  },
+  {
+    "id": 18,
+    "name": "Confluence \u2260 Unitarity",
+    "type": "Negative",
+    "status": "REFUTED",
+    "effect_size": "0.67-1.0 dev",
+    "strength": "\u2713",
+    "novelty": "Valuable"
+  },
+  {
+    "id": 19,
+    "name": "LD Universal",
+    "type": "Negative",
+    "status": "REFUTED",
+    "effect_size": "98% null at N=5000",
+    "strength": "\u2713\u2713\u2713",
+    "novelty": "Critical"
+  },
+  {
+    "id": 20,
+    "name": "CIC = log\u20823",
+    "type": "Negative",
+    "status": "REFUTED",
+    "strength": "\u2713"
+  },
+  {
+    "id": 21,
+    "name": "\u03b1 \u2194 Environment",
+    "type": "Negative",
+    "status": "REFUTED",
+    "p_value": "0.87",
+    "strength": "\u2713"
+  },
+  {
+    "id": 22,
+    "name": "d_eff Universal",
+    "type": "Negative",
+    "status": "REFUTED",
+    "strength": "\u2713",
+    "novelty": "Artifact exposed"
+  },
+  {
+    "id": 23,
+    "name": "Spectral Dim = 1.6",
+    "type": "Negative",
+    "status": "REFUTED",
+    "strength": "\u2713"
+  },
+  {
+    "id": 24,
+    "name": "K~N^\u03b1 Universal",
+    "type": "Negative",
+    "status": "REFUTED",
+    "strength": "\u2713"
+  },
+  {
+    "id": 25,
+    "name": "\u039b Simple",
+    "type": "Negative",
+    "status": "REFUTED",
+    "strength": "\u2713"
+  },
+  {
+    "id": 26,
+    "name": "Descendants Dirac",
+    "type": "Negative",
+    "status": "REFUTED",
+    "strength": "\u2713"
+  },
+  {
+    "id": 27,
+    "name": "Lex Dirac",
+    "type": "Negative",
+    "status": "REFUTED",
+    "strength": "\u2713"
+  },
+  {
+    "id": 28,
+    "name": "Ollivier-Ricci",
+    "type": "Partial",
+    "status": "MIXED",
+    "effect_size": "\u03ba\u22600 on 2/5",
+    "strength": "~"
+  },
+  {
+    "id": 29,
+    "name": "Dirac Chirality",
+    "type": "Partial",
+    "status": "PRELIMINARY",
+    "effect_size": "r=-0.97",
+    "strength": "~"
+  },
+  {
+    "id": 30,
+    "name": "Chiribella Full",
+    "type": "Partial",
+    "status": "4/5 axioms",
+    "strength": "~"
+  },
+  {
+    "id": 31,
+    "name": "Embedding \u03c6",
+    "type": "Partial",
+    "status": "6/7 objects",
+    "strength": "~"
+  },
+  {
+    "id": 32,
+    "name": "SRP Principle",
+    "type": "Conceptual",
+    "status": "FRAMEWORK",
+    "strength": "~"
+  },
+  {
+    "id": 33,
+    "name": "Coarse M\u207aM\u207b",
+    "type": "Partial",
+    "status": "PRELIMINARY",
+    "strength": "~"
+  }
+]
