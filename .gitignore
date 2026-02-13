@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output artifacts (large files)
+output/data/*.csv
+output/data/*.hdf5
+output/figures/*.png
+output/figures/*.pdf
+
+# But keep directory structure
+!output/data/.gitkeep
+!output/figures/.gitkeep
+
+# Wolfram Engine
+*.mx
+*.wl~
+
+# Secrets / API keys
+.env
+*.key
