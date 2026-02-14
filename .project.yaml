@@ -1,0 +1,57 @@
+# Project Passport — structural-bridge-via-uniqueness-theorems
+schema_version: "1.0.0"
+
+identity:
+  name: "structural-bridge-via-uniqueness-theorems"
+  full_name: "Wolfram-Vanchurin Bridge via Uniqueness Theorems"
+  short_name: "wolfram-vanchurin-bridge"
+  type: "research"
+  nature: "standard"
+
+  repository:
+    name: "physics-cosmo-bridge"
+    path: "/Users/Max_1/Projects/PhysicsResearch/cosmological-unification/structural-bridge-via-uniqueness-theorems"
+    remote: "https://github.com/ProVibecodium/physics-cosmo-bridge.git"
+
+  level: "L2-project"
+
+namespace:
+  prefix: "sb"
+  meaning: "Structural Bridge"
+  subsystems: null
+
+project:
+  status:
+    lifecycle: "active"
+    purpose: "production"
+    management: "full"
+
+  created: "2026-02-13"
+  updated: "2026-02-14"
+  urgency: "normal"
+  domain: "research"
+
+  description: |
+    Formal proof: Causal Invariance (Wolfram) → unique physical structures
+    via uniqueness theorems (Lovelock, Amari, Chiribella).
+    
+    Result: Gravity + QM + Learning dynamics + Time arrow + Metric identity
+    from single axiom (CI). First formal Wolfram ↔ Vanchurin link.
+
+pe_context:
+  generation:
+    id: "pe-gen3"
+    version: "3.0"
+  experience_path: "~/Projects/PhysicsResearch/experience/instances/structural-bridge/"
+
+beneficiary: "PhysicsResearch"
+
+files:
+  main_config: "CLAUDE.md"
+  project_passport: ".project.yaml"
+
+metrics:
+  sessions_count: 10
+  total_time: "~20h"
+  constraints_resolved: 5
+  deliverables_complete: 5
