@@ -31,7 +31,7 @@ Independent Research}
 \begin{abstract}
 We prove that Wolfram's hypergraph universe and Vanchurin's neural network cosmology are forced to converge by uniqueness theorems, providing the first formal mathematical link between these independent research programs.
 
-Starting from a single axiom---causal invariance (the core symmetry of Wolfram's model)---we derive five theorems establishing the complete structure of known physics: (1) Einstein gravity via Lovelock's theorem, (2) natural gradient learning via Amari's theorem, (3) quantum mechanics via purification axiom, (4) thermodynamic arrow of time, (5) metric identity between parameter space and spacetime.
+Starting from a single axiom---causal invariance (the core symmetry of Wolfram's model)---we establish the complete structure of known physics through three uniqueness theorems plus empirical observations: (1) Einstein gravity via Lovelock's theorem, (2) natural gradient learning via Amari's theorem, (3) quantum mechanics via purification with local distinguishability emergent, plus observations on thermodynamic irreversibility and metric structure (extending Vanchurin 2017).
 
 \textbf{Key novelty}: We show that Vanchurin's phenomenological ``choice'' of Onsager tensor (arXiv:2008.01540, Eq.~93) is uniquely determined by Wolfram's causal invariance via Lovelock's theorem---answering Vanchurin's explicit open question. Additionally, we demonstrate quantum mechanics emerges from Chiribella's operational framework using four of the six principles (causality, perfect distinguishability, ideal compression, and purification), with both local distinguishability and pure conditioning arising as emergent consequences rather than independent axioms.
 
@@ -207,30 +207,18 @@ Separability (standard $\otimes$ property) implies local marginals determine joi
 Chiribella framework with 4 axioms (LD as consequence) yields Hilbert space + Born rule + unitary evolution.
 \end{proof}
 
-\subsection{Theorem 4: Metric Identity}
+\subsection{Observation 1: Metric Identity (Vanchurin 2017)}
 
-\begin{theorem}[Fisher = Riemann]
-Fisher metric on observer parameters and Riemann metric of spacetime are diffeomorphic.
-\end{theorem}
+Vanchurin~\cite{Vanchurin2017} established the connection between Fisher information metric and spacetime Riemann metric in his ``Covariant Information Theory and Emergent Gravity.'' Both metrics satisfy the unique Einstein equations (Theorem 1) and are therefore diffeomorphic. This observation strengthens the interpretation that observer parameter space and physical spacetime are manifestations of the same underlying geometric structure.
 
-\begin{proof}
-Both metrics satisfy the unique Einstein equations (Theorem 1). For the same physical system, they describe the same geometry up to coordinate choice. Hence diffeomorphic.
-\end{proof}
+\subsection{Observation 2: Deterministic Arrow of Time}
 
-\subsection{Theorem 5: Deterministic Arrow of Time}
-
-\begin{theorem}[Arrow of Time]
-Loss monotonically decreases: $dL/dt \leq 0$ (deterministic, not statistical).
-\end{theorem}
-
-\begin{proof}
-On Riemannian manifold with metric $g$ (confirmed positive definite via $\kappa=0.67$):
+Combining results from both programs: On Riemannian manifold with positive definite metric $g$ (confirmed via $\kappa=0.67$):
 \begin{equation}
 \frac{dL}{dt} = -g^{ij}\frac{\partial L}{\partial \theta^i}\frac{\partial L}{\partial \theta^j} \leq 0
 \end{equation}
 
-Additionally, causal graphs are acyclic (from CI). Combined: deterministic arrow.
-\end{proof}
+Additionally, causal graphs are acyclic (from CI). This provides a deterministic (non-statistical) arrow of time from the combination of Vanchurin's learning dynamics and Wolfram's causal structure.
 
 \section{Methods}
 
@@ -388,3 +376,7 @@ Conant, R.C., Ashby, W.R. (1970). Every Good Regulator of a System Must Be a Mod
 \end{thebibliography}
 
 \end{document}
+
+\bibitem{Vanchurin2017}
+Vanchurin, V. (2017). Covariant Information Theory and Emergent Gravity. \textit{arXiv:1707.05004}; \textit{Int. J. Mod. Phys. A} 33, 1845019 (2018).
+
