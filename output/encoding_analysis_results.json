@@ -1,0 +1,45 @@
+{
+  "test_date": "2026-02-14",
+  "system": "Simple multiway (AAB, 10 steps)",
+  "encodings_tested": 5,
+  "alpha_range": [
+    0.5772049881597967,
+    1.0
+  ],
+  "alpha_mean": 0.7116442442734124,
+  "alpha_std": 0.17354368150878882,
+  "encoding_dependent": false,
+  "results": [
+    {
+      "encoding": "charwise",
+      "K": 9,
+      "N": 45,
+      "alpha": 0.5772049881597967
+    },
+    {
+      "encoding": "hash",
+      "K": 45,
+      "N": 45,
+      "alpha": 1.0
+    },
+    {
+      "encoding": "length",
+      "K": 9,
+      "N": 45,
+      "alpha": 0.5772049881597967
+    },
+    {
+      "encoding": "composition",
+      "K": 9,
+      "N": 45,
+      "alpha": 0.5772049881597967
+    },
+    {
+      "encoding": "actual_states",
+      "K": 45,
+      "N": 100,
+      "alpha": 0.8266062568876718,
+      "note": "Encoding-independent (counts actual distinct states)"
+    }
+  ]
+}

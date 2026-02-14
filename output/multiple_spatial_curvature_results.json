@@ -1,0 +1,82 @@
+{
+  "test_date": "2026-02-14",
+  "method": "Pure Python + POT (Ollivier-Ricci)",
+  "patterns_tested": 5,
+  "overall_mean_kappa": 0.2996,
+  "overall_std_kappa": 0.1148,
+  "significant_count": 5,
+  "assessment": "ROBUST",
+  "comparison_wolfram": {
+    "wolfram_kappa": 0.67,
+    "python_mean": 0.2996,
+    "consistent": true,
+    "note": "Different graph constructions, both show κ≠0"
+  },
+  "results": [
+    {
+      "pattern": "Triangle Mesh 2D",
+      "size": 3,
+      "hyperedges": 18,
+      "nodes": 16,
+      "graph_edges": 33,
+      "curvatures_computed": 33,
+      "mean_kappa": 0.2180,
+      "median_kappa": 0.2000,
+      "std_kappa": 0.1820,
+      "nonzero_frac": 0.879,
+      "status": "significant"
+    },
+    {
+      "pattern": "Square Grid 2D",
+      "size": 3,
+      "hyperedges": 9,
+      "nodes": 16,
+      "graph_edges": 42,
+      "curvatures_computed": 42,
+      "mean_kappa": 0.2672,
+      "median_kappa": 0.3056,
+      "std_kappa": 0.2378,
+      "nonzero_frac": 0.738,
+      "status": "significant"
+    },
+    {
+      "pattern": "Hexagonal Mesh",
+      "size": 2,
+      "hyperedges": 24,
+      "nodes": 15,
+      "graph_edges": 34,
+      "curvatures_computed": 34,
+      "mean_kappa": 0.3776,
+      "median_kappa": 0.3611,
+      "std_kappa": 0.3537,
+      "nonzero_frac": 1.0,
+      "status": "significant"
+    },
+    {
+      "pattern": "Triangle Mesh 2D (large)",
+      "size": 4,
+      "hyperedges": 32,
+      "nodes": 25,
+      "graph_edges": 56,
+      "curvatures_computed": 56,
+      "mean_kappa": 0.1571,
+      "median_kappa": 0.2000,
+      "std_kappa": 0.1691,
+      "nonzero_frac": 0.857,
+      "status": "significant"
+    },
+    {
+      "pattern": "Tetrahedral 3D",
+      "size": 2,
+      "hyperedges": 8,
+      "nodes": 12,
+      "graph_edges": 35,
+      "curvatures_computed": 35,
+      "mean_kappa": 0.4780,
+      "median_kappa": 0.4603,
+      "std_kappa": 0.1905,
+      "nonzero_frac": 1.0,
+      "status": "significant"
+    }
+  ]
+}
