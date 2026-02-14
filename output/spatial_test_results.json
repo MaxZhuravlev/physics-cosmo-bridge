@@ -1,0 +1,9 @@
+{
+	"test1_states":9,
+	"test1_causal_vertices":40,
+	"test2_states":8,
+	"spatial_rules_tested":3,
+	"average_clustering":0,
+	"setreplace_version":"0.3.196",
+	"wolfram_version":"14.3.0 for Mac OS X ARM (64-bit) (July 31, 2025)"
+}

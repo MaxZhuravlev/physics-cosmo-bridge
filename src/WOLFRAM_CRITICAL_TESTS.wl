@@ -32,7 +32,7 @@ Print[];
 
 (* Spatial rule from Wolfram Physics registry *)
 (* This creates 2D-like spatial structure *)
-spatialRule1 = {{x_, y_}, {y_, z_}} -> {{x_, w_}, {w_, z_}, {w_, y_}};
+spatialRule1 = <|"PatternRules" -> {{{x_, y_}, {y_, z_}} :> {{x, w}, {w, z}, {w, y}}}|>;
 
 initialSpatial = {{1, 2}, {2, 3}, {3, 4}, {4, 1}};  (* Square *)
 
@@ -214,30 +214,30 @@ spatialRules = {
     (* Rule 1: Triangle completion *)
     {
         "name" -> "TriangleComplete",
-        "rule" -> {{x_, y_}, {y_, z_}} -> {{x_, y_}, {y_, z_}, {z_, x_}},
+        "rule" -> <|"PatternRules" -> {{{x_, y_}, {y_, z_}} :> {{x, y}, {y, z}, {z, x}}}|>,
         "init" -> {{1, 2}, {2, 3}}
     },
 
     (* Rule 2: Square from edges *)
     {
         "name" -> "SquareGrowth",
-        "rule" -> {{x_, y_}} -> {{x_, w_}, {w_, z_}, {z_, y_}},
+        "rule" -> <|"PatternRules" -> {{{x_, y_}} :> {{x, w}, {w, z}, {z, y}}}|>,
         "init" -> {{1, 2}}
     },
 
     (* Rule 3: Mesh refinement *)
     {
         "name" -> "MeshRefine",
-        "rule" -> {{x_, y_}, {y_, z_}, {z_, x_}} ->
-                  {{x_, w_}, {w_, y_}, {y_, u_}, {u_, z_}, {z_, v_}, {v_, x_}},
+        "rule" -> <|"PatternRules" -> {{{x_, y_}, {y_, z_}, {z_, x_}} :>
+                  {{x, w}, {w, y}, {y, u}, {u, z}, {z, v}, {v, x}}}|>,
         "init" -> {{1, 2}, {2, 3}, {3, 1}}
     }
 };
 
 results = Table[
-    ruleName = rule["name"];
-    ruleSpec = rule["rule"];
-    ruleInit = rule["init"];
+    ruleName = Lookup[rule, "name"];
+    ruleSpec = Lookup[rule, "rule"];
+    ruleInit = Lookup[rule, "init"];
 
     Print["Rule: ", ruleName];
 
@@ -261,7 +261,7 @@ results = Table[
 (* Summary of spatial tests *)
 Print["------------------------------------"];
 Print["Spatial Rules Summary:"];
-allClusterings = Cases[results, KeyValuePattern["clustering" -> c_] :> c];
+allClusterings = Lookup[#, "clustering"] & /@ results;
 avgClusteringAll = Mean[allClusterings];
 
 Print["  Average clustering across rules: ", N[avgClusteringAll, 4]];
@@ -281,7 +281,8 @@ Print[" FINAL SUMMARY"];
 Print["================================================================================"];
 Print[];
 
-Print["SetReplace Version: ", PacletInformation["SetReplace"]["Version"]];
+setReplaceVersion = Quiet[PacletObject["SetReplace"]["Version"], PacletInformation::piobs];
+Print["SetReplace Version: ", setReplaceVersion];
 Print["Wolfram Version: ", $Version];
 Print[];
 
@@ -307,18 +308,18 @@ Print["Estimated time: 30-60 min additional work"];
 Print[];
 
 (* Export results to JSON for Python processing *)
-exportData = {
+exportData = <|
     "test1_states" -> nStates,
     "test1_clustering" -> N[avgClustering],
     "test3_avg_clustering" -> N[avgClusteringAll],
     "spatial_rules_tested" -> Length[spatialRules],
-    "setreplace_version" -> PacletInformation["SetReplace"]["Version"]
-};
+    "setreplace_version" -> setReplaceVersion
+|>;
 
 Export[
     "/Users/Max_1/Projects/PhysicsResearch/cosmological-unification/structural-bridge-via-uniqueness-theorems/output/wolfram_test_results.json",
     exportData,
-    "JSON"
+    "RawJSON"
 ];
 
 Print["Results exported to: output/wolfram_test_results.json"];

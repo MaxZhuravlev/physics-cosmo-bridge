@@ -54,7 +54,7 @@ Print["Testing spatial rule with oriented dynamics..."];
 Print[];
 
 (* Rule that creates mesh refinement (should have both E+ and E-) *)
-diracRule = {{x_, y_}, {y_, z_}} -> {{x_, w_}, {w_, y_}, {y_, u_}, {u_, z_}};
+diracRule = <|"PatternRules" -> {{{x_, y_}, {y_, z_}} :> {{x, w}, {w, y}, {y, u}, {u, z}}}|>;
 diracInit = {{1, 2}, {2, 3}, {3, 4}, {4, 1}};  (* Square *)
 
 Print["Rule: Edge pair → refined mesh"];
@@ -164,7 +164,7 @@ Print["=========================================================================
 Print[];
 
 If[Length[layerResults] > 0,
-  alphas = layerResults[[All, "alpha"]];
+  alphas = Lookup[#, "alpha"] & /@ layerResults;
   avgAlpha = Mean[alphas];
 
   Print["Non-degenerate layers found: ", Length[layerResults]];

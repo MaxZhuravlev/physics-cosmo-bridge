@@ -1,0 +1,676 @@
+{
+  "rule_simple_growth": {
+    "vertex_count": [
+      {
+        "depth": 2,
+        "n_transitions": 15,
+        "n_plus": 15,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 105,
+        "n_plus": 105,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 4,
+        "n_transitions": 882,
+        "n_plus": 882,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ],
+    "avg_degree": [
+      {
+        "depth": 2,
+        "n_transitions": 15,
+        "n_plus": 15,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 105,
+        "n_plus": 105,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 4,
+        "n_transitions": 882,
+        "n_plus": 814,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ],
+    "edge_density": [
+      {
+        "depth": 2,
+        "n_transitions": 15,
+        "n_plus": 15,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 105,
+        "n_plus": 105,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 4,
+        "n_transitions": 882,
+        "n_plus": 882,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ],
+    "degree_variance": [
+      {
+        "depth": 2,
+        "n_transitions": 15,
+        "n_plus": 15,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_states_d": 15,
+        "n_states_d1": 105,
+        "n_transitions": 105,
+        "n_plus": 36,
+        "n_minus": 69,
+        "n_neutral": 0,
+        "balance": 0.5217391304347826,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      },
+      {
+        "depth": 4,
+        "n_states_d": 105,
+        "n_states_d1": 882,
+        "n_transitions": 882,
+        "n_plus": 280,
+        "n_minus": 602,
+        "n_neutral": 0,
+        "balance": 0.46511627906976744,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      }
+    ]
+  },
+  "wolfram_original": {
+    "vertex_count": [
+      {
+        "depth": 2,
+        "n_transitions": 12,
+        "n_plus": 12,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 57,
+        "n_plus": 57,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 4,
+        "n_transitions": 342,
+        "n_plus": 342,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 5,
+        "n_transitions": 593,
+        "n_plus": 593,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ],
+    "avg_degree": [
+      {
+        "depth": 2,
+        "n_transitions": 12,
+        "n_plus": 12,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 57,
+        "n_plus": 57,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 4,
+        "n_states_d": 57,
+        "n_states_d1": 342,
+        "n_transitions": 342,
+        "n_plus": 312,
+        "n_minus": 3,
+        "n_neutral": 27,
+        "balance": 0.009615384615384616,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      },
+      {
+        "depth": 5,
+        "n_states_d": 342,
+        "n_states_d1": 593,
+        "n_transitions": 593,
+        "n_plus": 397,
+        "n_minus": 64,
+        "n_neutral": 132,
+        "balance": 0.16120906801007556,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      }
+    ],
+    "edge_density": [
+      {
+        "depth": 2,
+        "n_transitions": 12,
+        "n_plus": 12,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 57,
+        "n_plus": 57,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 4,
+        "n_transitions": 342,
+        "n_plus": 342,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 5,
+        "n_transitions": 593,
+        "n_plus": 593,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ],
+    "degree_variance": [
+      {
+        "depth": 2,
+        "n_states_d": 3,
+        "n_states_d1": 12,
+        "n_transitions": 12,
+        "n_plus": 6,
+        "n_minus": 6,
+        "n_neutral": 0,
+        "balance": 1.0,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      },
+      {
+        "depth": 3,
+        "n_states_d": 12,
+        "n_states_d1": 57,
+        "n_transitions": 57,
+        "n_plus": 39,
+        "n_minus": 18,
+        "n_neutral": 0,
+        "balance": 0.46153846153846156,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      },
+      {
+        "depth": 4,
+        "n_states_d": 57,
+        "n_states_d1": 342,
+        "n_transitions": 342,
+        "n_plus": 216,
+        "n_minus": 126,
+        "n_neutral": 0,
+        "balance": 0.5833333333333334,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      },
+      {
+        "depth": 5,
+        "n_states_d": 342,
+        "n_states_d1": 593,
+        "n_transitions": 593,
+        "n_plus": 361,
+        "n_minus": 230,
+        "n_neutral": 2,
+        "balance": 0.6371191135734072,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      }
+    ]
+  },
+  "rule_2d_binary": {
+    "vertex_count": [
+      {
+        "depth": 1,
+        "n_transitions": 24,
+        "n_plus": 24,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 2,
+        "n_transitions": 96,
+        "n_plus": 96,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 384,
+        "n_plus": 384,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 4,
+        "n_transitions": 492,
+        "n_plus": 492,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ],
+    "avg_degree": [
+      {
+        "depth": 1,
+        "n_transitions": 24,
+        "n_plus": 24,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 2,
+        "n_transitions": 96,
+        "n_plus": 96,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 384,
+        "n_plus": 384,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 4,
+        "n_transitions": 492,
+        "n_plus": 492,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ],
+    "edge_density": [
+      {
+        "depth": 1,
+        "n_transitions": 24,
+        "n_plus": 24,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 2,
+        "n_transitions": 96,
+        "n_plus": 96,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 384,
+        "n_plus": 384,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 4,
+        "n_transitions": 492,
+        "n_plus": 492,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ],
+    "degree_variance": [
+      {
+        "depth": 1,
+        "n_states_d": 6,
+        "n_states_d1": 24,
+        "n_transitions": 24,
+        "n_plus": 12,
+        "n_minus": 12,
+        "n_neutral": 0,
+        "balance": 1.0,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      },
+      {
+        "depth": 2,
+        "n_states_d": 24,
+        "n_states_d1": 96,
+        "n_transitions": 96,
+        "n_plus": 24,
+        "n_minus": 72,
+        "n_neutral": 0,
+        "balance": 0.3333333333333333,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      },
+      {
+        "depth": 3,
+        "n_states_d": 96,
+        "n_states_d1": 384,
+        "n_transitions": 384,
+        "n_plus": 48,
+        "n_minus": 336,
+        "n_neutral": 0,
+        "balance": 0.14285714285714285,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      },
+      {
+        "depth": 4,
+        "n_states_d": 384,
+        "n_states_d1": 492,
+        "n_transitions": 492,
+        "n_plus": 26,
+        "n_minus": 466,
+        "n_neutral": 0,
+        "balance": 0.055793991416309016,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      }
+    ]
+  },
+  "rule_star_expansion": {
+    "vertex_count": [
+      {
+        "depth": 1,
+        "n_transitions": 36,
+        "n_plus": 36,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 2,
+        "n_transitions": 216,
+        "n_plus": 216,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 744,
+        "n_plus": 744,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ],
+    "avg_degree": [
+      {
+        "depth": 1,
+        "n_transitions": 36,
+        "n_plus": 36,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 2,
+        "n_transitions": 216,
+        "n_plus": 216,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 744,
+        "n_plus": 744,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ],
+    "edge_density": [
+      {
+        "depth": 1,
+        "n_transitions": 36,
+        "n_plus": 36,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 2,
+        "n_transitions": 216,
+        "n_plus": 216,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 744,
+        "n_plus": 744,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ],
+    "degree_variance": [
+      {
+        "depth": 1,
+        "n_transitions": 36,
+        "n_plus": 0,
+        "n_minus": 36,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 2,
+        "n_transitions": 216,
+        "n_plus": 0,
+        "n_minus": 216,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 744,
+        "n_plus": 0,
+        "n_minus": 744,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ]
+  },
+  "rule_bidir": {
+    "vertex_count": [
+      {
+        "depth": 1,
+        "n_transitions": 12,
+        "n_plus": 12,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 2,
+        "n_transitions": 96,
+        "n_plus": 96,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 892,
+        "n_plus": 892,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ],
+    "avg_degree": [
+      {
+        "depth": 1,
+        "n_transitions": 12,
+        "n_plus": 8,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 2,
+        "n_states_d": 12,
+        "n_states_d1": 96,
+        "n_transitions": 96,
+        "n_plus": 72,
+        "n_minus": 16,
+        "n_neutral": 8,
+        "balance": 0.2222222222222222,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      },
+      {
+        "depth": 3,
+        "n_states_d": 96,
+        "n_states_d1": 892,
+        "n_transitions": 892,
+        "n_plus": 544,
+        "n_minus": 332,
+        "n_neutral": 16,
+        "balance": 0.6102941176470589,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      }
+    ],
+    "edge_density": [
+      {
+        "depth": 1,
+        "n_transitions": 12,
+        "n_plus": 12,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 2,
+        "n_transitions": 96,
+        "n_plus": 96,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 3,
+        "n_transitions": 892,
+        "n_plus": 892,
+        "n_minus": 0,
+        "degenerate": true,
+        "reason": "one_sided"
+      }
+    ],
+    "degree_variance": [
+      {
+        "depth": 1,
+        "n_transitions": 12,
+        "n_plus": 0,
+        "n_minus": 12,
+        "degenerate": true,
+        "reason": "one_sided"
+      },
+      {
+        "depth": 2,
+        "n_states_d": 12,
+        "n_states_d1": 96,
+        "n_transitions": 96,
+        "n_plus": 72,
+        "n_minus": 24,
+        "n_neutral": 0,
+        "balance": 0.3333333333333333,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      },
+      {
+        "depth": 3,
+        "n_states_d": 96,
+        "n_states_d1": 892,
+        "n_transitions": 892,
+        "n_plus": 496,
+        "n_minus": 396,
+        "n_neutral": 0,
+        "balance": 0.7983870967741935,
+        "alpha": 0.0,
+        "error": 0.0,
+        "degenerate": false
+      }
+    ]
+  }
+}

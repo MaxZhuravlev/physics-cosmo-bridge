@@ -1,0 +1,10 @@
+main.tex           Main LaTeX source
+references.bib     BibTeX references
+figures/Fig1_Purification_vs_LD.png    Figure 1: Purification vs LD comparison
+figures/Fig2_Theorem_Flowchart.png     Figure 2: Theorem flowchart from CI
+
+Compile with:
+  pdflatex main
+  bibtex main
+  pdflatex main
+  pdflatex main

@@ -1,0 +1,230 @@
+{
+  "rule_simple_growth": {
+    "spatial": {
+      "n_vertices": 2189,
+      "n_oriented_edges": 5103,
+      "laplacian_match": 0.38833510057247367,
+      "spectral_match": 1.0,
+      "n_triangles": 6561,
+      "frustration": 3645,
+      "frustration_ratio": 0.5555555555555556,
+      "spin_structure": false,
+      "nonzero_laplacian_eigs": 2188,
+      "spectral_gap": 0.000930225433614683,
+      "status": "computed"
+    },
+    "multiway": {
+      "n_states": 503,
+      "n_transitions": 502,
+      "n_positive": 472,
+      "n_negative": 0,
+      "n_neutral": 30,
+      "balance": 0.0,
+      "spectral_correlation": 0.9533394058824316,
+      "alpha_spectral": 0.936049265750829,
+      "relative_error": 0.05491758122667715,
+      "rank_L": 62,
+      "rank_D2": 62,
+      "top5_eigs_L": [
+        9.0,
+        9.0,
+        9.0,
+        9.0,
+        9.0
+      ],
+      "top5_eigs_D2": [
+        9.0,
+        9.0,
+        9.0,
+        9.0,
+        9.0
+      ]
+    }
+  },
+  "wolfram_original": {
+    "spatial": {
+      "n_vertices": 105,
+      "n_oriented_edges": 208,
+      "laplacian_match": -0.31457562921845916,
+      "spectral_match": 1.0,
+      "n_triangles": 315,
+      "frustration": 111,
+      "frustration_ratio": 0.3523809523809524,
+      "spin_structure": false,
+      "nonzero_laplacian_eigs": 104,
+      "spectral_gap": 1.000954790786511,
+      "status": "computed"
+    },
+    "multiway": {
+      "n_states": 500,
+      "n_transitions": 499,
+      "n_positive": 444,
+      "n_negative": 9,
+      "n_neutral": 46,
+      "balance": 0.02027027027027027,
+      "spectral_correlation": 0.9364269822931917,
+      "alpha_spectral": 0.9294978383771201,
+      "relative_error": 0.14480649075874605,
+      "rank_L": 88,
+      "rank_D2": 88,
+      "top5_eigs_L": [
+        8.0,
+        8.0,
+        8.0,
+        8.0,
+        8.0
+      ],
+      "top5_eigs_D2": [
+        8.0,
+        8.0,
+        8.0,
+        8.0,
+        8.0
+      ]
+    }
+  },
+  "rule_2d_binary": {
+    "spatial": {
+      "n_vertices": 203,
+      "n_oriented_edges": 202,
+      "laplacian_match": 0.8053432032171168,
+      "spectral_match": 0.9999999999999999,
+      "n_triangles": 0,
+      "frustration": 0,
+      "frustration_ratio": 0,
+      "spin_structure": true,
+      "nonzero_laplacian_eigs": 202,
+      "spectral_gap": 0.0002418739135693524,
+      "status": "computed"
+    },
+    "multiway": {
+      "n_states": 503,
+      "n_transitions": 502,
+      "n_positive": 502,
+      "n_negative": 0,
+      "n_neutral": 0,
+      "balance": 0.0,
+      "spectral_correlation": 1.0,
+      "alpha_spectral": 1.0,
+      "relative_error": 0.0,
+      "rank_L": 125,
+      "rank_D2": 125,
+      "top5_eigs_L": [
+        6.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "top5_eigs_D2": [
+        6.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ]
+    }
+  },
+  "rule_star_expansion": {
+    "spatial": {
+      "n_vertices": 104,
+      "n_oriented_edges": 103,
+      "laplacian_match": 0.7401459722158862,
+      "spectral_match": 1.0,
+      "n_triangles": 0,
+      "frustration": 0,
+      "frustration_ratio": 0,
+      "spin_structure": true,
+      "nonzero_laplacian_eigs": 103,
+      "spectral_gap": 0.0009126062085909535,
+      "status": "computed"
+    },
+    "multiway": {
+      "n_states": 505,
+      "n_transitions": 504,
+      "n_positive": 504,
+      "n_negative": 0,
+      "n_neutral": 0,
+      "balance": 0.0,
+      "spectral_correlation": null,
+      "alpha_spectral": 1.0,
+      "relative_error": 0.0,
+      "rank_L": 84,
+      "rank_D2": 84,
+      "top5_eigs_L": [
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0
+      ],
+      "top5_eigs_D2": [
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0
+      ]
+    }
+  },
+  "rule_simple_2edge": {
+    "spatial": {
+      "n_vertices": 3,
+      "n_oriented_edges": 3,
+      "laplacian_match": 1.0,
+      "spectral_match": null,
+      "n_triangles": 3,
+      "frustration": 2,
+      "frustration_ratio": 0.6666666666666666,
+      "spin_structure": false,
+      "nonzero_laplacian_eigs": 2,
+      "spectral_gap": 3.0,
+      "status": "computed"
+    },
+    "multiway": {
+      "status": "too_small"
+    }
+  },
+  "rule_bidir": {
+    "spatial": {
+      "n_vertices": 1599,
+      "n_oriented_edges": 2441,
+      "laplacian_match": 0.30331605800889094,
+      "spectral_match": 0.9999999999999999,
+      "n_triangles": 969,
+      "frustration": 324,
+      "frustration_ratio": 0.33436532507739936,
+      "spin_structure": false,
+      "nonzero_laplacian_eigs": 1598,
+      "spectral_gap": 0.0013634714505680043,
+      "status": "computed"
+    },
+    "multiway": {
+      "n_states": 511,
+      "n_transitions": 510,
+      "n_positive": 324,
+      "n_negative": 164,
+      "n_neutral": 22,
+      "balance": 0.5061728395061729,
+      "spectral_correlation": 0.9344398056437693,
+      "alpha_spectral": 0.9669291338582677,
+      "relative_error": 0.08234278086552045,
+      "rank_L": 53,
+      "rank_D2": 52,
+      "top5_eigs_L": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "top5_eigs_D2": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ]
+    }
+  }
+}

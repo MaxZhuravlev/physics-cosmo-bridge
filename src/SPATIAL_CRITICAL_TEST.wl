@@ -74,7 +74,7 @@ Print["TEST 1: TRIANGLE COMPLETION (2D-like)"];
 Print["--------------------------------------"];
 Print[];
 
-spatialRule1 = {{x_, y_}, {y_, z_}} -> {{x_, y_}, {y_, z_}, {z_, x_}};
+spatialRule1 = <|"PatternRules" -> {{{x_, y_}, {y_, z_}} :> {{x, y}, {y, z}, {z, x}}}|>;
 init1 = {{1, 2}, {2, 3}};
 
 Print["Rule: Edge pairs → complete triangle"];
@@ -104,7 +104,7 @@ If[VertexCount[causal1] > 10 && VertexCount[causal1] < 500,
   sampledEdges = RandomSample[edges, sampleSize];
 
   curvatures = Table[
-    DirectedEdge[v1, v2] = edge;
+    {v1, v2} = If[Head[edge] === DirectedEdge, List @@ edge, {edge[[1]], edge[[2]]}];
     kappa = OllivierRicciApprox[causal1, v1, v2, 0.5];
     kappa,
     {edge, sampledEdges}
@@ -149,7 +149,7 @@ Print["TEST 2: SQUARE MESH GROWTH (2D explicit)"];
 Print["------------------------------------------"];
 Print[];
 
-spatialRule2 = {{x_, y_}} -> {{x_, w_}, {w_, z_}, {z_, v_}, {v_, y_}};
+spatialRule2 = <|"PatternRules" -> {{{x_, y_}} :> {{x, w}, {w, z}, {z, v}, {v, y}}}|>;
 init2 = {{1, 2}};
 
 Print["Rule: Edge → square"];
@@ -194,22 +194,22 @@ spatialRules = {
   (* Hexagonal tiling *)
   {
     "name" -> "Hexagonal",
-    "rule" -> {{x_, y_}, {y_, z_}, {z_, x_}} ->
-              {{x_, w_}, {w_, y_}, {y_, u_}, {u_, z_}, {z_, v_}, {v_, x_}},
+    "rule" -> <|"PatternRules" -> {{{x_, y_}, {y_, z_}, {z_, x_}} :>
+              {{x, w}, {w, y}, {y, u}, {u, z}, {z, v}, {v, x}}}|>,
     "init" -> {{1, 2}, {2, 3}, {3, 1}}
   },
 
   (* Grid-like *)
   {
     "name" -> "GridLike",
-    "rule" -> {{x_, y_}, {y_, z_}} -> {{x_, w_}, {w_, y_}, {y_, u_}, {u_, z_}},
+    "rule" -> <|"PatternRules" -> {{{x_, y_}, {y_, z_}} :> {{x, w}, {w, y}, {y, u}, {u, z}}}|>,
     "init" -> {{1, 2}, {2, 3}}
   },
 
   (* Mesh subdivision *)
   {
     "name" -> "Subdivision",
-    "rule" -> {{x_, y_}} -> {{x_, w_}, {w_, y_}},
+    "rule" -> <|"PatternRules" -> {{{x_, y_}} :> {{x, w}, {w, y}}}|>,
     "init" -> {{1, 2}, {2, 3}, {3, 1}}
   }
 };
@@ -217,9 +217,9 @@ spatialRules = {
 allCurvatures = {};
 
 Do[
-  ruleName = rule["name"];
-  ruleSpec = rule["rule"];
-  ruleInit = rule["init"];
+  ruleName = Lookup[rule, "name"];
+  ruleSpec = Lookup[rule, "rule"];
+  ruleInit = Lookup[rule, "init"];
 
   Print["[", ruleName, "]"];
 
@@ -275,7 +275,8 @@ Print[" FINAL RESULTS"];
 Print["================================================================================"];
 Print[];
 
-Print["SetReplace Version: ", PacletInformation["SetReplace"]["Version"]];
+setReplaceVersion = Quiet[PacletObject["SetReplace"]["Version"], PacletInformation::piobs];
+Print["SetReplace Version: ", setReplaceVersion];
 Print["Wolfram Version: ", $Version];
 Print[];
 
@@ -320,20 +321,20 @@ Print["NEXT: Include results in publication"];
 Print[];
 
 (* Export for Python processing *)
-exportData = Association[
+exportData = <|
   "test1_states" -> Length[states1],
   "test1_causal_vertices" -> VertexCount[causal1],
   "test2_states" -> Length[states2],
   "spatial_rules_tested" -> Length[spatialRules],
   "average_clustering" -> If[Length[allCurvatures] > 0, Mean[allCurvatures], 0],
-  "setreplace_version" -> PacletInformation["SetReplace"]["Version"],
+  "setreplace_version" -> setReplaceVersion,
   "wolfram_version" -> $Version
-];
+|>;
 
 Export[
   "/Users/Max_1/Projects/PhysicsResearch/cosmological-unification/structural-bridge-via-uniqueness-theorems/output/spatial_test_results.json",
-  Normal[exportData],
-  "JSON"
+  exportData,
+  "RawJSON"
 ];
 
 Print["Results exported to: output/spatial_test_results.json"];
