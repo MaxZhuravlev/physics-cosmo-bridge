@@ -60,6 +60,12 @@ OllivierRicciApprox[graph_, vertex1_, vertex2_, alpha_:0.5] := Module[
   1 - wasserstein / dist
 ];
 
+(* Robust clustering helper to avoid vertex-index mismatch errors *)
+SafeMeanClustering[graph_] := Module[{values},
+  values = Quiet@Check[Cases[LocalClusteringCoefficient[UndirectedGraph[graph]], _Real], {}];
+  If[Length[values] > 0, Mean[values], Missing["NotAvailable"]]
+];
+
 Print["================================================================================"];
 Print[" SPATIAL HYPERGRAPH CRITICAL TEST"];
 Print[" Ollivier-Ricci Curvature on 2D/3D Embedded Systems"];
@@ -166,17 +172,15 @@ Print[];
 
 (* Clustering coefficient (curvature proxy) *)
 If[VertexCount[causal2] > 5,
-  vertices2 = VertexList[causal2];
-  clustering = LocalClusteringCoefficient[causal2, vertices2];
-  validClustering = Cases[clustering, _Real];
-
-  If[Length[validClustering] > 0,
-    avgClustering = Mean[validClustering];
+  avgClustering = SafeMeanClustering[causal2];
+  If[NumberQ[avgClustering],
     Print["  Average clustering: ", N[avgClustering, 4]];
 
     If[avgClustering > 0.05,
       Print["  ✓ Non-trivial clustering (curvature-like)"];
     ];
+  ,
+    Print["  Average clustering: n/a"];
   ];
 ];
 Print[];
@@ -228,17 +232,14 @@ Do[
 
   (* Quick curvature measure *)
   If[VertexCount[causal] > 5 && VertexCount[causal] < 300,
-    (* Clustering *)
-    clustering = Mean[Cases[
-      LocalClusteringCoefficient[causal, VertexList[causal]],
-      _Real
-    ]];
-
-    Print["  States: ", Length[result["StatesList"]],
-          ", Clustering: ", N[clustering, 3]];
-
+    clustering = SafeMeanClustering[causal];
     If[NumberQ[clustering],
+      Print["  States: ", Length[result["StatesList"]],
+            ", Clustering: ", N[clustering, 3]];
       AppendTo[allCurvatures, clustering];
+    ,
+      Print["  States: ", Length[result["StatesList"]],
+            ", Clustering: n/a"];
     ];
   ,
     Print["  States: ", Length[result["StatesList"]]];
@@ -294,15 +295,15 @@ If[Length[allCurvatures] > 0,
   Print[];
 
   If[avgAll > 0.05,
-    Print["  ✓✓✓ CONTINUAL LIMIT: Empirically supported"];
+    Print["  ✓✓ CONTINUAL LIMIT: Preliminary empirical support"];
     Print["      Spatial hypergraphs have intrinsic curvature"];
-    Print["      Theorems can be stated as UNCONDITIONAL"];
+    Print["      Continuum-limit assumptions still require rigorous proof"];
     Print[];
-    Print["  IMPACT: Publication strength +40%"];
+    Print["  IMPACT: stronger empirical motivation"];
   ,
     If[avgAll > 0.01,
       Print["  ~ PARTIAL: Some curvature detected"];
-      Print["    Theorems remain conditional (honest)"];
+      Print["    Claims should remain conditional"];
     ,
       Print["  → FLAT: These rules don't show curvature"];
       Print["    Would need other rules or higher dimensions"];
@@ -314,7 +315,7 @@ Print[];
 Print["RECOMMENDATION:"];
 Print["  Current Python results (N=20,006, purification 100%)"];
 Print["  + These spatial tests"];
-Print["  = COMPLETE empirical validation"];
+Print["  = improved empirical evidence (not a formal proof)"];
 Print[];
 
 Print["NEXT: Include results in publication"];

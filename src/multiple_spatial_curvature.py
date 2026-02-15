@@ -15,10 +15,132 @@ This test: Show it's reproducible across patterns
 """
 
 import numpy as np
-import networkx as nx
-import ot  # Python Optimal Transport
 from typing import List, Tuple
 import json
+from pathlib import Path
+from collections import defaultdict, deque
+from scipy.optimize import linprog
+
+try:
+    import networkx as nx
+except Exception:  # pragma: no cover - optional dependency
+    nx = None
+
+try:
+    import ot  # Python Optimal Transport
+except Exception:  # pragma: no cover - optional dependency
+    ot = None
+
+
+class SimpleGraph:
+    """Minimal undirected graph fallback when NetworkX is unavailable."""
+
+    def __init__(self):
+        self.adj = defaultdict(set)
+        self._edge_count = 0
+
+    def add_nodes_from(self, nodes):
+        for node in nodes:
+            _ = self.adj[node]
+
+    def add_edge(self, u, v):
+        if v not in self.adj[u]:
+            self.adj[u].add(v)
+            self.adj[v].add(u)
+            self._edge_count += 1
+
+    def neighbors(self, node):
+        return self.adj.get(node, set())
+
+    def edges(self):
+        out = []
+        seen = set()
+        for u, nbrs in self.adj.items():
+            for v in nbrs:
+                key = (u, v) if u <= v else (v, u)
+                if key in seen:
+                    continue
+                seen.add(key)
+                out.append(key)
+        return out
+
+    def number_of_nodes(self):
+        return len(self.adj)
+
+    def number_of_edges(self):
+        return self._edge_count
+
+    def shortest_path_length(self, source, target):
+        if source == target:
+            return 0
+        queue = deque([(source, 0)])
+        visited = {source}
+        while queue:
+            node, dist = queue.popleft()
+            for nbr in self.adj.get(node, ()):
+                if nbr == target:
+                    return dist + 1
+                if nbr in visited:
+                    continue
+                visited.add(nbr)
+                queue.append((nbr, dist + 1))
+        raise ValueError("No path between nodes")
+
+
+def _new_graph():
+    if nx is not None:
+        return nx.Graph()
+    return SimpleGraph()
+
+
+def _graph_edges(G):
+    return list(G.edges())
+
+
+def _graph_neighbors(G, node):
+    return list(G.neighbors(node))
+
+
+def _graph_shortest_path_length(G, source, target):
+    if nx is not None:
+        return nx.shortest_path_length(G, source, target)
+    return G.shortest_path_length(source, target)
+
+
+def _emd2(prob_u, prob_v, dist_matrix):
+    """Compute Earth Mover's Distance squared (cost) with optional POT dependency."""
+    if ot is not None:
+        return float(ot.emd2(prob_u, prob_v, dist_matrix))
+
+    n, m = dist_matrix.shape
+    c = dist_matrix.reshape(-1)
+    a_eq = []
+    b_eq = []
+
+    # Row constraints
+    for i in range(n):
+        row = np.zeros(n * m)
+        row[i * m : (i + 1) * m] = 1.0
+        a_eq.append(row)
+        b_eq.append(prob_u[i])
+
+    # Column constraints
+    for j in range(m):
+        col = np.zeros(n * m)
+        col[j::m] = 1.0
+        a_eq.append(col)
+        b_eq.append(prob_v[j])
+
+    res = linprog(
+        c,
+        A_eq=np.vstack(a_eq),
+        b_eq=np.array(b_eq),
+        bounds=(0, None),
+        method="highs",
+    )
+    if not res.success:
+        raise RuntimeError(f"Linear program failed: {res.message}")
+    return float(res.fun)
 
 def create_2d_triangle_mesh(size=3):
     """Create 2D triangular mesh hypergraph"""
@@ -87,7 +209,7 @@ def create_tetrahedral_3d(size=2):
 
 def hypergraph_to_causal_graph(hyperedges):
     """Convert hypergraph to causal graph for curvature testing"""
-    G = nx.Graph()
+    G = _new_graph()
 
     # Add all nodes
     nodes = set()
@@ -115,7 +237,7 @@ def compute_ollivier_ricci_curvature(G, sample_size=50, alpha=0.5):
     if G.number_of_nodes() < 3:
         return []
 
-    edges = list(G.edges())
+    edges = _graph_edges(G)
     if len(edges) == 0:
         return []
 
@@ -130,8 +252,8 @@ def compute_ollivier_ricci_curvature(G, sample_size=50, alpha=0.5):
     for u, v in edges:
         try:
             # Get neighborhoods
-            neighbors_u = list(G.neighbors(u)) + [u]
-            neighbors_v = list(G.neighbors(v)) + [v]
+            neighbors_u = _graph_neighbors(G, u) + [u]
+            neighbors_v = _graph_neighbors(G, v) + [v]
 
             if len(neighbors_u) < 2 or len(neighbors_v) < 2:
                 continue
@@ -148,12 +270,12 @@ def compute_ollivier_ricci_curvature(G, sample_size=50, alpha=0.5):
             for i, nu in enumerate(neighbors_u):
                 for j, nv in enumerate(neighbors_v):
                     try:
-                        dist_matrix[i, j] = nx.shortest_path_length(G, nu, nv)
+                        dist_matrix[i, j] = _graph_shortest_path_length(G, nu, nv)
                     except:
                         dist_matrix[i, j] = 100  # Disconnected
 
             # Compute Wasserstein distance
-            W_dist = ot.emd2(p_u, p_v, dist_matrix)
+            W_dist = _emd2(p_u, p_v, dist_matrix)
 
             # Graph distance d(u,v) = 1 (edge)
             d_uv = 1
@@ -324,8 +446,9 @@ def main():
     print()
 
     # Save
-    output_file = '../output/multiple_spatial_curvature_results.json'
-    with open(output_file, 'w') as f:
+    output_file = Path(__file__).resolve().parents[1] / "output" / "multiple_spatial_curvature_results.json"
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    with output_file.open('w') as f:
         json.dump({
             'test_date': '2026-02-14',
             'method': 'Pure Python + POT (Ollivier-Ricci)',
@@ -337,7 +460,7 @@ def main():
             'comparison_wolfram': {
                 'wolfram_kappa': 0.67,
                 'python_mean': float(overall_mean),
-                'consistent': abs(overall_mean - 0.67) < 0.2
+                'consistent': bool(abs(overall_mean - 0.67) < 0.2)
             },
             'results': results
         }, f, indent=2)
@@ -364,14 +487,17 @@ if __name__ == "__main__":
     print("      This test: Show robustness across patterns")
     print()
 
-    results, assessment = main()
+    out = main()
+    if out is None:
+        raise SystemExit(1)
+    results, assessment = out
 
     print("=" * 80)
     print(" FINAL VERDICT")
     print("=" * 80)
     print()
     print("Wolfram SetReplace: κ=0.67 (triangle completion) ✓✓✓")
-    print(f"Python POT (this test): κ={np.mean([r['mean_kappa'] for r in results]):.4f} (multiple patterns)")
+    print(f"Python POT/fallback LP (this test): κ={np.mean([r['mean_kappa'] for r in results]):.4f} (multiple patterns)")
     print()
     print("Combined: Continual limit EMPIRICALLY SUPPORTED")
     print("          (robust across different spatial structures)")
