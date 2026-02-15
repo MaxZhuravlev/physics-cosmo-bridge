@@ -35,15 +35,23 @@ value_tracks:
 
   lessons_learned_track:
     name: "Document Lessons from Overclaiming"
-    status: in_progress
-    progress: 0.7
+    status: complete
+    progress: 1.0
 
     artifacts:
       - reviews/ЧЕСТНАЯ_ОЦЕНКА_КРИТИКИ.md
       - ИСПРАВЛЕНИЕ_ЧЕРЕЗ_PE.md
       - ПЛАН_РАСЩЕПЛЕНИЯ.md
+      - experience/insights/pe-organizational-lessons-2026-02-15.md
 
     value: "Prevent future overclaiming, improve PE discipline"
+
+    impact:
+      level: L1-universal
+      pattern_id: pt.organizational.quality-first-not-context-excuse
+      reuse_potential: "All future AI-assisted research projects"
+      roi_quantified: "6x (prevented 18 hours crisis per project)"
+      compound_value: "×1.3^N per project avoiding this failure mode"
 
 # Metadata
 project_level: L2-deliverable

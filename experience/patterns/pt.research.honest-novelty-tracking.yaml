@@ -1,0 +1,189 @@
+# Pattern: Honest Novelty Tracking
+
+pattern_id: pt.research.honest-novelty-tracking
+domain: academic-research
+level: L2
+created: 2026-02-15
+source: experience/insights/pe-organizational-lessons-2026-02-15.md
+
+## Problem
+
+Overclaiming is tempting when results are exciting.
+Without continuous calibration:
+- "40% new" drifts to "60% new" to "revolutionary"
+- Internal excitement clouds objective assessment
+- Crisis occurs when external reviewers provide reality check
+
+**Consequences:**
+- Reputational damage
+- Wrong journal targeting (Nature vs arXiv)
+- Wasted reviewer time on inflated claims
+- Retraction risk if published
+
+## Solution
+
+Use /pe-classify to tag EVERY result with novelty level:
+
+```yaml
+novelty_levels:
+  DISCOVERY: 1.0
+    description: "No prior work exists, genuinely new result"
+    examples: ["New theorem", "First observation", "Novel mechanism"]
+
+  CONTRIBUTION: 0.7
+    description: "New application/construction of known techniques"
+    examples: ["G = A^T A for Local Distinguishability", "Ollivier-Ricci on Wolfram hypergraphs"]
+
+  SYNTHESIS: 0.4
+    description: "Connecting known results in new way"
+    examples: ["CI → Lovelock → Eq. 93", "Chiribella axioms apply to multiway"]
+
+  CITATION: 0.1
+    description: "Applying known result as-is"
+    examples: ["Lovelock 1971 theorem", "Amari 1998 natural gradient"]
+```
+
+### Continuous Tracking
+
+```yaml
+# After each result:
+/pe-classify <result>
+→ Novelty: SYNTHESIS (0.4)
+→ Evidence: "Lovelock 1971 known, application to CI new"
+→ Auto-save: experience/insights/INS-{NAME}.md
+→ Update: VALUE-TRACKS.yaml
+
+# VALUE-TRACKS computes project novelty:
+novelty = weighted_average(result_novelties)
+# Example: 3 SYNTHESIS + 1 CONTRIBUTION + 5 CITATIONS = 0.25 aggregate
+```
+
+### Honest Claims in Deliverable
+
+```yaml
+# integration-contract.md defines claims based on aggregate novelty:
+
+novelty >= 0.7:
+  claim: "Original contribution"
+  targets: "Nature, Science, PRL"
+
+novelty 0.4-0.7:
+  claim: "Novel synthesis"
+  targets: "PRA, PRD, JHEP"
+
+novelty 0.2-0.4:
+  claim: "Systematic review with modest synthesis"
+  targets: "Living Reviews, arXiv"
+
+novelty < 0.2:
+  claim: "Tutorial / survey"
+  targets: "Lecture notes, textbook chapter"
+```
+
+## Evidence
+
+**This project (actual novelty drift):**
+
+```yaml
+session_3:
+  internal_assessment: "40% new (Lovelock application novel)"
+  novelty_tracking: none
+
+session_7:
+  internal_assessment: "60% new (5 theorems!)"
+  novelty_tracking: none
+  excitement: high
+
+session_11:
+  external_reviewers: "20-25% new, ~60% переоткрытие"
+  crisis: overclaiming visible
+  reputational_risk: HIGH
+
+session_12_correction:
+  honest_classification:
+    - CI → GR: CITATION (Gorard 2020)
+    - Lovelock theorem: CITATION (Lovelock 1971)
+    - Lovelock → Eq. 93: SYNTHESIS (0.4)
+    - G = A^T A: CONTRIBUTION (0.7)
+    - Amari → Eq. 3.4: SYNTHESIS (0.4)
+    - Chiribella axioms: CITATION + verification (0.3)
+
+  aggregate_novelty: 0.25 (honest)
+  corrected_claim: "Modest synthesis bridging programs"
+```
+
+**If novelty tracking from session 1:**
+- Each theorem classified immediately
+- VALUE-TRACKS.yaml shows 0.25-0.30 throughout
+- Claims written honestly from start
+- Reviewers validate instead of invalidate
+
+## Benefits
+
+1. **Correct positioning:**
+   - Honest novelty → correct journal
+   - Correct journal → higher acceptance rate
+   - No reviewer time wasted on inflated claims
+
+2. **Reputational safety:**
+   - Reviewers praise honesty
+   - Negative results valued (eliminates hypothesis space)
+   - Trust established for future work
+
+3. **Clean spin-offs:**
+   - High novelty (0.7+) separated to ambitious projects
+   - Low novelty (0.2-0.4) grouped as synthesis
+   - Clear deliverable boundaries
+
+## Anti-Pattern
+
+**Avoid:**
+- Internal echo chamber (excitement → overclaiming)
+- Sunk cost justification ("10 sessions → must be important")
+- Isolated assessment (no external calibration)
+
+**Replace with:**
+- Continuous /pe-classify (objective metrics)
+- VALUE-TRACKS.yaml (visible drift detection)
+- Peer review BEFORE submission (early reality check)
+
+## Implementation
+
+```yaml
+# Session 1: Set novelty expectations in VOS
+integration-contract.md:
+  expected_novelty: 0.3-0.5 (synthesis with modest contribution)
+  deliverable: "arXiv preprint bridging programs"
+
+# Every session: Classify each result
+/pe-classify "Lovelock → Eq. 93"
+→ Novelty: SYNTHESIS (0.4)
+→ Reasoning: "Lovelock 1971 known, CI → Lovelock connection new"
+
+# Weekly: Check drift
+VALUE-TRACKS.yaml:
+  current_novelty: 0.28
+  expected_novelty: 0.3-0.5
+  status: ON TRACK (no drift)
+
+# Pre-submission: Final calibration
+peer_review:
+  - Internal assessment: 0.25
+  - External reviewers: 0.20-0.25
+  - Status: VALIDATED (honest assessment confirmed)
+```
+
+## Impact
+
+**Level:** L2 (academic research)
+**Reuse:** All publishable research projects
+**Compound:** Prevents 1 crisis per project = 2 weeks saved each time
+
+**Career-level:** Reputation for honesty compounds over years:
+- Early career: 1 honest paper > 3 retracted overclaims
+- Mid career: Trusted reviews, invited talks
+- Senior career: Mentorship credibility
+
+---
+
+*Honest novelty tracking prevents overclaiming crises. Track from session 1.*

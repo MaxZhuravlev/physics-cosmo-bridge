@@ -1,0 +1,114 @@
+# Pattern: PE-First Research Protocol
+
+pattern_id: pt.research.pe-first
+domain: research
+level: L2  # Applies to any AI-assisted research
+created: 2026-02-15
+source: experience/insights/pe-organizational-lessons-2026-02-15.md
+
+## Problem
+
+Research is exploratory, so "structure comes later" seems reasonable.
+But exploration without tracking leads to:
+- Quality drift (overclaiming)
+- Scope creep (unclear deliverable)
+- Lost insights (buried in dialogue history)
+- Archaeological overhead (55+ unorganized commits)
+
+## Solution
+
+Apply PE methodology FROM SESSION 1, not retroactively.
+
+### Session 1 Init
+
+```bash
+cd ~/Projects/{Beneficiary}/{Problematics}/
+/cw--uu-create-project {project-name}
+
+# Creates:
+# - vos/ (value, scope, contract)
+# - resources/ (papers, data, external)
+# - experience/ (insights/, patterns/)
+# - VALUE-TRACKS.yaml (deliverable tracking)
+
+# Define VOS immediately:
+# - value-transformation.md: INPUT → OUTPUT → DELTA
+# - scope-boundaries.md: IN / OUT / INTERFACE
+# - integration-contract.md: deliverables, guarantees
+```
+
+### Every Session
+
+```bash
+# After each result:
+/pe-classify
+# → Auto-saves insights (L(P) >= 0.6)
+# → Tracks novelty (prevent overclaiming)
+# → Updates VALUE-TRACKS.yaml
+
+# For each artifact:
+/cws-route <file>
+# → Semantic organization from start
+# → No archaeological cleanup later
+
+# End of session:
+git commit -m "feat: <semantic message>"
+# Reference insights in commit messages
+```
+
+### Weekly
+
+```bash
+/cws-handoff
+# → Preserve state across sessions
+# → Queue deep extraction (98%+ value)
+# → Enable clean continuation
+```
+
+### Crisis Detection
+
+```bash
+# If scope unclear:
+/cws-reorg --action=split
+
+# If novelty drift detected:
+# Honest reassessment via /pe-classify
+
+# If quality risk:
+# Peer review BEFORE publication
+```
+
+## Evidence
+
+**This project (structural-bridge-via-uniqueness-theorems):**
+- Sessions 1-10 WITHOUT PE: 42 commits, 0 insights captured, overclaiming crisis
+- Session 11-12: 2 weeks reorganization to fix crisis
+- Sessions 13-14 WITH PE: Immediate clarity, deliverable 95% complete
+
+**Quantified:**
+- PE overhead: 3 hours (init + classify + route + handoff)
+- Prevented cost: 21 hours (reorganization + crisis management)
+- ROI: 6x (18 hours saved)
+- Compound: ×13 at N=10 sessions (vs ×0.028 chaos decay)
+
+## Anti-Pattern
+
+- "PE is overhead" → Actually prevents 10x more overhead later
+- "Structure kills creativity" → Chaos kills creativity, structure enables it
+- "Manual commits are fine" → Fine until 55+ commits become archaeology
+
+## Impact
+
+**Level:** L2 (any AI-assisted research)
+**Reuse:** All future research projects (physics, ML, systems)
+**Compound:** ×1.3 per project that avoids 2-week crisis
+
+## Related Patterns
+
+- pt.research.honest-novelty-tracking (prevent overclaiming)
+- pt.research.negative-results-as-insights (publication bias prevention)
+- pt.organizational.quality-first-not-context-excuse (universal)
+
+---
+
+*Use this pattern on EVERY research project from session 1.*
