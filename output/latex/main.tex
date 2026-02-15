@@ -20,9 +20,9 @@ Independent Research}
 \begin{abstract}
 We demonstrate a formal connection between Wolfram's hypergraph physics and Vanchurin's neural network cosmology through Lovelock's uniqueness theorem, providing a possible answer to Vanchurin's explicitly stated open question regarding the derivation of Onsager tensor symmetries from first principles.
 
-Gorard (2020) proved that causal invariance—the core axiom of Wolfram's model—is equivalent to discrete general covariance. Under the standard assumption of a continuum limit (supported by preliminary numerical evidence from spatial hypergraph tests, with curvature ranging from near-zero values to about $\kappa=0.67$ across tested spatial rules, where the highest value appears in a small triangle-completion case), this yields diffeomorphism invariance. Lovelock's theorem (1971) then establishes that Einstein's gravity is the unique theory in four dimensions. This may constrain Vanchurin's phenomenologically chosen Onsager tensor (Eq.~93, arXiv:2008.01540).
+Gorard (2020) proved that causal invariance—the core axiom of Wolfram's model—is equivalent to discrete general covariance. Under the working assumption of a continuum limit (supported by preliminary numerical evidence from spatial hypergraph tests, with curvature ranging from near-zero values to about $\kappa=0.67$ across tested spatial rules, where the highest value appears in a small triangle-completion case), this yields diffeomorphism invariance. Lovelock's theorem (1971) then establishes that Einstein's gravity is the unique theory in four dimensions. This may constrain Vanchurin's phenomenologically chosen Onsager tensor (Eq.~93, arXiv:2008.01540).
 
-We do not claim this as a new theorem, but rather as a synthesis making explicit the connection between two independent research programs. The primary contribution is answering Vanchurin's published question using existing mathematical results.
+We do not claim this as a new theorem, but rather as a synthesis making explicit the connection between two independent research programs. The primary contribution is offering a possible answer to Vanchurin's published question using existing mathematical results.
 
 \textbf{Keywords}: Wolfram physics, neural network cosmology, Lovelock theorem, synthesis
 
@@ -35,7 +35,7 @@ Two recent cosmological research programs have independently derived gravitation
 
 \textbf{Wolfram Physics Project}~\cite{Gorard2020,Wolfram2020}: Derives spacetime and gravity from hypergraph rewriting with causal invariance.
 
-\textbf{Vanchurin Neural Network Cosmology}~\cite{Vanchurin2020,Vanchurin2025}: Derives gravity from entropy production in learning neural networks.
+\textbf{Vanchurin Neural Network Cosmology}~\cite{Vanchurin2020}: Derives gravity from entropy production in learning neural networks.
 
 In deriving Einstein's equations, Vanchurin (2020) notes:
 
@@ -55,15 +55,15 @@ Gorard~\cite{Gorard2020} proves:
 ``Causal invariance...is equivalent to a discrete version of general covariance''
 \end{quote}
 
-For hypergraph $H$ with rewriting rules, causal invariance (outcome independent of update ordering) implies discrete general covariance (evolution equations coordinate-independent).
+For hypergraph $H$ with rewriting rules, causal invariance (outcome independent of update ordering) implies discrete general covariance (evolution equations coordinate-independent)---a graph-theoretic analogue of the smooth-manifold property in general relativity.
 
 \subsection{The Continuum Limit (Assumed)}
 
-\textbf{Standard assumption}: As hypergraph density $\to \infty$, discrete manifold approaches smooth Riemannian manifold.
+\textbf{Working assumption}: As hypergraph density $\to \infty$, discrete manifold approaches smooth Riemannian manifold. This assumption is common to discrete-to-continuum gravity programs but remains unproven.
 
 \textbf{Non-genericity caveat}: Causal invariance is not generic across rule spaces; practical Wolfram-model enumerations report it for only a minority of rules (often described at a few-percent level)~\cite{Wolfram2020,Gorard2020}. The bridge developed here is therefore conditional on that restricted subset.
 
-\textbf{Numerical support (preliminary)}: Spatial hypergraph tests on a small triangle-completion case yield Ollivier-Ricci curvature $\kappa=0.67\pm0.03$ (N=9 states, 40 vertices, 78 causal graph edges), suggesting non-trivial geometry. Additional tests across 5 spatial patterns show consistent $\kappa>0.1$ (mean $\kappa=0.30$). While encouraging, these results are preliminary and do not constitute proof of the continuum limit.
+\textbf{Numerical support (preliminary)}: Spatial hypergraph tests on a small triangle-completion case yield Ollivier-Ricci curvature $\kappa=0.67\pm0.03$ (N=9 states, 40 vertices, 78 causal graph edges), suggesting non-trivial geometry. Additional tests across 5 spatial patterns show consistent $\kappa>0.1$ (mean $\kappa=0.30$). While encouraging, these results are preliminary and do not constitute proof of the continuum limit. (On small graphs, non-zero Ollivier-Ricci curvature can also arise from combinatorial topology rather than emergent geometry.)
 
 \subsection{Lovelock's Uniqueness Theorem (1971)}
 
@@ -79,13 +79,13 @@ where $G^{\mu\nu}$ is the Einstein tensor.
 
 \subsection{Constraint on Vanchurin's Onsager Tensor}
 
-Vanchurin derives Einstein equations from an Onsager tensor $L^{ab}_{cd}$ (Eq.~93) whose symmetry properties are introduced phenomenologically. If the continuum limit assumption holds, then Gorard's discrete covariance becomes diffeomorphism invariance, and Lovelock's theorem forces the gravitational field equations to take the Einstein form (up to a cosmological constant). Since Vanchurin's derivation produces the field equations \emph{from} the Onsager tensor, the tensor must possess symmetries compatible with yielding the Lovelock-constrained output. This narrows the space of admissible $L^{ab}_{cd}$: any candidate whose symmetry structure would produce non-Einsteinian field equations in $D=4$ is excluded.
+Vanchurin derives Einstein equations from an Onsager tensor $L^{ab}_{cd}$ (Eq.~93) whose symmetry properties are introduced phenomenologically. If the continuum limit assumption holds, then Gorard's discrete covariance becomes diffeomorphism invariance, and Lovelock's theorem forces the gravitational field equations to take the Einstein form (up to a cosmological constant). Since Vanchurin's derivation produces the field equations \emph{from} the Onsager tensor, the tensor must possess symmetries compatible with yielding the Lovelock-constrained output. This narrows the space of admissible $L^{ab}_{cd}$: any candidate whose symmetry structure would produce non-Einsteinian field equations in $D=4$ is excluded. The inverse map from Einstein-class equations to admissible Onsager tensors is in general not unique; multiple tensors L may yield the same field equations.
 
-Formally, if $\mathcal{E}$ denotes the map from Onsager-tensor data to emergent gravitational equations in Vanchurin's setup, we can write the admissible set as
+Formally, if $\mathcal{E}$ denotes the map from Onsager-tensor data to emergent gravitational equations in Vanchurin's setup (given explicitly by Vanchurin's derivation~\cite{Vanchurin2020} from entropy production), we can write the admissible set as
 \begin{equation}
 \mathcal{L}_{\mathrm{adm}}=\left\{L^{ab}_{cd}\ \middle|\ \mathcal{E}[L]\in\mathcal{C}_{\mathrm{Lovelock}}(D=4)\right\},
 \end{equation}
-where $\mathcal{C}_{\mathrm{Lovelock}}(D=4)$ is the Einstein-class output allowed by Lovelock's theorem. This note does not construct $\mathcal{E}$ from first principles; it identifies the resulting constraint logic.
+where $\mathcal{C}_{\mathrm{Lovelock}}(D=4)$ is the Einstein-class output allowed by Lovelock's theorem. While the cardinality of $\mathcal{L}_{\mathrm{adm}}$ is unknown, we expect it to form a finite-dimensional constraint family (the Lovelock class has a finite number of free parameters in D=4). This note does not construct $\mathcal{E}$ from first principles; it identifies the resulting constraint logic.
 
 This provides a potential answer to Vanchurin's question: the Onsager tensor symmetries are constrained---though not uniquely determined in all details---by the requirement that causal invariance, via diffeomorphism invariance, forces the gravitational sector into the Lovelock class.
 
@@ -108,11 +108,15 @@ Vanchurin (2017)~\cite{Vanchurin2017} previously established connections between
 \subsection{Future Directions}
 
 \begin{itemize}
+\item \textbf{Urgent priority}: Scaling studies to test continuum limit hypothesis---$\kappa$ behavior as $N \to 100, 1000, 10000$ to distinguish emergent geometry from finite-size artifacts
 \item Rigorous proof of continuum limit (discrete covariance $\to$ diffeomorphisms)
-\item Scaling studies: $\kappa$ behavior as $N \to \infty$
 \item Non-spatial rules: Test whether curvature is generic or selection effect
 \item Quantum sector: Operational foundations require separate investigation
 \end{itemize}
+
+\subsection{Falsifiability}
+
+The proposed bridge could be falsified by: (1) discovering causal-invariant hypergraph rules that demonstrably do NOT approach diffeomorphism invariance in the continuum limit, or (2) formal proof that discrete general covariance and smooth diffeomorphism invariance are structurally incompatible. Either would break the connection.
 
 \section{Conclusion}
 
@@ -122,7 +126,7 @@ This work is primarily a synthesis of existing results rather than new mathemati
 
 \section*{Acknowledgments}
 
-Research conducted with AI assistance (Claude, Anthropic; Gemini, Google; Codex, OpenAI). Numerical work: M3 Max (128GB), Python (NumPy, NetworkX, POT), Wolfram SetReplace. Code and data: \url{https://github.com/ProVibecodium/physics-cosmo-bridge}.
+Research conducted with AI assistance (Claude, Anthropic; Gemini, Google; Codex, OpenAI). Numerical work: M3 Max (128GB), Python (NumPy, NetworkX, POT), Wolfram SetReplace. Code and data: \url{https://github.com/MaxZhuravlev/physics-cosmo-bridge}.
 
 \begin{thebibliography}{9}
 
@@ -134,9 +138,6 @@ Wolfram, S. et al. (2020). A Class of Models with the Potential to Represent Fun
 
 \bibitem{Vanchurin2020}
 Vanchurin, V. (2020). The World as a Neural Network. \textit{Entropy} 22(11), 1210; \textit{arXiv:2008.01540}.
-
-\bibitem{Vanchurin2025}
-Vanchurin, V. (2025). Geometric Learning Dynamics. \textit{arXiv:2504.14728}.
 
 \bibitem{Vanchurin2017}
 Vanchurin, V. (2017). Covariant Information Theory and Emergent Gravity. \textit{arXiv:1707.05004}; \textit{Int. J. Mod. Phys. A} 33, 1845019 (2018).
