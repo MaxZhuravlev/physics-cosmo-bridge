@@ -30,6 +30,8 @@ output/data/*.csv
 output/data/*.hdf5
 output/figures/*.png
 output/figures/*.pdf
+output/latex/*.log
+output/latex/*.pdf
 
 # But keep directory structure
 !output/data/.gitkeep

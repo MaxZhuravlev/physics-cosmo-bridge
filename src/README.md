@@ -140,16 +140,26 @@
 ### Quick Start (Pure Python)
 
 ```bash
-# Setup (once)
-python3 -m venv venv
-source venv/bin/activate
-pip install POT networkx numpy scipy matplotlib
+# Recommended bootstrap (from repo root)
+make bootstrap
+
+# Or via script
+bash scripts/bootstrap_env.sh
 
 # Run all critical tests
-python run_critical_tests.py
+make run-all
 
-# Maximum scale test
-python MAXIMUM_SCALE_FINAL.py
+# Full quality gate (includes compile checks + test runs)
+make quality
+
+# Include Wolfram critical test in the quality gate
+QUALITY_RUN_WOLFRAM=1 make quality
+```
+
+Offline-restricted environments:
+```bash
+OFFLINE=1 bash scripts/bootstrap_env.sh
+OFFLINE=1 bash scripts/update_deps.sh
 ```
 
 **Expected runtime**: 5-10 minutes for full suite
