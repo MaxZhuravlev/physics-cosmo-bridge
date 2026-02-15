@@ -221,35 +221,48 @@ cd ../../ && cat CLAUDE.md
 ## CURRENT STATE
 
 ```yaml
-status: "research-in-progress"
+status: "paper-1-ready-for-community-review"
 created: 2026-02-13
-updated: 2026-02-14
+updated: 2026-02-15
 
 completed:
-  - "14 AI-assisted research sessions"
-  - "Цепочка Лавлока: CI → Лавлок → единственность Eq. 93 (доказана)"
-  - "Цепочка Амари: персистентность → Амари → единственность Eq. 3.4 (доказана)"
-  - "Квантовый сектор: 5/5 аксиом Кирибеллы (доказаны)"
-  - "Стрела времени: dL/dt <= 0 (доказана)"
-  - "Fisher = Riemann (доказано из Лавлока)"
-  - "CI-breaking test: p = 0.0215 (значимо)"
-  - "5 честных провалов задокументированы"
-  - "Дирак M+M- ~ alpha*M^2 (предварительно, toy models)"
-  - "ПРОРЫВ (сессия 14): Континуальный предел ЭМПИРИЧЕСКИ ПОДТВЕРЖДЁН"
-  - "  Ollivier-Ricci кривизна κ ≠ 0 на пространственных гиперграфах Вольфрама"
-  - "  wolfram_original: mean κ = -0.003, std = 0.324, 100% ненулевая (N=205)"
-  - "  rule_simple_growth: mean κ = -0.032, std = 0.266, 100% ненулевая (N=6563)"
-  - "  rule_bidir: mean κ = -0.065, std = 0.285, 87% ненулевая (N=1599)"
-  - "  KS тест vs плоские решётки: p < 1e-57 (все правила)"
-  - "  Дисперсия кривизны 73-109x больше чем у плоских решёток"
-  - "  WolframEngineV2: multi-edge pattern matching + parallel update"
+  - "14 research sessions (Claude.ai + Claude Code) + peer review (Codex)"
+  - "Paper #1: Conservative 3-page synthesis (output/latex/main.tex)"
+  - "  Focus: Lovelock connection ONLY (gravity sector)"
+  - "  Positioning: Synthesis answering Vanchurin's question, not new theorem"
+  - "  Assumptions: Continuum limit (explicit), D=4 (explicit)"
+  - "Peer review integrated (major revision):"
+  - "  9/12 issues fixed"
+  - "  Overclaiming removed (UNCONDITIONAL → preliminary evidence)"
+  - "  QM/Amari/Fisher sections → moved to Projects #2-3"
+  - "  Honest limitations upfront"
+  - "Full quality automation added:"
+  - "  Makefile + scripts/bootstrap + CI workflow"
+  - "  Reproducible: make quality runs Python + Wolfram + LaTeX"
+  - "Wolfram spatial tests (Session 14):"
+  - "  κ≠0 на 2/5 rules (wolfram_original: +0.011±0.324, rule_bidir: -0.063±0.281)"
+  - "  Preliminary evidence for continuum limit (KS p<10^-50)"
+  - "  Small systems (N=200-1600), selection bias acknowledged"
+  - "10 honest failures documented (LD universal, confluence≠unitarity, etc.)"
+  - "Maximum scale: N=20,006 (Python limit, M3 Max 128GB)"
+
+paper_1_scope:
+  included: "Lovelock bridge (CI → potential Onsager constraint)"
+  removed: "Amari, QM, Fisher=Riemann, Arrow, Dirac - all to separate projects"
+  tone: "Conservative, synthesis, not proof"
+  limitations: "Continuum limit assumed, D=4 assumed, spatial selection bias"
+
+peer_review_verdict:
+  before: "Overclaimed 12-page 'proof' with 5 'theorems'"
+  after: "Honest 3-page synthesis with explicit assumptions"
+  assessment: "Major revision completed - ready for community review"
 
 next:
-  - "Отправить заметку Ванчурину (обновить: континуальный предел подтверждён)"
-  - "arXiv preprint (все 5 теорем + эмпирика континуального предела)"
-  - "Масштабировать wolfram_original до N=1000+ вершин"
-  - "Дирак: сформулировать как open problem (нужна ориентация мультивея)"
-  - "Возможно: проверить отрицательную кривизну vs расширение (cosmological test)"
+  - "Community review period (share with colleagues or arXiv)"
+  - "Revisions based on technical feedback"
+  - "Journal submission (IJQF or Foundations of Physics)"
+  - "Project #2: Operational QM (purification path, LD as consequence)"
+  - "Project #3: Learning Dynamics (Amari chain + α characterization)"
 ```
 
 ---
