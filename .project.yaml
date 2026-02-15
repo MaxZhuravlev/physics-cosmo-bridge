@@ -1,0 +1,81 @@
+# Project Metadata for PE Integration
+# Format: @uu project specification
+
+project:
+  name: "structural-bridge-via-uniqueness-theorems"
+  short_name: "wolfram-vanchurin-bridge"
+  type: "theoretical-physics-research"
+  status: "paper-1-ready-for-review"
+
+value:
+  goal: "Formal connection between Wolfram hypergraph physics and Vanchurin neural network cosmology"
+  deliverable: "3-page conservative synthesis paper answering Vanchurin's published question"
+  impact: "First explicit Lovelock bridge between programs; solid mid-tier contribution"
+
+scope:
+  in_paper_1:
+    - "Lovelock connection: CI → (potential) Onsager constraint"
+    - "Preliminary κ≠0 evidence from spatial hypergraphs"
+    - "Honest limitations and assumptions"
+
+  moved_to_projects_2_3:
+    - "Amari chain (learning dynamics)"
+    - "QM via purification (LD as consequence)"
+    - "Fisher=Riemann, Arrow of time"
+    - "Maximum scale validation (N=20,006)"
+
+  out_of_scope:
+    - "Standard Model"
+    - "Full 4D spacetime tests"
+    - "Observer emergence mechanism"
+
+assumptions:
+  explicit:
+    - "Continuum limit (discrete → smooth): ASSUMED, prelim evidence"
+    - "D=4 spacetime dimensions: ASSUMED from observation"
+    - "Spatial rule selection: May not generalize to all rules"
+
+  peer_review_identified:
+    - "Central gap: discrete covariance → diffeomorphisms (not proven)"
+    - "Gorard result on Lovelock requires continuum assumption"
+    - "Numerical tests limited to N~200-1600 (small systems)"
+
+quality:
+  peer_review_status: "Major revision completed"
+  positioning: "Conservative synthesis, NOT proof"
+  strength: "★★★★☆ (was ★★★☆☆ before Wolfram, ★★★★★ before peer review reality check)"
+  honest_assessment: "~40% novel connections, ~60% synthesis of known"
+
+current_phase:
+  - phase: "community-review"
+    description: "Paper #1 ready, seeking technical feedback before arXiv"
+  - phase: "projects-2-3-planning"
+    description: "Separate papers for QM and learning (need more rigor)"
+
+automation:
+  quality_gate: "make quality"
+  ci_workflow: ".github/workflows/quality.yml"
+  reproducible: "Full environment automation (Makefile + scripts/)"
+  offline_mode: "OFFLINE=1 supported"
+
+git:
+  org: "github.com/ProVibecodium"
+  repo: "physics-cosmo-bridge"
+  main_artifact: "output/latex/main.tex"
+
+collaboration:
+  seeking:
+    - "Technical review of Lovelock connection validity"
+    - "Feedback on continuum limit assumption"
+    - "Collaboration on rigorous proofs (vs synthesis)"
+
+  contacts_planned:
+    - "Vanchurin (after community review)"
+    - "Gorard (after community review)"
+
+meta:
+  created: "2026-02-13"
+  updated: "2026-02-15"
+  sessions: 14
+  peer_reviewed: true
+  publication_ready: true (conservative version)
