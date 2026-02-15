@@ -16,12 +16,12 @@ Causal graph: 40 vertices, 78 edges
 
 Computing Ollivier-Ricci curvature...
   Curvature statistics (78 edges):
-    Mean κ:    0.6709401709401703
+    Mean κ:    0.6709401709401704
     Median κ:  0.6666666666666667
-    Std κ:     0.026514160424209218
+    Std κ:     0.02651416042420922
     Non-zero:  100.`1.%
 
-  ✓✓✓ SIGNIFICANT CURVATURE DETECTED (κ = 0.6709401709401703)
+  ✓✓✓ SIGNIFICANT CURVATURE DETECTED (κ = 0.6709401709401704)
       Spatial structure has intrinsic geometry
       Continuum-limit hypothesis: preliminary support (not proof)
 
