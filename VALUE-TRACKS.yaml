@@ -4,62 +4,58 @@ value_tracks:
   publication_track:
     name: "Conservative Lovelock Bridge Publication"
     status: deliverable_ready
-    progress: 0.95
+    progress: 0.96
 
     current_phase: finalization
     next_phase: submission
 
     artifacts:
       core:
-        - PAPER1_CONSERVATIVE.tex
-        - references.bib
+        - output/latex/main.tex
+        - output/latex/references.bib
+        - output/latex/main.pdf
 
       supporting_data:
-        - data/spatial_test_results.json (κ=0.67 Wolfram)
-        - data/multiple_spatial_curvature_results.json (6 patterns)
+        - output/spatial_critical_results.txt
+        - output/multiple_spatial_curvature_results.json
 
       code:
         - src/ollivier_ricci.py
         - src/multiple_spatial_curvature.py
+        - src/SPATIAL_CRITICAL_TEST.wl
 
       reviews:
         - reviews/PEER_REVIEW_CRITICAL.md
         - reviews/ТРИ_РЕЦЕНЗИИ_СВОДКА.md
 
     completion_criteria:
-      - LaTeX compiled to PDF
-      - Final proofread complete
-      - arXiv submission executed
+      - manuscript claim audit completed
+      - quality gate passing
+      - submission package finalized
 
-    estimated_completion: "This weekend (2026-02-15/16)"
+    estimated_completion: "2026-02-15/16"
 
-  lessons_learned_track:
-    name: "Document Lessons from Overclaiming"
-    status: complete
+  quality_automation_track:
+    name: "Reproducible Quality Automation"
+    status: active
     progress: 1.0
 
     artifacts:
-      - reviews/ЧЕСТНАЯ_ОЦЕНКА_КРИТИКИ.md
-      - ИСПРАВЛЕНИЕ_ЧЕРЕЗ_PE.md
-      - ПЛАН_РАСЩЕПЛЕНИЯ.md
-      - experience/insights/pe-organizational-lessons-2026-02-15.md
+      - Makefile
+      - scripts/bootstrap_env.sh
+      - scripts/update_deps.sh
+      - scripts/run_full_quality.sh
+      - .github/workflows/quality.yml
 
-    value: "Prevent future overclaiming, improve PE discipline"
-
-    impact:
-      level: L1-universal
-      pattern_id: pt.organizational.quality-first-not-context-excuse
-      reuse_potential: "All future AI-assisted research projects"
-      roi_quantified: "6x (prevented 18 hours crisis per project)"
-      compound_value: "×1.3^N per project avoiding this failure mode"
+    value: "One-command reproducibility for local and CI verification"
 
 # Metadata
 project_level: L2-deliverable
 project_type: publication
-scope: minimal-conservative-synthesis
-novelty: 20-25% (honest)
-claims: modest-only
+scope: conservative-lovelock-synthesis
+novelty: "synthesis-first with limited original numerical support"
+claims: conditional-and-modest
 
 # Links
 parent_problematics: cosmological-unification
-spin_off_created: operational-qm-from-ci (Project #2)
+related_future_track: operational-qm-from-ci (separate scope)

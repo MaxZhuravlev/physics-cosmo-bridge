@@ -1,102 +1,62 @@
 # Scope Boundaries — structural-bridge-via-uniqueness-theorems
 
-> Границы проекта: что ВХОДИТ и что НЕ ВХОДИТ.
-
----
+> Explicit scope for Paper #1 (conservative synthesis).
 
 ## IN SCOPE
 
 ```yaml
-Inputs (принимаем):
-  - Результаты Горарда: CI → диффеоморфизмная симметрия (Gorard 2020)
-  - Теорема Лавлока (1971): единственность тензора Эйнштейна
-  - Теорема Амари (1998): единственность натурального градиента
-  - Аксиомы Кирибеллы: информационный вывод КМ
-  - Уравнения Ванчурина: Eq. 93 (гравитация), Eq. 3.4 (динамика обучения)
-  - Результаты 10+ AI-assisted research sessions
+inputs:
+  - "Gorard 2020: causal invariance <-> discrete general covariance"
+  - "Lovelock 1971: uniqueness class in D=4"
+  - "Vanchurin 2020: Onsager tensor motivation and open question"
+  - "Project curvature artifacts (Python/Wolfram) as preliminary evidence"
 
-Processing (делаем):
-  - Формальные доказательства цепочек единственности (Лавлок, Амари, Кирибелла)
-  - Вычислительные эксперименты на toy models и гиперграфах
-  - Фальсифицируемые тесты (CI-breaking, rate-distortion)
-  - Честная документация провалов и ограничений
-  - Оценка оригинальности vs переоткрытие
+processing:
+  - "Formal synthesis chain and assumption bookkeeping"
+  - "Critical wording review to prevent overclaiming"
+  - "Reproducibility pipeline maintenance"
 
-Outputs (выдаём):
-  - Заметка для Ванчурина (1-2 страницы)
-  - arXiv preprint (~20 страниц)
-  - Воспроизводимый код экспериментов
-  - Рецензируемая статья (итоговая цель)
+outputs:
+  - "Conservative manuscript: output/latex/main.tex"
+  - "Compiled PDF: output/latex/main.pdf"
+  - "Quality artifacts and run scripts"
 ```
-
----
 
 ## OUT OF SCOPE
 
 ```yaml
-НЕ делаем:
-  - Оригинальные доказательства теорем Лавлока/Амари/Кирибеллы (берём как данное)
-  - Численное моделирование настоящей Вселенной (только toy models + простые гиперграфы)
-  - Создание конкурирующей программы (только МОСТ между существующими)
-  - Формализацию континуального предела (признаём как допущение, проверяем числено)
-  - Полное решение K ~ N^alpha загадки (признаём как открытый вопрос)
-  - Экспериментальную проверку предсказаний (за пределами вычислительных экспериментов)
-```
+excluded_for_paper1:
+  - "Claiming new foundational theorems"
+  - "Claiming rigorous proof of continuum limit"
+  - "Claiming complete QM derivation"
+  - "Claiming Amari-chain completeness in this manuscript"
+  - "Claiming arrow-of-time proof from this project state"
 
----
+methodological_exclusions:
+  - "Cosmological-scale empirical simulation"
+  - "Exhaustive rule-space proof across all Wolfram rules"
+```
 
 ## DEPENDENCIES
 
 ```yaml
-Required (обязательно):
-  - Python 3.10+
-    type: runtime
-    packages: "numpy, scipy, networkx, matplotlib"
+required:
+  - "Python 3.10+ with dependencies from requirements.txt"
+  - "LaTeX toolchain (tectonic preferred)"
 
-  - Gorard 2020 paper
-    type: reference
-    note: "Доказательство CI → диффеоморфизмная симметрия (основа цепочки Лавлока)"
-
-  - Vanchurin papers (arXiv:2008.01540, arXiv:2012.15821)
-    type: reference
-    note: "Целевые уравнения моста"
-
-Optional (желательно):
-  - Wolfram Engine + SetReplace
-    type: runtime
-    note: "Для экспериментов на настоящих гиперграфах (Приоритет 1 техн.)"
-
-  - LaTeX distribution
-    type: tool
-    note: "Для подготовки preprint"
+optional:
+  - "Wolfram Engine (for spatial critical test)"
 ```
 
----
-
-## CONSTRAINTS
+## HARD CONSTRAINTS
 
 ```yaml
-Technical:
-  - "Континуальный предел — допущение, не доказан формально"
-  - "Toy models ограничены (string rewriting), настоящие гиперграфы требуют Wolfram Engine"
-  - "Ollivier-Ricci curvature = 0 на всех проверенных toy models (плоские системы)"
+scientific:
+  - "Continuum limit remains open"
+  - "D=4 is assumed, not derived"
+  - "Current curvature tests are limited and potentially selection-biased"
 
-Methodological:
-  - "~60% результатов — переоткрытие (честная самооценка)"
-  - "Отсутствие академической аффилиации (осложняет публикацию)"
-  - "Не было контакта с авторами (Ванчурин, Горард) — информационная неопределённость"
-
-Research integrity:
-  - "Все допущения должны быть явно перечислены"
-  - "Негативные результаты документируются наравне с позитивными"
-  - "Оценка оригинальности обязательна в каждой секции"
-```
-
----
-
-## META
-
-```yaml
-created: 2026-02-13
-project: "structural-bridge-via-uniqueness-theorems"
+quality:
+  - "All core docs must align with main.tex language"
+  - "Claims must remain conditional where assumptions are unresolved"
 ```

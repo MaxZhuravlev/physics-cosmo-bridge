@@ -1,108 +1,78 @@
 # Value Transformation — structural-bridge-via-uniqueness-theorems
 
-> ЧТО проект производит и КАК трансформирует ценность.
-
----
+> What value this project creates and how it creates it.
 
 ## VALUE FORMULA
 
 ```yaml
 FROM:
-  - Две независимые космологические программы (Wolfram, Vanchurin), дающие одну физику без взаимных ссылок
-  - Открытый вопрос Ванчурина: "can symmetries be derived from first principles?" (arXiv:2008.01540)
-  - Отсутствие формального моста между дискретным (гиперграфы) и непрерывным (нейросети) подходами
+  - "Two independent cosmology programs with no explicit bridge"
+  - "Open question in Vanchurin 2020 (§9): first-principles origin of Onsager symmetries"
+  - "Fragmented evidence across literature and code"
 
 TO:
-  - Формальное доказательство что CI Вольфрама вынуждает структуры Ванчурина через теоремы единственности
-  - Ответ на открытый вопрос: да, симметрии выводятся из CI через Лавлок/Амари
-  - Новое предсказание (Дирак из ориентации переходов), отсутствующее в обоих программах
-  - Публикуемый результат (arXiv preprint + рецензируемая статья)
+  - "Conservative synthesis note linking Wolfram and Vanchurin through Lovelock"
+  - "Explicit conditional answer: Onsager symmetries may be constrained if continuum limit holds"
+  - "Reproducible numerical appendix with clear caveats"
 
 VIA:
-  - Цепочка Лавлока: CI → диффеоморфизмы → теорема Лавлока → единственность гравитационного тензора
-  - Цепочка Амари: персистентность + CI → Fisher → натуральный градиент → единственность динамики
-  - Аксиомы Кирибеллы: CI → 5 информационных постулатов → полная квантовая механика
-  - Вычислительные эксперименты: числовая проверка на toy models и гиперграфах
+  - "Literature chain: Gorard 2020 + Lovelock 1971 + Vanchurin 2020"
+  - "Curvature experiments (Python + Wolfram) as preliminary support"
+  - "Strict claim discipline and explicit limitations"
 ```
-
----
 
 ## TERMINAL VALUE
 
 ```yaml
-what: |
-  Доказательство: из каузальной инвариантности однозначно следуют гравитация (Лавлок),
-  динамика обучения (Амари), квантовая механика (Кирибелла), стрела времени,
-  и метрическое тождество Fisher = Riemann. Плюс новое предсказание M+M- ~ alpha*M^2.
+primary_output: "Paper #1 conservative manuscript (output/latex/main.tex)"
+scientific_value: |
+  The contribution is synthesis and clarification: it makes a possible
+  structural bridge explicit, states assumptions openly, and identifies
+  where formal work is still required.
 
-why: |
-  Объединяет два крупных подхода к фундаментальной физике.
-  Отвечает на открытый вопрос автора (Ванчурин).
-  Даёт новое фальсифицируемое предсказание.
-  Первое применение теоремы Лавлока для связи программ.
-
-who: |
-  - Vitaly Vanchurin и его группа (прямой ответ на их вопрос)
-  - Jonathan Gorard и Wolfram Physics Project (расширение их результатов)
-  - Сообщество quantum gravity / digital physics / information geometry
-  - Авторы будущих работ по объединению подходов
+who_benefits:
+  - "Researchers in Wolfram Physics"
+  - "Researchers in neural-network cosmology"
+  - "Reviewers who need a concise, auditable bridge argument"
 ```
-
----
 
 ## DELIVERABLES
 
 ```yaml
-D1_note_to_vanchurin:
-  format: "1-2 страницы, LaTeX или PDF"
-  content: "Цепочка Лавлока как ответ на вопрос из arXiv:2008.01540"
-  status: planned
+D1_manuscript:
+  format: "LaTeX + PDF"
+  path: "output/latex/main.tex"
+  status: ready_for_review
 
-D2_arxiv_preprint:
-  format: "arXiv preprint, ~20 страниц"
-  content: "Полный формальный мост с доказательствами и числовыми результатами"
-  status: planned
+D2_reproducible_results:
+  format: "Text/JSON artifacts"
+  paths:
+    - "output/spatial_critical_results.txt"
+    - "output/multiple_spatial_curvature_results.json"
+  status: available
 
-D3_computational_code:
-  format: "Python + Wolfram notebooks"
-  content: "Воспроизводимые эксперименты (CI-breaking, Fisher, Dirac, LD exhaustive)"
-  status: partial (code exists from sessions, needs organization)
-
-D4_peer_reviewed_paper:
-  format: "Submission to Physical Review D / Foundations of Physics / similar"
-  content: "Рецензируемая версия preprint"
-  status: future
+D3_quality_automation:
+  format: "Makefile + scripts + CI workflow"
+  paths:
+    - "Makefile"
+    - "scripts/run_full_quality.sh"
+    - ".github/workflows/quality.yml"
+  status: active
 ```
-
----
 
 ## SUCCESS CRITERIA
 
 ```yaml
-completeness:
-  - "Все 3 цепочки (Лавлок, Амари, Кирибелла) формально записаны с допущениями"
-  - "Все 5 честных провалов задокументированы"
-  - "Континуальный предел проверен на настоящих гиперграфах (kappa != 0)"
-  - "Дирак проверен на настоящих гиперграфах"
-
 correctness:
-  - "Каждый шаг в цепочке ссылается на опубликованную теорему"
-  - "Допущения явно перечислены и обоснованы"
-  - "Числовые результаты воспроизводимы из кода в src/"
-  - "Оценка оригинальности честная (~60% переоткрытие)"
+  - "No project-level claim contradicts output/latex/main.tex"
+  - "Assumptions are explicit (continuum limit, D=4)"
+  - "References are accurate and traceable"
 
-usability:
-  - "Заметка для Ванчурина понятна без полного контекста"
-  - "Preprint самодостаточен для рецензента"
-  - "Код экспериментов запускается из коробки (requirements.txt + README)"
-```
+reproducibility:
+  - "make quality passes locally"
+  - "QUALITY_RUN_WOLFRAM=1 make quality passes when Wolfram is available"
 
----
-
-## META
-
-```yaml
-created: 2026-02-13
-project: "structural-bridge-via-uniqueness-theorems"
-follows: "@uu VOS specification"
+integrity:
+  - "No unconditional language for conditional steps"
+  - "Limitations section remains explicit and central"
 ```

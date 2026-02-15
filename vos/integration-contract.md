@@ -1,82 +1,52 @@
 # Integration Contract — structural-bridge-via-uniqueness-theorems
 
-> Что проект ГАРАНТИРУЕТ потребителям.
-
----
+> What this project guarantees to consumers.
 
 ## INTERFACES
 
 ```yaml
-I1: Research Note
-  format: "PDF/LaTeX, 1-2 pages"
-  contains:
-    - "Цепочка Лавлока как ответ на вопрос Ванчурина"
-    - "Минимальный контекст для понимания без полного preprint"
-  guarantee: "Корректные ссылки на опубликованные теоремы, явные допущения"
+I1_manuscript_interface:
+  format: "LaTeX/PDF"
+  paths:
+    - "output/latex/main.tex"
+    - "output/latex/main.pdf"
+  guarantee: "Conservative synthesis claims consistent with cited sources"
 
-I2: arXiv Preprint
-  format: "LaTeX, ~20 pages, arXiv-compatible"
-  contains:
-    - "Полный формальный мост (3 цепочки + предсказание Дирака)"
-    - "Числовые результаты с воспроизводимыми параметрами"
-    - "Честная секция ограничений и провалов"
-  guarantee: "Самодостаточен для рецензирования, все допущения явны"
+I2_reproducibility_interface:
+  format: "Make targets + scripts"
+  paths:
+    - "Makefile"
+    - "scripts/bootstrap_env.sh"
+    - "scripts/run_full_quality.sh"
+  guarantee: "Single-command quality run with optional Wolfram stage"
 
-I3: Computational Code
-  format: "Python scripts + Jupyter notebooks"
-  contains:
-    - "CI-breaking test"
-    - "Fisher-information computation"
-    - "Exhaustive LD check (1134 systems)"
-    - "Dirac M+M- computation"
-  guarantee: "Запускается с requirements.txt, результаты воспроизводимы"
-
-I4: Experience Insights
-  format: "Markdown files in experience/insights/"
-  contains:
-    - "Инсайты по каждой цепочке доказательства"
-    - "Негативные результаты и закрытые пути"
-    - "Методологические паттерны (exhaustive check, CI-breaking)"
-  guarantee: "Переиспользуемы в будущих исследованиях данной проблематики"
+I3_data_interface:
+  format: "Text/JSON outputs"
+  paths:
+    - "output/spatial_critical_results.txt"
+    - "output/multiple_spatial_curvature_results.json"
+  guarantee: "Artifacts match current code paths and can be regenerated"
 ```
-
----
 
 ## GUARANTEES
 
 ```yaml
-Research Integrity:
-  - "Каждое утверждение ссылается на опубликованную теорему или содержит оригинальное доказательство"
-  - "Допущения перечислены явно в каждой цепочке"
-  - "Негативные результаты задокументированы (5 провалов)"
+scientific_integrity:
+  - "No unconditional claim where assumptions are unresolved"
+  - "Known limitations remain explicit"
+  - "Project docs stay synchronized with main.tex"
 
-Reproducibility:
-  - "Числовые эксперименты воспроизводимы из кода в src/"
-  - "Параметры и версии зафиксированы"
-
-Honesty:
-  - "Оценка оригинальности: ~40% оригинального, ~60% систематизация"
-  - "Ограничения и открытые вопросы документированы"
+engineering_quality:
+  - "Repository has automated quality gate"
+  - "Core scripts support offline bootstrap/update mode"
 ```
-
----
 
 ## NON-GUARANTEES
 
 ```yaml
-Не гарантируем:
-  - "Формальное доказательство континуального предела (это допущение)"
-  - "Подтверждение Дирак-предсказания на настоящих гиперграфах (в работе)"
-  - "Принятие к публикации (зависит от рецензентов)"
-  - "Ответ Ванчурина/Горарда на заметку"
-  - "Полное объяснение K ~ N^alpha механизма"
-```
-
----
-
-## META
-
-```yaml
-created: 2026-02-13
-version: "1.0.0"
+not_guaranteed:
+  - "Formal proof of continuum limit"
+  - "Journal acceptance or external endorsement"
+  - "Completion of QM/Amari program inside Paper #1 scope"
+  - "Universality of curvature behavior across full rule space"
 ```
