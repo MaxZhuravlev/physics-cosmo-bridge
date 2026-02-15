@@ -1,0 +1,57 @@
+# Value Tracks - Paper #1 (Conservative Synthesis)
+
+value_tracks:
+  publication_track:
+    name: "Conservative Lovelock Bridge Publication"
+    status: deliverable_ready
+    progress: 0.95
+
+    current_phase: finalization
+    next_phase: submission
+
+    artifacts:
+      core:
+        - PAPER1_CONSERVATIVE.tex
+        - references.bib
+
+      supporting_data:
+        - data/spatial_test_results.json (κ=0.67 Wolfram)
+        - data/multiple_spatial_curvature_results.json (6 patterns)
+
+      code:
+        - src/ollivier_ricci.py
+        - src/multiple_spatial_curvature.py
+
+      reviews:
+        - reviews/PEER_REVIEW_CRITICAL.md
+        - reviews/ТРИ_РЕЦЕНЗИИ_СВОДКА.md
+
+    completion_criteria:
+      - LaTeX compiled to PDF
+      - Final proofread complete
+      - arXiv submission executed
+
+    estimated_completion: "This weekend (2026-02-15/16)"
+
+  lessons_learned_track:
+    name: "Document Lessons from Overclaiming"
+    status: in_progress
+    progress: 0.7
+
+    artifacts:
+      - reviews/ЧЕСТНАЯ_ОЦЕНКА_КРИТИКИ.md
+      - ИСПРАВЛЕНИЕ_ЧЕРЕЗ_PE.md
+      - ПЛАН_РАСЩЕПЛЕНИЯ.md
+
+    value: "Prevent future overclaiming, improve PE discipline"
+
+# Metadata
+project_level: L2-deliverable
+project_type: publication
+scope: minimal-conservative-synthesis
+novelty: 20-25% (honest)
+claims: modest-only
+
+# Links
+parent_problematics: cosmological-unification
+spin_off_created: operational-qm-from-ci (Project #2)
