@@ -18,7 +18,7 @@ Computing Ollivier-Ricci curvature...
   Curvature statistics (78 edges):
     Mean κ:    0.6709401709401704
     Median κ:  0.6666666666666667
-    Std κ:     0.02651416042420922
+    Std κ:     0.026514160424209218
     Non-zero:  100.`1.%
 
   ✓✓✓ SIGNIFICANT CURVATURE DETECTED (κ = 0.6709401709401704)

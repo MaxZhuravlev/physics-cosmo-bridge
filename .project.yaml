@@ -57,6 +57,8 @@ automation:
   ci_workflow: ".github/workflows/quality.yml"
   reproducible: "Full environment automation (Makefile + scripts/)"
   offline_mode: "OFFLINE=1 supported"
+  subsystems:
+    - "subsystems/curvature-reliability (explicit reliability gate)"
 
 git:
   org: "github.com/ProVibecodium"

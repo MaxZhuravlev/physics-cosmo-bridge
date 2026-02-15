@@ -1,0 +1,184 @@
+{
+  "gate": "curvature_reliability",
+  "status": "pass",
+  "thresholds": {
+    "alphas": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "expected_patterns": 5,
+    "base_alpha": 0.5,
+    "min_significant_at_base_alpha": 3,
+    "min_nonweak_per_alpha": 4,
+    "min_overall_mean_kappa": 0.05,
+    "max_abs_1d_control_mean": 0.05
+  },
+  "alpha_summaries": [
+    {
+      "alpha": 0.25,
+      "tested_patterns": 5,
+      "significant_count": 2,
+      "overall_mean_kappa": 0.11350214782882855,
+      "overall_std_kappa": 0.05606054731523535,
+      "patterns": [
+        {
+          "name": "Triangle Mesh 2D",
+          "size": 3,
+          "mean_kappa": 0.07449494949494952,
+          "std_kappa": 0.0664829980651554,
+          "nonzero_fraction": 0.7272727272727273,
+          "status": "moderate"
+        },
+        {
+          "name": "Square Grid 2D",
+          "size": 3,
+          "mean_kappa": 0.08650793650793656,
+          "std_kappa": 0.075657444305308,
+          "nonzero_fraction": 0.5714285714285714,
+          "status": "moderate"
+        },
+        {
+          "name": "Hexagonal Mesh",
+          "size": 2,
+          "mean_kappa": 0.20649509803921573,
+          "std_kappa": 0.30329025492775186,
+          "nonzero_fraction": 0.9411764705882353,
+          "status": "significant"
+        },
+        {
+          "name": "Triangle Mesh 2D (large)",
+          "size": 4,
+          "mean_kappa": 0.05282738095238097,
+          "std_kappa": 0.06035047247587401,
+          "nonzero_fraction": 0.5714285714285714,
+          "status": "moderate"
+        },
+        {
+          "name": "Tetrahedral 3D",
+          "size": 2,
+          "mean_kappa": 0.1471853741496599,
+          "std_kappa": 0.05407825926457664,
+          "nonzero_fraction": 1.0,
+          "status": "significant"
+        }
+      ]
+    },
+    {
+      "alpha": 0.5,
+      "tested_patterns": 5,
+      "significant_count": 5,
+      "overall_mean_kappa": 0.20347488389295115,
+      "overall_std_kappa": 0.07767493203246019,
+      "patterns": [
+        {
+          "name": "Triangle Mesh 2D",
+          "size": 3,
+          "mean_kappa": 0.14898989898989903,
+          "std_kappa": 0.13296599613031077,
+          "nonzero_fraction": 0.7272727272727273,
+          "status": "significant"
+        },
+        {
+          "name": "Square Grid 2D",
+          "size": 3,
+          "mean_kappa": 0.17301587301587304,
+          "std_kappa": 0.15131488861061607,
+          "nonzero_fraction": 0.5714285714285714,
+          "status": "significant"
+        },
+        {
+          "name": "Hexagonal Mesh",
+          "size": 2,
+          "mean_kappa": 0.295343137254902,
+          "std_kappa": 0.3135794505373526,
+          "nonzero_fraction": 0.9411764705882353,
+          "status": "significant"
+        },
+        {
+          "name": "Triangle Mesh 2D (large)",
+          "size": 4,
+          "mean_kappa": 0.10565476190476196,
+          "std_kappa": 0.12070094495174796,
+          "nonzero_fraction": 0.5714285714285714,
+          "status": "significant"
+        },
+        {
+          "name": "Tetrahedral 3D",
+          "size": 2,
+          "mean_kappa": 0.2943707482993198,
+          "std_kappa": 0.10815651852915326,
+          "nonzero_fraction": 1.0,
+          "status": "significant"
+        }
+      ]
+    },
+    {
+      "alpha": 0.75,
+      "tested_patterns": 5,
+      "significant_count": 5,
+      "overall_mean_kappa": 0.2934476199570737,
+      "overall_std_kappa": 0.10433773610186788,
+      "patterns": [
+        {
+          "name": "Triangle Mesh 2D",
+          "size": 3,
+          "mean_kappa": 0.22348484848484848,
+          "std_kappa": 0.19944899419546616,
+          "nonzero_fraction": 0.7272727272727273,
+          "status": "significant"
+        },
+        {
+          "name": "Square Grid 2D",
+          "size": 3,
+          "mean_kappa": 0.25952380952380955,
+          "std_kappa": 0.22697233291592403,
+          "nonzero_fraction": 0.5714285714285714,
+          "status": "significant"
+        },
+        {
+          "name": "Hexagonal Mesh",
+          "size": 2,
+          "mean_kappa": 0.38419117647058826,
+          "std_kappa": 0.3504960878087003,
+          "nonzero_fraction": 0.9411764705882353,
+          "status": "significant"
+        },
+        {
+          "name": "Triangle Mesh 2D (large)",
+          "size": 4,
+          "mean_kappa": 0.15848214285714285,
+          "std_kappa": 0.18105141742762199,
+          "nonzero_fraction": 0.5714285714285714,
+          "status": "significant"
+        },
+        {
+          "name": "Tetrahedral 3D",
+          "size": 2,
+          "mean_kappa": 0.44155612244897957,
+          "std_kappa": 0.16223477779372994,
+          "nonzero_fraction": 1.0,
+          "status": "significant"
+        }
+      ]
+    }
+  ],
+  "control_1d": {
+    "mean": 0.006578947368421146,
+    "std": 0.3130224165151711,
+    "median": 0.16666666666666674,
+    "nonzero_fraction": 1.0,
+    "n": 152
+  },
+  "claim_hygiene": {
+    "banned_patterns": [
+      "EMPIRICALLY\\s+CONFIRMED",
+      "all\\s+theorems\\s+become\\s+UNCONDITIONAL",
+      "Main\\s+claim\\s+already\\s+decisive",
+      "ENTIRE\\s+known\\s+physics",
+      "CONTINUAL\\s+LIMIT:\\s+Empirically\\s+supported"
+    ],
+    "hits": []
+  },
+  "failures": []
+}

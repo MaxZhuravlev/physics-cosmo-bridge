@@ -11,13 +11,19 @@ if [[ ! -x "$PYTHON" ]]; then
 fi
 
 echo "[quality] running Python static compile checks..."
-"$PYTHON" -m py_compile "$ROOT_DIR/src/multiple_spatial_curvature.py" "$ROOT_DIR/src/ollivier_ricci.py"
+"$PYTHON" -m py_compile \
+  "$ROOT_DIR/src/multiple_spatial_curvature.py" \
+  "$ROOT_DIR/src/ollivier_ricci.py" \
+  "$ROOT_DIR/src/curvature_reliability_gate.py"
 
 echo "[quality] running curvature suite..."
 "$PYTHON" "$ROOT_DIR/src/multiple_spatial_curvature.py"
 
 echo "[quality] running ricci sanity test..."
 "$PYTHON" "$ROOT_DIR/src/ollivier_ricci.py"
+
+echo "[quality] running curvature reliability gate..."
+"$PYTHON" "$ROOT_DIR/src/curvature_reliability_gate.py"
 
 WOLFRAM_KERNEL="${WOLFRAM_KERNEL:-/Applications/Wolfram Engine.app/Contents/MacOS/WolframKernel}"
 if [[ "${QUALITY_RUN_WOLFRAM:-0}" == "1" ]]; then
@@ -46,10 +52,21 @@ if command -v pdflatex >/dev/null 2>&1; then
   )
 elif command -v tectonic >/dev/null 2>&1; then
   echo "[quality] pdflatex not found. Building LaTeX via tectonic..."
+  set +e
   (
     cd "$ROOT_DIR/output/latex"
     tectonic --keep-logs main.tex
   )
+  latex_code=$?
+  set -e
+  if [[ $latex_code -ne 0 ]]; then
+    if [[ "${QUALITY_STRICT_LATEX:-0}" == "1" ]]; then
+      echo "[quality] tectonic failed with exit code $latex_code (strict mode)."
+      exit $latex_code
+    fi
+    echo "[quality] tectonic failed with exit code $latex_code (non-strict mode)."
+    echo "          Continuing because QUALITY_STRICT_LATEX!=1."
+  fi
 else
   echo "[quality] No LaTeX engine found (pdflatex/tectonic). Skipping LaTeX build."
 fi

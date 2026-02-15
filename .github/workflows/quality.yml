@@ -22,4 +22,6 @@ jobs:
         run: make bootstrap
 
       - name: Run Quality Gate
+        env:
+          QUALITY_STRICT_LATEX: "1"
         run: make quality

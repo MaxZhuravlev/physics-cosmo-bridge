@@ -2,13 +2,13 @@
   "test_date": "2026-02-15",
   "method": "Pure Python + POT (Ollivier-Ricci)",
   "patterns_tested": 5,
-  "overall_mean_kappa": 0.2995866730530597,
-  "overall_std_kappa": 0.11483797999307607,
+  "overall_mean_kappa": 0.20347488389295115,
+  "overall_std_kappa": 0.07767493203246019,
   "significant_count": 5,
   "assessment": "preliminary_support_strong",
   "comparison_wolfram": {
     "wolfram_kappa": 0.67,
-    "python_mean": 0.2995866730530597,
+    "python_mean": 0.20347488389295115,
     "consistent": false
   },
   "results": [
@@ -19,10 +19,10 @@
       "nodes": 16,
       "graph_edges": 33,
       "curvatures_computed": 33,
-      "mean_kappa": 0.2180375180375181,
-      "median_kappa": 0.20000000000000007,
-      "std_kappa": 0.18202578106744058,
-      "nonzero_frac": 0.8787878787878788,
+      "mean_kappa": 0.14898989898989903,
+      "median_kappa": 0.1250000000000001,
+      "std_kappa": 0.13296599613031077,
+      "nonzero_frac": 0.7878787878787878,
       "status": "significant"
     },
     {
@@ -32,10 +32,10 @@
       "nodes": 16,
       "graph_edges": 42,
       "curvatures_computed": 42,
-      "mean_kappa": 0.26719576719576726,
-      "median_kappa": 0.30555555555555564,
-      "std_kappa": 0.23779375386363114,
-      "nonzero_frac": 0.7380952380952381,
+      "mean_kappa": 0.17301587301587304,
+      "median_kappa": 0.2500000000000002,
+      "std_kappa": 0.15131488861061607,
+      "nonzero_frac": 0.6190476190476191,
       "status": "significant"
     },
     {
@@ -45,10 +45,10 @@
       "nodes": 15,
       "graph_edges": 34,
       "curvatures_computed": 34,
-      "mean_kappa": 0.3776377217553689,
-      "median_kappa": 0.36111111111111116,
-      "std_kappa": 0.35368774137580267,
-      "nonzero_frac": 1.0,
+      "mean_kappa": 0.295343137254902,
+      "median_kappa": 0.23958333333333337,
+      "std_kappa": 0.3135794505373526,
+      "nonzero_frac": 0.9411764705882353,
       "status": "significant"
     },
     {
@@ -58,10 +58,10 @@
       "nodes": 25,
       "graph_edges": 56,
       "curvatures_computed": 56,
-      "mean_kappa": 0.15705782312925182,
-      "median_kappa": 0.19999999999999996,
-      "std_kappa": 0.16907693784134517,
-      "nonzero_frac": 0.8571428571428571,
+      "mean_kappa": 0.10565476190476196,
+      "median_kappa": 0.125,
+      "std_kappa": 0.12070094495174796,
+      "nonzero_frac": 0.6785714285714286,
       "status": "significant"
     },
     {
@@ -71,9 +71,9 @@
       "nodes": 12,
       "graph_edges": 35,
       "curvatures_computed": 35,
-      "mean_kappa": 0.47800453514739233,
-      "median_kappa": 0.4603174603174607,
-      "std_kappa": 0.19048349583766436,
+      "mean_kappa": 0.2943707482993198,
+      "median_kappa": 0.28571428571428603,
+      "std_kappa": 0.10815651852915326,
       "nonzero_frac": 1.0,
       "status": "significant"
     }

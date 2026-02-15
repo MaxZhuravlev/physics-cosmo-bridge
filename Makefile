@@ -2,7 +2,7 @@ VENV ?= .venv
 PYTHON ?= $(VENV)/bin/python
 PIP ?= $(VENV)/bin/pip
 
-.PHONY: venv bootstrap deps deps-upgrade check-venv run-curvature run-ricci run-all quality
+.PHONY: venv bootstrap deps deps-upgrade check-venv run-curvature run-ricci run-reliability run-all quality
 
 venv:
 	python3 -m venv $(VENV)
@@ -26,7 +26,10 @@ run-curvature: check-venv
 run-ricci: check-venv
 	$(PYTHON) src/ollivier_ricci.py
 
-run-all: run-curvature run-ricci
+run-reliability: check-venv
+	$(PYTHON) src/curvature_reliability_gate.py
+
+run-all: run-curvature run-ricci run-reliability
 
 quality:
 	bash scripts/run_full_quality.sh

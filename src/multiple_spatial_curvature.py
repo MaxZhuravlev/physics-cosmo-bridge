@@ -255,24 +255,36 @@ def compute_ollivier_ricci_curvature(G, sample_size=50, alpha=0.5):
 
     for u, v in edges:
         try:
-            # Get neighborhoods
-            neighbors_u = _graph_neighbors(G, u) + [u]
-            neighbors_v = _graph_neighbors(G, v) + [v]
+            # Get neighborhoods and include base nodes in transport support.
+            # Use alpha to control self-mass vs neighbor mass, matching the
+            # standard Ollivier-Ricci construction.
+            nbrs_u = list(_graph_neighbors(G, u))
+            nbrs_v = list(_graph_neighbors(G, v))
+            support_u = nbrs_u + [u]
+            support_v = nbrs_v + [v]
 
-            if len(neighbors_u) < 2 or len(neighbors_v) < 2:
+            if len(support_u) < 2 or len(support_v) < 2:
                 continue
 
-            # Create probability distributions (uniform random walk)
-            # For simplicity: uniform on neighbors
-            p_u = np.ones(len(neighbors_u)) / len(neighbors_u)
-            p_v = np.ones(len(neighbors_v)) / len(neighbors_v)
+            p_u = np.zeros(len(support_u))
+            p_v = np.zeros(len(support_v))
+
+            # Self mass.
+            p_u[-1] = 1 - alpha
+            p_v[-1] = 1 - alpha
+
+            # Neighbor mass.
+            if nbrs_u:
+                p_u[: len(nbrs_u)] = alpha / len(nbrs_u)
+            if nbrs_v:
+                p_v[: len(nbrs_v)] = alpha / len(nbrs_v)
 
             # Distance matrix between neighborhoods
             # Use graph shortest paths
-            dist_matrix = np.zeros((len(neighbors_u), len(neighbors_v)))
+            dist_matrix = np.zeros((len(support_u), len(support_v)))
 
-            for i, nu in enumerate(neighbors_u):
-                for j, nv in enumerate(neighbors_v):
+            for i, nu in enumerate(support_u):
+                for j, nv in enumerate(support_v):
                     try:
                         dist_matrix[i, j] = _graph_shortest_path_length(G, nu, nv)
                     except:

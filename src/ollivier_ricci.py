@@ -1,6 +1,8 @@
 """
 Ollivier-Ricci Curvature for Hypergraphs
-Tests continual limit: κ ≠ 0 means discrete geometry → Riemannian
+Exploratory curvature diagnostics for hypergraph-derived causal graphs.
+These checks provide preliminary geometric signals and do not prove
+the continuum-limit step.
 """
 
 import numpy as np
@@ -108,7 +110,7 @@ def analyze_curvature_statistics(curvatures: Dict[Tuple, float]) -> Dict:
 
 
 def test_ricci_on_string_systems():
-    """Test that string rewriting gives κ=0 (1D, expected flat)"""
+    """Diagnostic run on a small 1D-like control (heuristic, not definitive)."""
     HypergraphEngine = None
     try:
         from hypergraph_engine import HypergraphEngine  # type: ignore
@@ -152,7 +154,7 @@ def test_ricci_on_string_systems():
     curvatures = compute_ollivier_ricci_hypergraph(causal_graph, alpha=0.5)
     stats = analyze_curvature_statistics(curvatures)
 
-    print(f"String system (1D, expect κ≈0):")
+    print("String-system diagnostic (1D-like control, heuristic):")
     print(f"  Mean κ: {stats['mean']:.6f}")
     print(f"  Std: {stats['std']:.6f}")
     print(f"  Non-zero: {stats['nonzero_fraction']:.1%}")

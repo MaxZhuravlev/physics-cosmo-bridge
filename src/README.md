@@ -16,6 +16,9 @@ It is not a full QM/Amari framework.
   - Multi-pattern curvature sweep and summary output generation.
 - `SPATIAL_CRITICAL_TEST.wl`
   - Wolfram Language spatial critical test (optional quality stage).
+- `curvature_reliability_gate.py`
+  - Reliability gate with alpha-sensitivity checks, control diagnostics,
+    and claim-hygiene scanning for live files.
 
 ## How To Run
 
@@ -25,6 +28,7 @@ From repository root:
 make bootstrap
 make run-curvature
 make run-ricci
+make run-reliability
 make quality
 QUALITY_RUN_WOLFRAM=1 make quality
 ```
@@ -40,6 +44,7 @@ OFFLINE=1 bash scripts/update_deps.sh
 
 - `output/multiple_spatial_curvature_results.json`
 - `output/spatial_critical_results.txt` (when Wolfram stage is enabled)
+- `output/curvature_reliability_report.json`
 
 ## Limitations
 

@@ -61,6 +61,15 @@ OFFLINE=1 bash scripts/update_deps.sh
 `make quality` runs the reproducibility checks and manuscript build pipeline.
 With `QUALITY_RUN_WOLFRAM=1`, it additionally runs
 `src/SPATIAL_CRITICAL_TEST.wl` and refreshes spatial artifacts.
+The quality gate also runs `src/curvature_reliability_gate.py` and writes
+`output/curvature_reliability_report.json`.
+
+If your local `tectonic` binary is unstable, run non-strict mode (default) and
+use CI strict mode for final gate enforcement. To force strict local behavior:
+
+```bash
+QUALITY_STRICT_LATEX=1 make quality
+```
 
 ## Scientific Limitations
 

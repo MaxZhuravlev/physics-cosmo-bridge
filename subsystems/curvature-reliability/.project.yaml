@@ -1,0 +1,11 @@
+project:
+  name: "curvature-reliability"
+  type: "research-quality-subsystem"
+  level: "L2-subsystem"
+
+purpose: |
+  Convert exploratory curvature evidence into an auditable reliability layer
+  with explicit pass/fail criteria and claim-hygiene enforcement.
+
+owner_artifact: "output/curvature_reliability_report.json"
+entrypoint: "src/curvature_reliability_gate.py"
