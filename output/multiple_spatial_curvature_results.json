@@ -1,11 +1,11 @@
 {
-  "test_date": "2026-02-14",
+  "test_date": "2026-02-15",
   "method": "Pure Python + POT (Ollivier-Ricci)",
   "patterns_tested": 5,
   "overall_mean_kappa": 0.2995866730530597,
   "overall_std_kappa": 0.11483797999307607,
   "significant_count": 5,
-  "assessment": "ROBUST",
+  "assessment": "preliminary_support_strong",
   "comparison_wolfram": {
     "wolfram_kappa": 0.67,
     "python_mean": 0.2995866730530597,

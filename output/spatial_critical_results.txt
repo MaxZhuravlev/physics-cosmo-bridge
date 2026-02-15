@@ -16,14 +16,14 @@ Causal graph: 40 vertices, 78 edges
 
 Computing Ollivier-Ricci curvature...
   Curvature statistics (78 edges):
-    Mean κ:    0.6709401709401704
+    Mean κ:    0.6709401709401703
     Median κ:  0.6666666666666667
-    Std κ:     0.02651416042420922
+    Std κ:     0.026514160424209218
     Non-zero:  100.`1.%
 
-  ✓✓✓ SIGNIFICANT CURVATURE DETECTED (κ = 0.6709401709401704)
+  ✓✓✓ SIGNIFICANT CURVATURE DETECTED (κ = 0.6709401709401703)
       Spatial structure has intrinsic geometry
-      CONTINUAL LIMIT: Empirically supported
+      Continuum-limit hypothesis: preliminary support (not proof)
 
 
 TEST 2: SQUARE MESH GROWTH (2D explicit)
@@ -64,9 +64,9 @@ TESTS COMPLETED:
 
 
 RECOMMENDATION:
-  Current Python results (N=20,006, purification 100%)
+  Current manuscript evidence
   + These spatial tests
-  = improved empirical evidence (not a formal proof)
+  = expanded preliminary evidence (not a formal proof)
 
 NEXT: Include results in publication
 

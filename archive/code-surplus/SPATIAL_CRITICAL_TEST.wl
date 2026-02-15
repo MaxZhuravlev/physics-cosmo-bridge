@@ -2,12 +2,12 @@
 CRITICAL SPATIAL HYPERGRAPH TEST - Ollivier-Ricci Curvature
 ============================================================
 
-GOAL: Decisive test of continual limit on 2D/3D embedded hypergraphs
+GOAL: Exploratory curvature checks on 2D/3D embedded hypergraphs
 
-If κ ≠ 0 stable on spatial graphs with N>1000:
-  → Continual limit EMPIRICALLY CONFIRMED
-  → All 5 theorems become UNCONDITIONAL
-  → Publication strength +40%
+If κ ≠ 0 appears on multiple spatial constructions:
+  → Supports non-trivial discrete geometry
+  → Provides preliminary evidence only
+  → Does not constitute a continuum-limit proof
 
 RUN IN YOUR TERMINAL (already activated):
   wolframscript -file src/SPATIAL_CRITICAL_TEST.wl | tee output/spatial_results.txt
@@ -134,7 +134,7 @@ If[VertexCount[causal1] > 10 && VertexCount[causal1] < 500,
     If[Abs[meanKappa] > 0.05,
       Print["  ✓✓✓ SIGNIFICANT CURVATURE DETECTED (κ = ", N[meanKappa, 3], ")"];
       Print["      Spatial structure has intrinsic geometry"];
-      Print["      CONTINUAL LIMIT: Empirically supported"];
+      Print["      Continuum-limit hypothesis: preliminary support (not proof)"];
     ,
       If[nonzeroFrac > 0.3,
         Print["  ~ SOME CURVATURE (mixed, κ ≈ ", N[meanKappa, 3], ")"];
@@ -260,7 +260,7 @@ If[Length[allCurvatures] > 0,
 
   If[Mean[allCurvatures] > 0.05,
     Print["  ✓✓ Spatial rules show SIGNIFICANT curvature"];
-    Print["     Continual limit: SUPPORTED"];
+    Print["     Interpretation: preliminary support for non-trivial geometry"];
   ,
     Print["  ~ Mixed results"];
   ];
@@ -295,7 +295,7 @@ If[Length[allCurvatures] > 0,
   Print[];
 
   If[avgAll > 0.05,
-    Print["  ✓✓ CONTINUAL LIMIT: Preliminary empirical support"];
+    Print["  ✓ Preliminary evidence of non-trivial spatial curvature"];
     Print["      Spatial hypergraphs have intrinsic curvature"];
     Print["      Continuum-limit assumptions still require rigorous proof"];
     Print[];
@@ -313,9 +313,9 @@ If[Length[allCurvatures] > 0,
 
 Print[];
 Print["RECOMMENDATION:"];
-Print["  Current Python results (N=20,006, purification 100%)"];
+Print["  Current manuscript evidence"];
 Print["  + These spatial tests"];
-Print["  = improved empirical evidence (not a formal proof)"];
+Print["  = expanded preliminary evidence (not a formal proof)"];
 Print[];
 
 Print["NEXT: Include results in publication"];

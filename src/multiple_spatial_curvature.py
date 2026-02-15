@@ -2,20 +2,24 @@
 MULTIPLE SPATIAL PATTERNS - Ollivier-Ricci Curvature Tests
 ===========================================================
 
-GOAL: Test κ≠0 robustness across multiple 2D/3D spatial hypergraph patterns
+GOAL: Estimate whether κ departs from 0 across multiple small 2D/3D spatial
+hypergraph patterns.
 
 Strategy:
 - Use Pure Python (full control)
 - 5 different spatial patterns
 - Compute Ollivier-Ricci with POT
-- Show κ≠0 is ROBUST (not single-rule artifact)
+- Check whether non-zero curvature appears beyond a single construction
 
-Already confirmed: κ=0.67 on triangle completion (Wolfram)
-This test: Show it's reproducible across patterns
+Interpretation policy:
+- Results are preliminary
+- Results are not a formal proof of continuum limit
 """
 
-import numpy as np
+from datetime import date
 from typing import List, Tuple
+
+import numpy as np
 import json
 from pathlib import Path
 from collections import defaultdict, deque
@@ -421,27 +425,27 @@ def main():
     print(f"  Python (average across patterns): κ={overall_mean:.4f}")
 
     if abs(overall_mean - wolfram_kappa) < 0.2:
-        print(f"  ✓ CONSISTENT (within 0.2)")
+        print(f"  ~ Numerically close on this small-scale comparison")
     else:
-        print(f"  ~ Different scales/methods (expected)")
+        print(f"  ~ Different scales/rules/methods (expected)")
     print()
 
     # Assessment
     if len(significant) >= 3:
-        print("VERDICT: ✓✓ ROBUST")
-        print("  κ≠0 confirmed across multiple 2D/3D patterns")
-        print("  Continual limit: EMPIRICALLY SUPPORTED (robust)")
-        assessment = "ROBUST"
+        print("VERDICT: PRELIMINARY SUPPORT (strong within tested set)")
+        print("  Non-zero curvature appears across multiple 2D/3D patterns")
+        print("  Continuum-limit proof remains open")
+        assessment = "preliminary_support_strong"
     elif len(significant) >= 1:
-        print("VERDICT: ✓ SUPPORTED")
-        print("  κ≠0 confirmed on some patterns")
-        print("  Continual limit: EMPIRICALLY SUPPORTED")
-        assessment = "SUPPORTED"
+        print("VERDICT: PRELIMINARY SUPPORT (limited)")
+        print("  Non-zero curvature appears on a subset of patterns")
+        print("  Continuum-limit proof remains open")
+        assessment = "preliminary_support_limited"
     else:
-        print("VERDICT: ~ PARTIAL")
-        print("  Weak curvature on some patterns")
-        print("  Continual limit: Partial evidence")
-        assessment = "PARTIAL"
+        print("VERDICT: INCONCLUSIVE")
+        print("  Weak/near-zero curvature dominates tested patterns")
+        print("  Continuum-limit proof remains open")
+        assessment = "inconclusive"
 
     print()
 
@@ -450,7 +454,7 @@ def main():
     output_file.parent.mkdir(parents=True, exist_ok=True)
     with output_file.open('w') as f:
         json.dump({
-            'test_date': '2026-02-14',
+            'test_date': date.today().isoformat(),
             'method': 'Pure Python + POT (Ollivier-Ricci)',
             'patterns_tested': len(results),
             'overall_mean_kappa': float(overall_mean),
@@ -468,23 +472,13 @@ def main():
     print(f"✓ Results saved: {output_file}")
     print()
 
-    # Publication impact
-    if assessment == "ROBUST":
-        print("PUBLICATION IMPACT: +10% (robustness across patterns)")
-    elif assessment == "SUPPORTED":
-        print("PUBLICATION IMPACT: +5% (additional evidence)")
-    else:
-        print("PUBLICATION IMPACT: Neutral (Wolfram κ=0.67 sufficient)")
-
-    print()
-
     return results, assessment
 
 if __name__ == "__main__":
     print()
-    print("NOTE: This supplements Wolfram κ=0.67 result")
-    print("      Main claim already decisive (κ=0.67, 10× threshold)")
-    print("      This test: Show robustness across patterns")
+    print("NOTE: This supplements manuscript Section 2.2 with additional")
+    print("      small-scale curvature checks across several spatial patterns.")
+    print("      Interpretation is preliminary and non-theorem-level.")
     print()
 
     out = main()
@@ -496,9 +490,10 @@ if __name__ == "__main__":
     print(" FINAL VERDICT")
     print("=" * 80)
     print()
-    print("Wolfram SetReplace: κ=0.67 (triangle completion) ✓✓✓")
+    print("Wolfram SetReplace reference: κ=0.67 (triangle completion)")
     print(f"Python POT/fallback LP (this test): κ={np.mean([r['mean_kappa'] for r in results]):.4f} (multiple patterns)")
     print()
-    print("Combined: Continual limit EMPIRICALLY SUPPORTED")
-    print("          (robust across different spatial structures)")
+    print("Combined interpretation: preliminary evidence for non-trivial")
+    print("discrete curvature on tested spatial constructions.")
+    print("Continuum-limit proof remains an open problem.")
     print()
