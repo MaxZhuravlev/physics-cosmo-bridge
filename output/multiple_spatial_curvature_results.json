@@ -2,15 +2,14 @@
   "test_date": "2026-02-14",
   "method": "Pure Python + POT (Ollivier-Ricci)",
   "patterns_tested": 5,
-  "overall_mean_kappa": 0.2996,
-  "overall_std_kappa": 0.1148,
+  "overall_mean_kappa": 0.2995866730530597,
+  "overall_std_kappa": 0.11483797999307607,
   "significant_count": 5,
   "assessment": "ROBUST",
   "comparison_wolfram": {
     "wolfram_kappa": 0.67,
-    "python_mean": 0.2996,
-    "consistent": true,
-    "note": "Different graph constructions, both show κ≠0"
+    "python_mean": 0.2995866730530597,
+    "consistent": false
   },
   "results": [
     {
@@ -20,10 +19,10 @@
       "nodes": 16,
       "graph_edges": 33,
       "curvatures_computed": 33,
-      "mean_kappa": 0.2180,
-      "median_kappa": 0.2000,
-      "std_kappa": 0.1820,
-      "nonzero_frac": 0.879,
+      "mean_kappa": 0.2180375180375181,
+      "median_kappa": 0.20000000000000007,
+      "std_kappa": 0.18202578106744058,
+      "nonzero_frac": 0.8787878787878788,
       "status": "significant"
     },
     {
@@ -33,10 +32,10 @@
       "nodes": 16,
       "graph_edges": 42,
       "curvatures_computed": 42,
-      "mean_kappa": 0.2672,
-      "median_kappa": 0.3056,
-      "std_kappa": 0.2378,
-      "nonzero_frac": 0.738,
+      "mean_kappa": 0.26719576719576726,
+      "median_kappa": 0.30555555555555564,
+      "std_kappa": 0.23779375386363114,
+      "nonzero_frac": 0.7380952380952381,
       "status": "significant"
     },
     {
@@ -46,9 +45,9 @@
       "nodes": 15,
       "graph_edges": 34,
       "curvatures_computed": 34,
-      "mean_kappa": 0.3776,
-      "median_kappa": 0.3611,
-      "std_kappa": 0.3537,
+      "mean_kappa": 0.3776377217553689,
+      "median_kappa": 0.36111111111111116,
+      "std_kappa": 0.35368774137580267,
       "nonzero_frac": 1.0,
       "status": "significant"
     },
@@ -59,10 +58,10 @@
       "nodes": 25,
       "graph_edges": 56,
       "curvatures_computed": 56,
-      "mean_kappa": 0.1571,
-      "median_kappa": 0.2000,
-      "std_kappa": 0.1691,
-      "nonzero_frac": 0.857,
+      "mean_kappa": 0.15705782312925182,
+      "median_kappa": 0.19999999999999996,
+      "std_kappa": 0.16907693784134517,
+      "nonzero_frac": 0.8571428571428571,
       "status": "significant"
     },
     {
@@ -72,9 +71,9 @@
       "nodes": 12,
       "graph_edges": 35,
       "curvatures_computed": 35,
-      "mean_kappa": 0.4780,
-      "median_kappa": 0.4603,
-      "std_kappa": 0.1905,
+      "mean_kappa": 0.47800453514739233,
+      "median_kappa": 0.4603174603174607,
+      "std_kappa": 0.19048349583766436,
       "nonzero_frac": 1.0,
       "status": "significant"
     }
