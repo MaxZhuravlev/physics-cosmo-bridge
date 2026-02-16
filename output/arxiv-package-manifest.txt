@@ -1,44 +1,60 @@
 arXiv Submission Package Manifest
-Generated: 2026-02-17
+Generated: 2026-02-17 (updated with degeneracy root cause explanation)
 Package: output/arxiv-package.tar.gz
-Size: 3.0M (compressed)
+Size: 2.2M (compressed)
 
 CONTENTS:
 =========
 
 1. Source Files:
-   - main.tex (88 KB) — adversarial-review-fixed version
+   - main.tex (87 KB) — includes Remark rem:signed-edge-phase-diagram with degeneracy root cause
    - references.bib (9.1 KB) — bibliography
-   - 00README.XXX (13 bytes) — arXiv processing directive: \pdfoutput=1
+   - 00README.XXX (23 bytes) — arXiv processing directive: nonstopmode\npdfoutput=1
 
 2. Compiled Output:
-   - main.pdf (1.3 MB) — compiled with tectonic 0.15.0
+   - main.pdf (1.3 MB) — compiled with tectonic
 
-3. Figures (10 files):
-   - Fig_OllivierRicci_Curvature.png
-   - Fig1_eigenvalue_trajectories.png
-   - Fig1_Purification_vs_LD.png (unused in current version)
-   - Fig2_phase_diagram.png
-   - Fig2_Theorem_Flowchart.png (unused in current version)
-   - Fig3_specific_heat_vs_beta_c.png
-   - Fig4_learning_dynamics.png
-   - Fig5_edge_addition_monotonicity.png
-   - Fig6_spectral_gap_selection.png
-   - near_diagonal_fisher_decay.png
+3. Figures (8 files in figures/ subdirectory):
+   - Fig_OllivierRicci_Curvature.png (155 KB)
+   - Fig1_eigenvalue_trajectories.png (349 KB)
+   - Fig2_phase_diagram.png (129 KB)
+   - Fig3_specific_heat_vs_beta_c.png (124 KB)
+   - Fig4_learning_dynamics.png (132 KB)
+   - Fig5_edge_addition_monotonicity.png (47 KB)
+   - Fig6_spectral_gap_selection.png (111 KB)
+   - near_diagonal_fisher_decay.png (85 KB)
 
 CHANGES FROM PREVIOUS PACKAGE:
 ================================
-- Source: Updated main.tex with adversarial review fixes
+- Source: Updated main.tex with degeneracy root cause explanation
+  (Remark rem:signed-edge-phase-diagram: similarity invariance identity
+  H1'(s) = H1'(-s) causes eigenspectrum folding)
 - Figure paths: Fixed from "../" to "figures/" for arXiv compliance
-- All required figures included
+- All 8 referenced figures included
 - Self-contained and arXiv-compilable
 
 VERIFICATION:
 =============
 ✓ All \includegraphics paths use "figures/" prefix
-✓ All 8 referenced figures present in package
+✓ All 8 referenced figures present in package (8 \includegraphics commands)
 ✓ 00README.XXX contains correct pdfoutput directive
 ✓ Package extracts cleanly
-✓ Total 16 files (1 dir + 4 docs + 10 figures + 1 directive)
+✓ Total 12 files (1 dir + 3 docs + 8 figures + 1 directive)
+✓ 2019 lines in main.tex
+
+PACKAGE STRUCTURE:
+==================
+./00README.XXX
+./figures/Fig_OllivierRicci_Curvature.png
+./figures/Fig1_eigenvalue_trajectories.png
+./figures/Fig2_phase_diagram.png
+./figures/Fig3_specific_heat_vs_beta_c.png
+./figures/Fig4_learning_dynamics.png
+./figures/Fig5_edge_addition_monotonicity.png
+./figures/Fig6_spectral_gap_selection.png
+./figures/near_diagonal_fisher_decay.png
+./main.pdf
+./main.tex
+./references.bib
 
 READY FOR SUBMISSION
