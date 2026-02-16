@@ -1,0 +1,20 @@
+main.tex                          Main LaTeX source
+references.bib                    BibTeX references
+main.bbl                          Compiled bibliography
+Fig_OllivierRicci_Curvature.png   Figure 1: Ollivier-Ricci curvature convergence
+Fig1_eigenvalue_trajectories.png  Figure 2: Eigenvalue trajectories vs beta
+Fig2_phase_diagram.png            Figure 3: Phase diagram (Riemannian/Lorentzian/mixed)
+Fig5_edge_addition_monotonicity.png  Figure 4: Edge monotonicity of beta_c
+Fig6_spectral_gap_selection.png   Figure 5: Spectral gap weighting scatter plot
+near_diagonal_fisher_decay.png    Figure 6: Near-diagonal Fisher decay with girth
+Fig3_specific_heat_vs_beta_c.png  Figure 7: Specific heat vs beta_c
+Fig4_learning_dynamics.png        Figure 8: Learning dynamics at beta_c
+
+Compile with:
+  pdflatex main
+  bibtex main
+  pdflatex main
+  pdflatex main
+
+Or use tectonic:
+  tectonic main.tex
