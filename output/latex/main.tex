@@ -59,10 +59,12 @@ Vanchurin's non-principal square root mechanism and prove they are
 non-equivalent.
 Additionally, we prove the \emph{Tree Fisher Identity}: the Ising Fisher
 matrix on tree graphs equals $\operatorname{sech}^2(J)$ times the identity,
-implying that sparse observer graphs select Lorentzian signature ($q = 1$)
-with infinite spectral gap margin over all other signatures.
-Numerical verification across 199~Ising Fisher matrices confirms
-$100\%$ Lorentzian preference for sparse topologies.
+and show more generally that off-diagonal Fisher entries decay as
+$O(\tanh^g(J))$ with graph girth~$g$ (verified across 71~configurations,
+$C \lesssim 15$).
+These results imply that sparse observer graphs select Lorentzian signature
+($q = 1$) with large spectral gap margin, verified for dimensions up to
+$n = 20$ (98.2\% across 111~cases).
 These results contribute to the formal development of Type~II metric theory
 for observers in learning systems.
 
@@ -157,10 +159,12 @@ from the investigation.
 \item Our signed-edge construction (H1$'$) and Vanchurin's non-principal
   square root are non-equivalent (\cref{sec:comparison-vanchurin}).
 \item The Tree Fisher Identity shows that the Ising Fisher matrix on
-  tree graphs equals $\operatorname{sech}^2(J) \cdot I_m$, and a spectral
-  gap selection mechanism demonstrates that sparse observer graphs
-  overwhelmingly prefer Lorentzian ($q = 1$) signature
-  (\cref{sec:spectral-gap-selection}).
+  tree graphs equals $\operatorname{sech}^2(J) \cdot I_m$; the
+  Near-Diagonal Fisher Theorem extends this to sparse graphs with
+  off-diagonal decay $O(\tanh^g(J))$; and a spectral gap selection
+  mechanism demonstrates that sparse observer graphs overwhelmingly
+  prefer Lorentzian ($q = 1$) signature, verified for dimensions up
+  to $n = 20$ (\cref{sec:spectral-gap-selection}).
 \end{enumerate}
 
 \subsection{Relation to prior work}
@@ -829,6 +833,9 @@ negative), so $g(\beta)$ is positive definite.
 By continuity, $d_1 + \beta_c = 0$.
 \end{proof}
 
+The eigenvalue trajectories and signature transitions are illustrated
+in \cref{fig:eigenvalue-trajectories}.
+
 \begin{remark}[Prior art]
 \label{rem:beta-c-prior-art}
 The critical value $\beta_c = -d_1$ follows from standard results on
@@ -1312,12 +1319,13 @@ by the data to a factor of~${\sim}2$.
 \centering
 \includegraphics[width=0.8\textwidth]{../Fig6_spectral_gap_selection.png}
 \caption{Spectral gap weighting $W(q = 1)$ versus $\max_{q \geq 2} W(q)$
-for 131~Ising Fisher matrices across five topology classes.
+for Ising Fisher matrices across five topology classes
+(131~cases from an independent enumeration; see \cref{tab:spectral-gap}
+for the full 199-case analysis).
 Points above the diagonal correspond to Lorentzian ($q = 1$) preference.
 All sparse topologies (trees, cycles, tree-like, sparse with cycles) lie
 strictly above the diagonal ($100\%$); only dense complete graphs
-($K_5$--$K_8$ at strong coupling) fall below.
-Overall: $92\%$ Lorentzian preference.}
+($K_5$--$K_8$ at strong coupling) fall below.}
 \label{fig:spectral-gap-scatter}
 \end{figure}
 
@@ -1490,8 +1498,8 @@ We list open problems in order of priority:
   $q = 1$ outcome is overwhelmingly favored for sparse observer graphs
   by the information-geometric properties of the Fisher metric itself.
   The ``sign selection problem'' may therefore not require a specific
-  causal mechanism---sparsity alone selects $q = 1$ with $90\%$--$100\%$
-  success rate (\cref{tab:spectral-gap}).
+  causal mechanism---sparsity alone selects $q = 1$ with $96\%$--$100\%$
+  success rate for tree-like topologies (\cref{tab:spectral-gap}).
   Confidence that $q = 1$ is selected for physically relevant (sparse)
   observers: $45$--$55\%$.
 
@@ -1504,14 +1512,15 @@ We list open problems in order of priority:
   invariance \emph{alone} does not force exponential family statistics
   (explicit counterexamples exist: mixture models, non-parametric
   observers).
-  However, CI combined with the maximum entropy principle (Jaynes 1957)
+  However, CI combined with the maximum entropy
+  principle~\cite{Jaynes1957}
   and fixed observer topology does yield exponential family structure
   at 55--65\% confidence.
   Preliminary computational evidence supports a \emph{causal typicality}
   conjecture: for large CI systems with small observers, the
   Kullback--Leibler divergence from MaxEnt decreases as $O(1/N)$
-  with system size, analogous to quantum typicality (Popescu, Short
-  \& Winter 2006).
+  with system size, analogous to quantum
+  typicality~\cite{PopescuShortWinter2006}.
   If proven, this would close the deductive chain with a single
   additional epistemic principle.
   This is the most important theoretical question for the program.
@@ -1628,7 +1637,8 @@ selection mechanism (\cref{sec:spectral-gap-selection}) provide a
 conditional structural explanation for why sparse observers perceive
 exactly one time dimension: on tree-like observer graphs, the Fisher
 metric is near-diagonal, and the spectral gap weighting selects
-$q = 1$ with $90$--$100\%$ success rate.
+$q = 1$ with $96$--$100\%$ success rate on sparse topologies
+($84\%$ overall; see \cref{tab:spectral-gap}).
 
 These results are offered as tools for further development of
 learning-based spacetime emergence.
