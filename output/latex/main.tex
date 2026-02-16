@@ -23,8 +23,7 @@
 Negative Results and New Directions for Connecting\\
 Discrete and Continuous Spacetime Emergence}
 
-\author{Max Zhuravlev\\
-Independent Research}
+\author{Max Zhuravlev\thanks{Independent researcher. Email: \texttt{max@vibecodium.com}}}
 
 \date{February 2026}
 
@@ -952,6 +951,16 @@ so $\beta_c = -d_1$ increases or stays constant.
 The spacelike case is symmetric.
 \end{proof}
 
+\begin{remark}
+\Cref{prop:edge-monotonicity} holds when $F$ is fixed independently
+of the edge addition.
+In self-consistent models where the observer's topology determines
+both $M$ and $F$ (e.g., Ising models on the observer graph),
+adding edges changes $F$, and monotonicity can be violated.
+See the computational notes accompanying this paper for an explicit
+example.
+\end{remark}
+
 We have verified these results numerically for six observer topologies
 (O1--O6) on a 2-parameter Gaussian model, as shown in \cref{tab:observers}.
 High-dimensional computational analysis ($n = 2$ to $10$, 3500 configurations)
@@ -1038,9 +1047,12 @@ mass tensor entries that Vanchurin's diagonal construction cannot achieve.
 \end{proof}
 
 \begin{remark}
-H1$'$ may be interpreted as a candidate \emph{microscopic mechanism}
-that produces Vanchurin's non-principal square root at the macroscopic
-level.
+H1$'$ and Vanchurin's construction are mathematically distinct
+\emph{formulations} that may or may not produce equivalent observables.
+H1$'$ may be interpreted as a candidate microscopic mechanism
+whose macroscopic limit could coincide with Vanchurin's non-principal
+square root; testing this requires deriving predictions that differ
+between the two approaches, which remains an open problem.
 Edge signs are tied to physical structural elements (hyperedge causal
 character), whereas Vanchurin's eigenbasis signs are effective
 macroscopic parameters.
@@ -1267,6 +1279,9 @@ norm bound~\eqref{eq:near-diagonal-bound}.
 The constant $C \approx 15$ is fitted from exact Fisher matrices on
 cycle graphs $C_n$ ($n = 4, \ldots, 20$); exponential decay is
 confirmed with 90\% slope agreement.
+A rigorous upper bound on $C$ remains an open problem; the bound
+stated here is empirical (71 configurations, all satisfying
+$C \lesssim 15$).
 \end{proof}
 
 We verified these results numerically across 199~Ising Fisher matrices
