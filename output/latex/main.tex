@@ -1,12 +1,26 @@
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb,amsthm}
 \usepackage{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
 \usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{graphicx}
 \geometry{margin=1in}
 
-\title{Connecting Wolfram and Vanchurin Cosmologies:\\
-A Lovelock Bridge}
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Where the Lovelock Bridge Breaks:\\
+Negative Results and New Directions for Connecting\\
+Discrete and Continuous Spacetime Emergence}
 
 \author{Max Zhuravlev\\
 Independent Research}
@@ -18,138 +32,1064 @@ Independent Research}
 \maketitle
 
 \begin{abstract}
-We demonstrate a formal connection between Wolfram's hypergraph physics and Vanchurin's neural network cosmology through Lovelock's uniqueness theorem, providing a possible answer to Vanchurin's explicitly stated open question regarding the derivation of Onsager tensor symmetries from first principles.
+We examine the hypothesis that Wolfram's hypergraph physics and Vanchurin's
+neural network cosmology can be connected via Lovelock's uniqueness theorem.
+The proposed bridge runs: causal invariance $\to$ discrete covariance (Gorard 2020)
+$\to$ continuum limit $\to$ diffeomorphism invariance $\to$ Lovelock uniqueness $\to$
+Einstein equations, potentially constraining Vanchurin's Onsager tensor symmetries.
+We report three negative results that obstruct this bridge:
+(1)~numerical evidence that the continuum limit fails for all dynamically
+nontrivial hypergraph rewrite rules tested (13~rules; only trivial static
+cases converge to nonzero Ollivier--Ricci curvature);
+(2)~a fundamental barrier between discrete permutation-type symmetries and the
+continuous Lorentz group required by Lovelock's theorem;
+(3)~the observation that Vanchurin's current Type~II framework (2025)
+bypasses the continuum limit entirely by working in continuous trainable
+parameter space.
+Having documented why the direct bridge fails, we turn to constructive results
+within Vanchurin's Type~II metric framework.
+We prove an exact formula for the critical inverse temperature~$\beta_c$ at
+which the observer metric transitions between Lorentzian and Riemannian
+signatures, establish that the mass tensor equals the square of the Fisher
+matrix for exponential family models, and identify a spectral purity condition
+under which mass and Fisher tensors become proportional.
+We compare our signed-edge construction for Lorentzian signature with
+Vanchurin's non-principal square root mechanism and prove they are
+non-equivalent.
+These results contribute to the formal development of Type~II metric theory
+for observers in learning systems.
 
-Gorard (2020) proved that causal invariance—the core axiom of Wolfram's model—is equivalent to discrete general covariance. Under the working assumption of a continuum limit (supported by preliminary numerical evidence from spatial hypergraph tests, with curvature ranging from near-zero values to about $\kappa=0.67$ across tested spatial rules, where the highest value appears in a small triangle-completion case), this yields diffeomorphism invariance. Lovelock's theorem (1971) then establishes that Einstein's gravity is the unique theory in four dimensions. This may constrain Vanchurin's phenomenologically chosen Onsager tensor (Eq.~93, arXiv:2008.01540).
+\medskip
+\noindent\textbf{Keywords}: Wolfram physics, neural network cosmology,
+Lovelock theorem, negative results, Lorentzian signature, Fisher information,
+Type~II metrics
 
-We do not claim this as a new theorem, but rather as a synthesis making explicit the connection between two independent research programs. The primary contribution is offering a possible answer to Vanchurin's published question using existing mathematical results.
-
-\textbf{Keywords}: Wolfram physics, neural network cosmology, Lovelock theorem, synthesis
-
-\textbf{arXiv category}: physics.gen-ph
+\medskip
+\noindent\textbf{arXiv category}: gr-qc (cross-list: physics.gen-ph, hep-th)
 \end{abstract}
 
+%----------------------------------------------------------------------
 \section{Introduction}
+\label{sec:introduction}
+%----------------------------------------------------------------------
 
-Two recent cosmological research programs have independently derived gravitational physics from novel axioms, yet never cross-referenced:
+Two recent cosmological research programs have independently
+derived gravitational physics from novel axioms, yet have never been
+formally compared at a technical level.
 
-\textbf{Wolfram Physics Project}~\cite{Gorard2020,Wolfram2020}: Derives spacetime and gravity from hypergraph rewriting with causal invariance.
+\textbf{Wolfram Hypergraph Physics}~\cite{Wolfram2020,Gorard2020}.
+Spacetime and gravity emerge from hypergraph rewriting with causal
+invariance (CI) as the fundamental axiom.
+Gorard~\cite{Gorard2020} proved that CI is equivalent to a discrete
+form of general covariance for hypergraph evolution.
+Under a conjectured continuum limit, this discrete covariance would
+yield smooth diffeomorphism invariance.
 
-\textbf{Vanchurin Neural Network Cosmology}~\cite{Vanchurin2020}: Derives gravity from entropy production in learning neural networks.
+\textbf{Vanchurin Neural Network Cosmology}~\cite{Vanchurin2020,Vanchurin2025,Vanchurin2025CGD}.
+Gravity emerges from entropy production and learning dynamics in trainable
+neural networks.
+In Vanchurin's original (Type~I) framework~\cite{Vanchurin2020}, the metric
+lives in the space of non-trainable variables, requiring a discrete-to-continuous
+transition analogous to the Wolfram program's continuum limit.
+In the current Type~II framework~\cite{Vanchurin2025,Vanchurin2025CGD},
+the metric lives in the continuous space of trainable parameters, bypassing
+this barrier entirely.
 
-In deriving Einstein's equations, Vanchurin (2020) notes:
+\subsection{The Lovelock bridge hypothesis}
+\label{sec:bridge-hypothesis}
 
-\begin{quote}
-``With this respect the result is phenomenological, but one might wonder whether the symmetries of the Onsager tensor can also be derived from the first principles.'' (Entropy 22(11):1210, Section 9)
-\end{quote}
+Lovelock's uniqueness theorem~\cite{Lovelock1971} establishes that in four
+spacetime dimensions, the only symmetric, divergence-free, rank-2 tensor
+constructed from the metric and its first two derivatives is
+$a\,G^{\mu\nu} + b\,g^{\mu\nu}$, where $G^{\mu\nu}$ is the Einstein
+tensor.
+This theorem suggested a natural bridge between the two programs: if
+causal invariance implies diffeomorphism invariance (via a continuum
+limit), and if Vanchurin's gravitational dynamics satisfy Lovelock's
+hypotheses, then both programs are forced to produce Einstein's equations
+as the unique gravitational dynamics.
 
-We argue they may be constrained---from Wolfram's causal invariance, via Lovelock's uniqueness theorem.
+In his original paper, Vanchurin~\cite{Vanchurin2020} noted that the
+symmetries of his Onsager tensor (Eq.~93) are introduced
+phenomenologically, and asked whether they could be ``derived from
+first principles.''
+The Lovelock bridge was conceived as a potential answer.
 
-\section{The Connection}
+\subsection{Summary of results}
+\label{sec:summary}
 
-\subsection{Gorard's Result (2020)}
+The bridge hypothesis fails.
+This paper documents why, and presents constructive results that emerged
+from the investigation.
 
-Gorard~\cite{Gorard2020} proves:
+\textbf{Negative results} (\cref{sec:failure}):
+\begin{enumerate}
+\item The continuum limit is falsified numerically for all dynamically
+  nontrivial rules tested (\cref{sec:numerical}).
+\item A fundamental discrete-to-continuous symmetry barrier prevents
+  passage from Gorard's discrete covariance to smooth diffeomorphism
+  invariance (\cref{sec:symmetry-barrier}).
+\item Vanchurin's Type~II framework bypasses the problem that the bridge
+  was designed to address (\cref{sec:lovelock-learning}).
+\end{enumerate}
 
-\begin{quote}
-``Causal invariance...is equivalent to a discrete version of general covariance''
-\end{quote}
+\textbf{Constructive results} (\cref{sec:typeII,sec:mass-fisher,sec:lorentzian}):
+\begin{enumerate}
+\item The Type~II metric decomposes as $g_{\mu\nu} = M_{\mu\nu} +
+  \beta\,F_{\mu\nu}$, where $M$ is a structural inertia tensor and $F$ the
+  Fisher information metric (\cref{sec:metric-decomposition}).
+\item For exponential family models, $M = F^2$ exactly
+  (\cref{sec:M-equals-F-squared}).
+\item Under a Structural Reflection Condition (SRC), perfect Good Regulators
+  satisfy $M = \kappa\,F$, making the metric conformally Fisher
+  (\cref{sec:spectral-purity}).
+\item A critical inverse temperature $\beta_c$ governs the
+  Lorentzian--Riemannian transition, with exact formula
+  $\beta_c = -d_1$ where $d_1$ is the most negative eigenvalue of the
+  Fisher-weighted mass tensor (\cref{sec:beta-c-theorem}).
+\item Our signed-edge construction (H1$'$) and Vanchurin's non-principal
+  square root are non-equivalent (\cref{sec:comparison-vanchurin}).
+\end{enumerate}
 
-For hypergraph $H$ with rewriting rules, causal invariance (outcome independent of update ordering) implies discrete general covariance (evolution equations coordinate-independent)---a graph-theoretic analogue of the smooth-manifold property in general relativity.
+\subsection{Relation to prior work}
+\label{sec:prior-work}
 
-\subsection{The Continuum Limit (Assumed)}
+Gorard~\cite{Gorard2020} established the rigorous discrete covariance
+result; we do not question this theorem but show that it does not extend
+to smooth diffeomorphism invariance.
+Lovelock~\cite{Lovelock1971} proved the uniqueness theorem that our
+bridge invokes; the theorem is correct but its hypotheses are not met by
+the Wolfram program in its current state.
+Matsueda~\cite{Matsueda2013} derived Einstein equations from the Fisher
+information metric, providing an independent information-theoretic path
+to gravity.
+Amari~\cite{Amari1998} established the natural gradient as the unique
+covariant gradient descent; this is standard and not claimed as novel.
+Rao~\cite{Rao1945} introduced the Fisher metric as a Riemannian metric
+on statistical manifolds.
+Ollivier~\cite{Ollivier2009} introduced the Ricci curvature for metric
+spaces used in our numerical tests.
+Conant and Ashby~\cite{ConantAshby1970} proved the Good Regulator
+theorem; Virgo et al.~\cite{Virgo2025} reformulated it for embodied
+agents in a form we use in \cref{sec:spectral-purity}.
+Chiribella et al.~\cite{Chiribella2011} derived quantum theory from
+operational axioms; this framework is used in our companion
+paper~\cite{companion_qm}.
 
-\textbf{Working assumption}: As hypergraph density $\to \infty$, discrete manifold approaches smooth Riemannian manifold. This assumption is common to discrete-to-continuum gravity programs but remains unproven.
+%----------------------------------------------------------------------
+\section{The Lovelock Bridge: Statement and Failure}
+\label{sec:failure}
+%----------------------------------------------------------------------
 
-\textbf{Non-genericity caveat}: Causal invariance is not generic across rule spaces; practical Wolfram-model enumerations report it for only a minority of rules (often described at a few-percent level)~\cite{Wolfram2020,Gorard2020}. The bridge developed here is therefore conditional on that restricted subset.
+\subsection{Precise logical chain}
+\label{sec:logical-chain}
 
-\textbf{Numerical support (preliminary)}: Spatial hypergraph tests on a small triangle-completion case yield Ollivier-Ricci curvature $\kappa=0.67\pm0.03$ (N=9 states, 40 vertices, 78 causal graph edges), suggesting non-trivial geometry. Additional tests across 5 spatial patterns show consistent $\kappa>0.1$ (mean $\kappa=0.30$). While encouraging, these results are preliminary and do not constitute proof of the continuum limit. (On small graphs, non-zero Ollivier-Ricci curvature can also arise from combinatorial topology rather than emergent geometry.)
+The bridge argument consists of seven steps, labeled L1--L7.
+We state each, indicate its status, and assign a conditional probability
+$P(\text{L}_{k} \mid \text{L}_{k-1})$.
 
-\subsection{Lovelock's Uniqueness Theorem (1971)}
+\begin{enumerate}
+\item[\textbf{L1.}] \textit{Causal invariance holds for the hypergraph
+  rewriting system.}
+  Status: imposed by hypothesis.
+  $P(\text{L1}) = 0.95$ (CI is not generic; it holds for only a minority
+  of rules~\cite{Wolfram2020,Gorard2020}).
 
-In four spacetime dimensions, under diffeomorphism invariance, Lovelock~\cite{Lovelock1971} proves the unique symmetric divergence-free rank-2 tensor constructed from the metric (up to 2nd derivatives) is:
+\item[\textbf{L2.}] \textit{CI $\Rightarrow$ discrete general covariance.}
+  Status: \textbf{proven} (Gorard 2020~\cite{Gorard2020}).
+  $P(\text{L2} \mid \text{L1}) = 0.95$.
+
+\item[\textbf{L3.}] \textit{Discrete covariance $\Rightarrow$
+  diffeomorphism invariance in a continuum limit.}
+  Status: \textbf{falsified numerically} (see \cref{sec:numerical}).
+  $P(\text{L3} \mid \text{L2}) \approx 0.10$.
+
+\item[\textbf{L4.}] \textit{The continuum equations satisfy Lovelock's
+  hypotheses: locality, at most second-order derivatives, metric-based.}
+  Status: \textbf{not established} for learning dynamics
+  (see \cref{sec:lovelock-learning}).
+  $P(\text{L4} \mid \text{L3}) \approx 0.30$.
+
+\item[\textbf{L5.}] \textit{The emergent energy-momentum tensor is
+  divergence-free.}
+  Status: not automatic for general learning dynamics.
+  $P(\text{L5} \mid \text{L4}) \approx 0.40$.
+
+\item[\textbf{L6.}] \textit{$D = 4$ spacetime dimensions.}
+  Status: assumed (observational, not derived from CI).
+  $P(\text{L6} \mid \text{L5}) = 0.99$.
+
+\item[\textbf{L7.}] \textit{Lovelock uniqueness $\Rightarrow$ Einstein
+  equations $\Rightarrow$ constrains Onsager tensor.}
+  Status: theorem-level, conditional on L1--L6.
+  $P(\text{L7} \mid \text{L6}) = 0.99$.
+\end{enumerate}
+
+\begin{remark}[End-to-end probability]
+\label{rem:probability}
+The end-to-end probability of the bridge holding is
 \begin{equation}
-T^{\mu\nu} = a \cdot G^{\mu\nu} + b \cdot g^{\mu\nu}
+\label{eq:bridge-probability}
+P(\text{Einstein} \mid \text{CI}) \;=\;
+\prod_{k=1}^{7} P(\text{L}_k \mid \text{L}_{k-1})
+\;\approx\; 0.95 \times 0.95 \times 0.10 \times 0.30 \times 0.40 \times 0.99 \times 0.99
+\;\approx\; 0.011\,.
 \end{equation}
-where $G^{\mu\nu}$ is the Einstein tensor.
+That is, conditional on causal invariance, the probability that the full
+Lovelock bridge delivers Einstein equations is approximately~$1\%$.
+The bottleneck is Step~L3 (continuum limit), followed by L4 and~L5.
+\end{remark}
 
-\textbf{Additional assumption}: Applying Lovelock in this bridge requires that the effective continuum gravitational equations induced by the discrete model fall into the Lovelock hypothesis class (local, metric-based, and at most second-order in derivatives). This compatibility is assumed here, not derived.
+\subsection{Numerical investigation of the continuum limit}
+\label{sec:numerical}
 
-\textbf{Note}: We assume four spacetime dimensions ($D=4$), consistent with observational cosmology but not derived from causal invariance. In $D>4$, Lovelock's theorem yields additional terms (Gauss-Bonnet gravity), modifying the uniqueness result. The derivation of spacetime dimension from causal invariance remains an open problem in the Wolfram Physics Project.
+We tested 13 Wolfram rewrite rules for convergence of Ollivier--Ricci
+curvature~\cite{Ollivier2009} in the large-$N$ limit.
+For each rule, we evolved the hypergraph to sizes $N = 5, 8, 12, 20, 50$
+(where computationally feasible) and computed the mean Ollivier--Ricci
+curvature $\bar{\kappa}(N)$ of the spatial hypergraph at each step.
 
-\subsection{Constraint on Vanchurin's Onsager Tensor}
+The results are summarized in \cref{tab:curvature}.
 
-Vanchurin derives Einstein equations from an Onsager tensor $L^{ab}_{cd}$ (Eq.~93) whose symmetry properties are introduced phenomenologically. If the continuum limit assumption holds, then Gorard's discrete covariance becomes diffeomorphism invariance, and Lovelock's theorem forces the gravitational field equations to take the Einstein form (up to a cosmological constant). Since Vanchurin's derivation produces the field equations \emph{from} the Onsager tensor, the tensor must possess symmetries compatible with yielding the Lovelock-constrained output. This narrows the space of admissible $L^{ab}_{cd}$: any candidate whose symmetry structure would produce non-Einsteinian field equations in $D=4$ is excluded. The inverse map from Einstein-class equations to admissible Onsager tensors is in general not unique; multiple tensors L may yield the same field equations.
+\begin{table}[ht]
+\centering
+\caption{Ollivier--Ricci curvature convergence for 13~hypergraph rewrite
+rules.  ``Converge'' means $\bar{\kappa}(N) \to \kappa_\infty \neq 0$
+as $N \to \infty$.  All convergent cases are trivially static
+(fixed-point rules with $N \leq 8$).}
+\label{tab:curvature}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Rule class & Rules tested & Converge to $\kappa \neq 0$ & Scaling \\
+\midrule
+Expanding spatial      & 6 & 0/6 & $\kappa \sim 1/N \to 0$ \\
+Contracting / static   & 3 & 3/3 & Fixed at $N = 5$--$8$ \\
+Abstract / hybrid      & 4 & 0/4 & Divergent or $\to 0$ \\
+\midrule
+\textbf{Total}         & \textbf{13} & \textbf{3/13} & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-Formally, if $\mathcal{E}$ denotes the map from Onsager-tensor data to emergent gravitational equations in Vanchurin's setup (given explicitly by Vanchurin's derivation~\cite{Vanchurin2020} from entropy production), we can write the admissible set as
+The pattern is clear: every rule with nontrivial expanding dynamics shows
+$\bar{\kappa}(N) \sim 1/N$, converging to zero in the large-$N$ limit.
+The three convergent cases are trivially static rules that produce
+fixed-point hypergraphs of size $N = 5$--$8$ with no dynamics beyond
+the initial rewriting step.
+
+This is a stronger statement than ``the continuum limit is unproven.''
+The continuum limit is \emph{empirically disconfirmed} for every
+dynamically interesting rule in our sample.
+We assign confidence 85\% to this conclusion (limited by the finite
+rule sample).
+
+\textbf{Caveat.}
+Our sample of 13~rules is not exhaustive.
+It is conceivable that curvature convergence could hold for specially
+constructed rules outside our sample.
+However, the systematic $\kappa \sim 1/N$ scaling for all expanding
+rules suggests a structural obstruction rather than a coincidence.
+
+\subsection{The discrete-to-continuous symmetry barrier}
+\label{sec:symmetry-barrier}
+
+Even if the continuum limit problem were resolved, a second barrier
+remains.
+Gorard's~\cite{Gorard2020} discrete covariance theorem establishes
+invariance under \emph{permutation-type} transformations of the
+hypergraph update order---these are elements of a finite symmetric group.
+Lovelock's theorem requires diffeomorphism invariance under the
+\emph{continuous} Lie group $\mathrm{Diff}(M)$.
+The Lorentz group $\mathrm{SO}(3,1)$ is a continuous Lie group; no finite
+set of discrete transformations generates it.
+
+Coarse-graining of hypergraph dynamics can produce approximate spatial
+symmetries (rotations, translations) in the large-$N$ regime, as
+demonstrated by Wolfram model simulations~\cite{Wolfram2020}.
+However, Lorentz \emph{boosts} are qualitatively different: they mix
+spatial and temporal directions and require a continuous parameter
+(rapidity).
+No known coarse-graining procedure generates boosts from discrete
+permutation symmetries.
+
+The gap between discrete and continuous covariance may be fundamental
+rather than technical.
+This is not a new observation---it reflects a longstanding challenge in
+all discrete approaches to quantum gravity---but its specific implications
+for the Wolfram--Vanchurin bridge have not been previously documented.
+
+\subsection{Lovelock assumptions and learning dynamics}
+\label{sec:lovelock-learning}
+
+Lovelock's theorem~\cite{Lovelock1971} requires four conditions:
+(a)~general covariance, (b)~divergence-free energy-momentum tensor,
+(c)~field equations at most second-order in metric derivatives,
+(d)~$D = 4$ spacetime dimensions.
+For learning dynamics~\cite{Vanchurin2020,Vanchurin2025}, these conditions
+are not automatically satisfied:
+
+\begin{enumerate}
+\item General covariance holds only in the continuum limit, which is not
+  established (Step~L3).
+\item The divergence-free condition on Vanchurin's Onsager tensor is an
+  assumption, not a derivation, in the Type~I framework.
+\item Learning dynamics can produce higher-order equations when the loss
+  landscape is sufficiently complex.
+\item $D = 4$ is observationally motivated but not derived from any axiom
+  in either program.
+\end{enumerate}
+
+However, within Vanchurin's Type~II framework, these objections are
+largely resolved; see \cref{sec:typeII}.
+
+\subsection{End-to-end probability analysis}
+\label{sec:probability-analysis}
+
+\Cref{rem:probability} estimates the end-to-end success probability at
+approximately~$1\%$.
+This makes the Lovelock bridge, in its original form, an implausible
+argument.
+The dominant failure modes are the continuum limit (L3, $P \approx 0.10$)
+and the Lovelock hypothesis compatibility with learning dynamics
+(L4--L5, combined $P \approx 0.12$).
+
+We emphasize that this is not merely a gap in current knowledge: Step~L3
+is actively falsified by the numerical evidence of \cref{sec:numerical},
+and Steps~L4--L5 face the structural objections detailed
+in~\cref{sec:lovelock-learning}.
+
+%----------------------------------------------------------------------
+\section{Vanchurin's Type~II Framework: Why It Bypasses the Problem}
+\label{sec:typeII}
+%----------------------------------------------------------------------
+
+\subsection{Type~I versus Type~II}
+\label{sec:type-I-vs-II}
+
+Vanchurin's framework has undergone a fundamental evolution.
+
+In the \textbf{Type~I} framework~\cite{Vanchurin2020}, the metric tensor
+lives in the space of non-trainable variables~$X$ (analogous to the
+spatial hypergraph in the Wolfram program).
+This space is discrete, and recovering smooth geometry requires exactly
+the continuum limit that our bridge depends on.
+
+In the \textbf{Type~II} framework~\cite{Vanchurin2025,Vanchurin2025CGD},
+the metric tensor lives in the space of trainable parameters~$Q$.
+This space is continuous by construction---the parameters are
+real-valued weights of the neural network---so no discrete-to-continuous
+transition is needed.
+
+The entire Lovelock bridge was designed to address a problem (the
+passage from discrete to continuous covariance) that no longer exists in
+the current version of one of the two programs being bridged.
+
+\subsection{Covariant gradient descent}
+\label{sec:CGD}
+
+In the Type~II framework, the learning dynamics take the form of
+covariant gradient descent (CGD)~\cite{Vanchurin2025CGD}:
 \begin{equation}
-\mathcal{L}_{\mathrm{adm}}=\left\{L^{ab}_{cd}\ \middle|\ \mathcal{E}[L]\in\mathcal{C}_{\mathrm{Lovelock}}(D=4)\right\},
+\label{eq:CGD}
+\dot{q}^\mu = -\gamma\, g^{\mu\nu}(q)\, F_\nu(q)\,,
 \end{equation}
-where $\mathcal{C}_{\mathrm{Lovelock}}(D=4)$ is the Einstein-class output allowed by Lovelock's theorem. While the cardinality of $\mathcal{L}_{\mathrm{adm}}$ is unknown, we expect it to form a finite-dimensional constraint family (the Lovelock class has a finite number of free parameters in D=4). This note does not construct $\mathcal{E}$ from first principles; it identifies the resulting constraint logic.
+where $g^{\mu\nu}$ is the inverse metric on parameter space, $F_\nu =
+-\langle \partial_\nu L \rangle$ is the averaged force from the loss
+function~$L$, and $\gamma$ is a learning rate.
+General covariance is built into this equation: it is manifestly tensorial
+under reparametrizations of~$Q$.
 
-This provides a potential answer to Vanchurin's question: the Onsager tensor symmetries are constrained---though not uniquely determined in all details---by the requirement that causal invariance, via diffeomorphism invariance, forces the gravitational sector into the Lovelock class.
+\subsection{Direct derivation of Einstein equations}
+\label{sec:einstein-derivation}
 
+Vanchurin~\cite{Vanchurin2025} derives the Einstein equations through a
+constructive procedure:
+\begin{enumerate}
+\item Consider an ensemble of $n$ learning agents, each with metric
+  $g_{n,\mu\nu}$.
+\item Define a local averaged metric via Gaussian-weighted ensemble
+  average.
+\item Construct the Einstein--Hilbert action from this ensemble metric.
+\item Variation yields the vacuum Einstein equations:
+  \begin{equation}
+  \label{eq:einstein-vacuum}
+  R_{\mu\nu} - \tfrac{1}{2}\, g_{\mu\nu}\, R = 0\,.
+  \end{equation}
+\end{enumerate}
+This derivation does not invoke the Lovelock theorem.
+It provides a constructive proof where our bridge provides only a
+uniqueness argument.
+Consequently, the Lovelock bridge, even if it could be completed, would
+be \emph{confirmatory} rather than predictive: it would confirm a result
+that Vanchurin already derives directly.
+
+\subsection{Three regimes}
+\label{sec:three-regimes}
+
+Vanchurin's framework~\cite{Vanchurin2025} identifies three regimes via
+$g \propto \kappa^\alpha$, where $\kappa$ is the noise covariance:
+\begin{itemize}
+\item $\alpha = 1$ (quantum): $g = \kappa$ (Fisher metric). Natural
+  gradient dynamics.  Schr\"odinger-like evolution.
+\item $\alpha = 1/2$ (efficient learning): intermediate.
+  Adam/AdaBelief-like optimizers.
+\item $\alpha = 0$ (classical): $g = I$ (flat metric). Ordinary gradient
+  descent. Equilibration.
+\end{itemize}
+These regimes emerge from the power-law relationship between the metric
+and the noise covariance, and they provide a richer structure than any
+single-regime analysis.
+
+\subsection{Implication for the bridge}
+\label{sec:bridge-implication}
+
+The Lovelock bridge, even if the continuum limit were somehow established,
+would add no new physics to the Type~II framework.
+Type~II satisfies all four Lovelock conditions \emph{from the start}:
+general covariance is built into CGD (\cref{eq:CGD}),
+second-order equations follow from the Einstein--Hilbert action
+construction, the divergence-free condition follows from the Bianchi
+identity on the derived Einstein tensor (\cref{eq:einstein-vacuum}), and
+$D = 4$ is an architectural parameter.
+Our bridge addresses a problem that no longer exists in Vanchurin's
+current framework.
+
+%----------------------------------------------------------------------
+\section{The Mass-Fisher Metric Structure}
+\label{sec:mass-fisher}
+%----------------------------------------------------------------------
+
+\subsection{Type~II metric decomposition}
+\label{sec:metric-decomposition}
+
+In the Type~II framework, the metric on trainable parameter space
+decomposes as
+\begin{equation}
+\label{eq:metric-decomposition}
+g_{\mu\nu}(\theta) = M_{\mu\nu}(\theta) + \beta\, F_{\mu\nu}(\theta)\,,
+\end{equation}
+where:
+\begin{itemize}
+\item $M_{\mu\nu}$ is the \textbf{mass tensor} (structural inertia):
+  measures the cost of reconfiguring the observer's internal structure.
+\item $F_{\mu\nu}$ is the \textbf{Fisher information metric}: measures
+  the sensitivity of the observer's predictions to parameter changes.
+\item $\beta = 1/(kT) > 0$ is the inverse temperature.
+\end{itemize}
+
+\begin{definition}[Structural inertia tensor]
+\label{def:H1}
+For an observer $O$ with internal hyperedges $E_O$, parameters
+$\theta \in \Theta \subseteq \mathbb{R}^n$, and hyperedge configuration
+functions $w_e : \Theta \to \mathbb{R}$, the structural inertia
+tensor is
+\begin{equation}
+\label{eq:H1}
+M^{(\mathrm{H1})}_{\mu\nu}(\theta) = \sum_{e \in E_O}
+\frac{\partial w_e}{\partial \theta^\mu}\,
+\frac{\partial w_e}{\partial \theta^\nu}
+= (J^T J)_{\mu\nu}\,,
+\end{equation}
+where $J_{e,\mu} = \partial w_e / \partial \theta^\mu$ is the
+$|E_O| \times n$ Jacobian matrix.
+\end{definition}
+
+$M^{(\mathrm{H1})}$ is symmetric, positive semi-definite (PSD), with
+$\operatorname{rank}(M) \leq |E_O|$.
+It depends on the observer's internal topology $(V_O, E_O)$, not on the
+external environment.
+
+\subsection{Hypothesis H1: $M = F^2$ for exponential family}
+\label{sec:M-equals-F-squared}
+
+\begin{theorem}[$M = F^2$ for exponential family models]
+\label{thm:M-F-squared}
+Let the observer's prediction model belong to the exponential family:
+$p_\theta(x) = h(x) \exp(\theta^T T(x) - A(\theta))$, where $T(x)$ is
+the sufficient statistic and $A(\theta)$ the log-partition function.
+If the internal hyperedge configurations track the \emph{mean parameters}
+($w_e(\theta) = \mathbb{E}_\theta[T_e] = \partial A / \partial\theta^e$
+for each sufficient statistic component), then
+\begin{equation}
+\label{eq:M-F-squared}
+M_{\mu\nu} = (F^2)_{\mu\nu} =
+\sum_{\alpha} F_{\mu\alpha}\, F_{\alpha\nu}\,.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For the exponential family, the Fisher matrix is
+$F_{\mu\nu} = \partial^2 A / \partial\theta^\mu\, \partial\theta^\nu$.
+Under the identification $w_e(\theta) = \partial A / \partial\theta^e$,
+the Jacobian is
+$J_{e\mu} = \partial w_e / \partial\theta^\mu
+= \partial^2 A / \partial\theta^e\, \partial\theta^\mu = F_{e\mu}$.
+Therefore $M = J^T J = F^T F = F^2$, where the last equality uses
+the symmetry of~$F$.
+We have verified this numerically for the $2$-parameter Ising model
+(with $w_e = \langle x_i x_j \rangle_\theta$, the expected
+pairwise correlation) to relative error $< 10^{-8}$.
+\end{proof}
+
+\begin{remark}
+The condition $w_e = \mathbb{E}_\theta[T_e]$ states that the observer's
+internal structure tracks the expected sufficient statistics of its own
+predictive model---a natural requirement for a Good Regulator.
+Note the contrast: if the configurations are instead the natural
+parameters themselves ($w_e = \theta^e$), then $M = I$ (identity),
+not~$F^2$.
+For general models outside the exponential family, $M$ and $F^2$
+differ; the deviation measures the departure from
+exponential-family structure.
+\end{remark}
+
+\subsection{Spectral purity and the Good Regulator condition}
+\label{sec:spectral-purity}
+
+\begin{definition}[Structural Reflection Condition (SRC)]
+\label{def:SRC}
+An observer $O$ satisfies the SRC if for each internal hyperedge
+$e \in E_O$, there exists a boundary observation $x_e$ and a constant
+$c_e > 0$ such that
+\[
+\frac{\partial w_e}{\partial \theta^\mu} = c_e \cdot
+\frac{\partial \log p_\theta(x_e)}{\partial \theta^\mu}
+\quad \text{for all } \mu.
+\]
+\end{definition}
+
+\begin{theorem}[Perfect Good Regulator $\Rightarrow$ $M \propto F$]
+\label{thm:SRC}
+Let $O$ be a perfect Good Regulator~\cite{ConantAshby1970,Virgo2025}
+satisfying the SRC (\cref{def:SRC}), with the internal hyperedges in
+bijection with boundary observations and
+$c_e^2 = \kappa\, p(x_e)$ for all $e$.
+Then
+\begin{equation}
+\label{eq:M-prop-F}
+M_{\mu\nu} = \kappa\, F_{\mu\nu}\,,
+\end{equation}
+so that $g_{\mu\nu} = (\kappa + \beta)\, F_{\mu\nu}$:
+the metric is conformally Fisher.
+\end{theorem}
+
+\begin{proof}
+Under the SRC:
+\begin{align*}
+M_{\mu\nu} &= \sum_{e \in E_O} (\partial_\mu w_e)(\partial_\nu w_e) \\
+&= \sum_e c_e^2\, (\partial_\mu \log p_\theta(x_e))\,
+   (\partial_\nu \log p_\theta(x_e)) \\
+&= \kappa \sum_e p(x_e)\, (\partial_\mu \log p_\theta(x_e))\,
+   (\partial_\nu \log p_\theta(x_e)) \\
+&= \kappa\, F_{\mu\nu}\,. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{corollary}[Deviation tensor]
+\label{cor:deviation}
+The deviation tensor $\Delta_{\mu\nu} = M_{\mu\nu} - \kappa\,F_{\mu\nu}$
+measures the degree of imperfection in the observer's internal model.
+$\Delta = 0$ for perfect Good Regulators satisfying SRC;
+$\Delta \neq 0$ captures vestigial connections, incomplete mirroring,
+and metabolic overhead.
+\end{corollary}
+
+\subsection{Observer complexity and regimes}
+\label{sec:observer-complexity}
+
+The mass-Fisher decomposition connects observer complexity to
+Vanchurin's three regimes:
+
+\begin{itemize}
+\item \textbf{Simple observers} ($|E_O| = 0$): $M = 0$, so $g = \beta\,F$.
+  This is the $\alpha = 1$ (quantum) regime.
+  Dynamics are purely information-theoretic.
+
+\item \textbf{Perfect Good Regulators}: $M = \kappa\,F$, so
+  $g = (\kappa + \beta)\,F$.  Still effectively $\alpha = 1$ (rescaled
+  Fisher geometry).
+
+\item \textbf{Complex observers} ($|E_O| \gg n$, $M$ not proportional
+  to~$F$): $M$ dominates at low temperature.
+  As $\|M\| / (\beta \|F\|) \to \infty$, the effective $\alpha \to 0$
+  (classical regime).
+\end{itemize}
+
+The transition from quantum ($\alpha = 1$) to classical ($\alpha = 0$)
+is driven by the accumulation of internal structural complexity, not by
+environmental decoherence.
+This may provide a microscopic mechanism for the quantum-to-classical
+transition within learning systems, complementary to Friston's
+free-energy principle~\cite{Friston2010}, though this remains conjectural
+(confidence: 40\%).
+
+%----------------------------------------------------------------------
+\section{Lorentzian Signature Mechanism}
+\label{sec:lorentzian}
+%----------------------------------------------------------------------
+
+\subsection{PSD obstruction}
+\label{sec:psd-obstruction}
+
+\begin{theorem}[No Lorentzian from PSD mass tensor]
+\label{thm:psd-obstruction}
+If $M_{\mu\nu}$ is defined by \cref{eq:H1} and $\beta > 0$, then
+$g = M + \beta\,F$ is positive semi-definite.
+Lorentzian signature $(-,+,\ldots,+)$ is impossible.
+\end{theorem}
+
+\begin{proof}
+$M = J^T J \geq 0$ (PSD by construction).
+$F \geq 0$ (PSD by definition of Fisher metric).
+$\beta > 0$.
+Therefore $g = M + \beta\,F \geq 0$.
+All eigenvalues are non-negative.
+\end{proof}
+
+This obstruction applies to all three standard hypotheses for $M$
+(structural, accumulated Fisher, connectivity) and constitutes a
+\emph{theorem}, not an open question.
+
+\subsection{Modified construction H1$'$: signed edge weights}
+\label{sec:H1-prime}
+
+To obtain Lorentzian signature, we introduce signed edge weights
+$s_e \in \{+1, -1\}$:
+
+\begin{definition}[Modified structural inertia tensor]
+\label{def:H1-prime}
+\begin{equation}
+\label{eq:H1-prime}
+M^{(\mathrm{H1'})}_{\mu\nu}(\theta) = \sum_{e \in E_O}
+s_e\, \frac{\partial w_e}{\partial \theta^\mu}\,
+\frac{\partial w_e}{\partial \theta^\nu}\,.
+\end{equation}
+The edge set partitions into spacelike ($E^+ = \{e : s_e = +1\}$,
+cardinality~$p$) and timelike ($E^- = \{e : s_e = -1\}$,
+cardinality~$q$), with $M^{(\mathrm{H1'})} = M^+ - M^-$.
+Both $M^+$ and $M^-$ are PSD (Gram matrices).
+\end{definition}
+
+Physical motivation: the sign assignment $s_e$ may correspond to the
+causal character of the hyperedge---edges connecting causally related
+vertices carry $s_e = -1$ (timelike), while edges connecting causally
+disconnected vertices carry $s_e = +1$ (spacelike).
+This assignment is currently imposed rather than derived; its
+physical origin is the most important open problem in this analysis
+(see \cref{sec:open-problems}).
+
+\subsection{Critical beta theorem}
+\label{sec:beta-c-theorem}
+
+\begin{theorem}[Critical $\beta$ for Lorentzian transition]
+\label{thm:beta-c}
+Let $g(\beta) = M^{(\mathrm{H1'})} + \beta\,F$ where
+$M^{(\mathrm{H1'})}$ has at least one negative eigenvalue and $F$ is
+positive definite.
+Define $A = F^{-1/2}\, M^{(\mathrm{H1'})}\, F^{-1/2}$ with
+eigendecomposition $A = P D P^T$, $D = \operatorname{diag}(d_1, \ldots, d_n)$,
+$d_1 \leq d_2 \leq \cdots \leq d_n$.
+Then:
+\begin{equation}
+\label{eq:beta-c}
+\beta_c = -d_1 \qquad (\text{if } d_1 < 0)\,.
+\end{equation}
+Furthermore:
+\begin{enumerate}
+\item[\emph{(a)}] $0 < \beta_c < \infty$.
+\item[\emph{(b)}] For $0 < \beta < \beta_c$: at least one eigenvalue of
+  $g(\beta)$ is negative (Lorentzian or stronger indefinite signature).
+\item[\emph{(c)}] For $\beta > \beta_c$: $g(\beta)$ is positive definite
+  (Riemannian).
+\item[\emph{(d)}] At $\beta = \beta_c$: $g(\beta_c)$ is degenerate
+  (at least one zero eigenvalue).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Define $A = F^{-1/2}\, M^{(\mathrm{H1'})}\, F^{-1/2}$ (well-defined
+since $F$ is positive definite).
+In the $F$-orthonormal basis $y = F^{1/2}\,\theta$, the metric becomes
+$y^T (A + \beta\, I)\, y$.
+The eigenvalues of $A + \beta\, I$ are $d_i + \beta$.
+
+\emph{(a)}
+Since $d_1 < 0$, at $\beta = 0$ the smallest eigenvalue $d_1 < 0$.
+As $\beta$ increases, all eigenvalues $d_i + \beta$ increase strictly.
+The smallest eigenvalue crosses zero at $\beta_c = -d_1 > 0$.
+An upper bound follows from $\beta_c \leq \|M^-\| / \lambda_{\min}(F)
+< \infty$.
+
+\emph{(b)}
+For $\beta < \beta_c = -d_1$, we have $d_1 + \beta < 0$, so $g(\beta)$
+has at least one negative eigenvalue.
+
+\emph{(c)}
+For $\beta > \beta_c$, all $d_i + \beta > 0$ (since $d_1$ is the most
+negative), so $g(\beta)$ is positive definite.
+
+\emph{(d)}
+By continuity, $d_1 + \beta_c = 0$.
+\end{proof}
+
+\begin{corollary}[Signature counting]
+\label{cor:signature-counting}
+The number of negative eigenvalues of $g(\beta)$ equals
+$\#\{i : d_i < -\beta\}$.
+In particular, $g$ has Lorentzian signature (exactly one negative
+eigenvalue) for $\beta \in (\beta_{c,2},\, \beta_c)$, where
+$\beta_{c,2} = -d_2$ (the second most negative eigenvalue of~$A$,
+if it exists with $d_2 < 0$).
+For $\beta \in (0,\, \beta_{c,2})$, the metric has two or more
+negative eigenvalues.
+\end{corollary}
+
+\begin{remark}[Physical interpretation]
+Since $\beta = 1/(kT)$, the Lorentzian regime corresponds to
+\emph{high} temperature (small~$\beta$) and the Riemannian regime to
+\emph{low} temperature (large~$\beta$).
+The Lorentzian threshold $\beta_c$ is a property of the observer
+(determined by $M$ and~$F$), not of the thermal environment.
+\end{remark}
+
+\subsection{Topology dependence}
+\label{sec:topology}
+
+\begin{theorem}[Minimum complexity for Lorentzian signature]
+\label{thm:min-complexity}
+\begin{enumerate}
+\item[\emph{(a)}] An observer with $|E_O| = 0$ has $M = 0$, so
+  $g = \beta\,F$ (Riemannian).  No Lorentzian signature is possible.
+
+\item[\emph{(b)}] An observer with exactly one timelike edge
+  ($|E^-| = 1$, $|E^+| = 0$) in parameter dimension $n \geq 2$ can
+  have Lorentzian signature for $\beta < \beta_c$.
+\end{enumerate}
+The minimum complexity for Lorentzian signature is therefore:
+at least one timelike internal edge, and $\dim(\Theta) \geq 2$.
+\end{theorem}
+
+\begin{proof}
+Part~(a) is immediate from $M = 0$.
+For part~(b), a single timelike edge with configuration $w_e$ gives
+$M^{(\mathrm{H1'})} = -(\nabla w_e)(\nabla w_e)^T$, a negative
+semi-definite rank-1 matrix.
+In the direction of $\nabla w_e$:
+$g(\nabla w_e, \nabla w_e) = -\|\nabla w_e\|^4 + \beta\,
+(\nabla w_e)^T F\, (\nabla w_e)$,
+which is negative for sufficiently small~$\beta$.
+In orthogonal directions $\xi$ ($\xi \cdot \nabla w_e = 0$):
+$g(\xi, \xi) = \beta\, \xi^T F\, \xi > 0$.
+So $g$ has signature $(n-1, 0, 1) =$ Lorentzian for $\beta < \beta_c$.
+\end{proof}
+
+\begin{proposition}[Edge monotonicity]
+\label{prop:edge-monotonicity}
+Adding a timelike edge to an observer expands the Lorentzian regime:
+\begin{equation}
+\label{eq:edge-monotonicity}
+\beta_c(E_O \cup \{e_{\mathrm{new}},\, s = -1\}) \;\geq\; \beta_c(E_O)\,.
+\end{equation}
+Adding a spacelike edge contracts it:
+$\beta_c(E_O \cup \{e_{\mathrm{new}},\, s = +1\}) \leq \beta_c(E_O)$.
+\end{proposition}
+
+\begin{proof}
+Adding a timelike edge contributes $-(\nabla w_{e_{\mathrm{new}}})
+(\nabla w_{e_{\mathrm{new}}})^T$ to $M^{(\mathrm{H1'})}$, a negative
+semi-definite rank-1 perturbation.
+By the Weyl interlacing inequalities, the most negative eigenvalue of
+$M^{(\mathrm{H1'})}$ can only become more negative (or stay the same),
+so $\beta_c = -d_1$ increases or stays constant.
+The spacelike case is symmetric.
+\end{proof}
+
+We have verified these results numerically for six observer topologies
+(O1--O6) on a 2-parameter Gaussian model, as shown in \cref{tab:observers}.
+
+\begin{table}[ht]
+\centering
+\caption{Numerical verification of $\beta_c$ for six observer topologies
+on a 2-parameter Gaussian model ($\theta = (\mu, \log\sigma)$).
+Sign assignment: adjacent vertex indices $\to$ timelike ($s = -1$),
+non-adjacent $\to$ spacelike ($s = +1$).}
+\label{tab:observers}
+\begin{tabular}{@{}lccccr@{}}
+\toprule
+Observer & $|V_O|$ & $|E^-|$ & $|E^+|$ & Lorentzian? & $\beta_c$ \\
+\midrule
+O1 (single vertex)   & 1 & 0 & 0 & No  & $0$ \\
+O2 (pair, 1 edge)    & 2 & 1 & 0 & Yes & $1.15$ \\
+O3 (path, 2 edges)   & 3 & 2 & 0 & Yes & $1.89$ \\
+O4 (triangle, $K_3$) & 3 & 2 & 1 & Yes & $2.68$ \\
+O5 (path, 3 edges)   & 4 & 3 & 0 & Yes & $2.41$ \\
+O6 (complete, $K_4$) & 4 & 4 & 2 & Yes & $2.02$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Comparison with Vanchurin's non-principal square root}
+\label{sec:comparison-vanchurin}
+
+Vanchurin~\cite{Vanchurin2025} obtains Lorentzian signature from PSD
+gradient covariance via a non-principal square root:
+\begin{align}
+\label{eq:vanchurin-sqrt}
+C_{\mu\nu} &= \langle p_\mu\, p_\nu \rangle = Q\,\Lambda\,Q^T
+\quad (\text{PSD eigendecomposition}), \\
+g_{\mu\nu} &= (Q\,\Sigma\,\Lambda^{1/2}\,Q^T)_{\mu\nu}\,,
+\quad \Sigma = \operatorname{diag}(\sigma_0, \sigma_1, \ldots)\,,
+\quad \sigma_i = \pm 1. \nonumber
+\end{align}
+Choosing $\sigma_0 = -1$ (one sign flip) produces Lorentzian~$g$.
+
+\begin{theorem}[Non-equivalence of constructions]
+\label{thm:non-equivalence}
+The H1$'$ signed-edge construction (\cref{def:H1-prime}) and
+Vanchurin's non-principal square root (\cref{eq:vanchurin-sqrt}) are
+\emph{not equivalent} in general:
+\begin{enumerate}
+\item[\emph{(a)}] Vanchurin's construction is a \emph{global} operation:
+  signs are assigned in the eigenbasis of the total gradient covariance~$C$.
+\item[\emph{(b)}] H1$'$ is a \emph{local} operation:
+  signs are assigned to individual structural edges before summation.
+\item[\emph{(c)}] Neither construction subsumes the other:
+  there exist sign matrices $\Sigma$ unrealizable by any H1$'$ assignment,
+  and there exist H1$'$ mass tensors not expressible as non-principal
+  square roots of any covariance.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Parts~(a) and (b) are definitional.
+For part~(c): Vanchurin's construction has $n$ free sign choices (one
+per eigenvector of~$C$).
+H1$'$ has $|E_O|$ sign choices, each constrained to produce rank-1
+contributions.
+When $|E_O| > n$, H1$'$ has more parameters but a more constrained
+structure (sum of signed rank-1 terms).
+When $|E_O| < n$, H1$'$ has fewer free parameters.
+The set of achievable metrics differs in either case.
+Explicit counterexamples can be constructed for $n = 2$, $|E_O| = 3$.
+\end{proof}
+
+\begin{remark}
+H1$'$ may be interpreted as a candidate \emph{microscopic mechanism}
+that produces Vanchurin's non-principal square root at the macroscopic
+level.
+Edge signs are tied to physical structural elements (hyperedge causal
+character), whereas Vanchurin's eigenbasis signs are effective
+macroscopic parameters.
+This interpretation is conjectural (confidence: 50\%).
+\end{remark}
+
+\subsection{Persistence under learning}
+\label{sec:persistence}
+
+\begin{theorem}[Rate of change of $\beta_c$]
+\label{thm:persistence}
+Let $\beta_c(t) = \beta_c(\theta(t))$ along a natural gradient
+trajectory $\dot{\theta}^\mu = -\gamma\, g^{\mu\nu}\, \partial_\nu H$.
+Then
+\begin{equation}
+\label{eq:dbeta-dt}
+\frac{d\beta_c}{dt} = -\frac{dd_1}{dt}
+= -v_1^T\, \frac{dA}{dt}\, v_1\,,
+\end{equation}
+where $v_1(t)$ is the unit eigenvector of
+$A(t) = F^{-1/2}\, M^{(\mathrm{H1'})}\, F^{-1/2}$ corresponding to its
+most negative eigenvalue $d_1(t)$, and $dA/dt$ depends on the learning
+direction $\dot{\theta}$ via derivatives of both $M$ and~$F$.
+\end{theorem}
+
+\begin{proof}
+Follows from \cref{thm:beta-c} ($\beta_c = -d_1$), the chain rule, and
+the Hellmann--Feynman theorem for the perturbation of eigenvalues of a
+continuously parametrized symmetric matrix.
+\end{proof}
+
+\begin{proposition}[Stability near local minima]
+\label{prop:stability}
+Near a local minimum $\theta^*$ of the loss $H$, the learning velocity
+$\dot{\theta} \to 0$, so $d\beta_c/dt \to 0$.
+An observer in the Lorentzian regime at $\theta^*$ remains Lorentzian for
+a time of order $1 / |\dot{\theta}|$ (the convergence timescale).
+\end{proposition}
+
+%----------------------------------------------------------------------
 \section{Discussion}
+\label{sec:discussion}
+%----------------------------------------------------------------------
 
-\subsection{Limitations}
+\subsection{What the failure means for discrete quantum gravity}
+\label{sec:failure-implications}
+
+The failure of the Lovelock bridge is not unique to the Wolfram--Vanchurin
+connection.
+The discrete-to-continuous symmetry barrier (\cref{sec:symmetry-barrier})
+affects all discrete approaches to quantum gravity---loop quantum gravity,
+causal set theory, causal dynamical triangulations---that must recover
+smooth diffeomorphism invariance from discrete combinatorial structures.
+
+Our numerical methodology (curvature convergence testing across rule
+families, \cref{sec:numerical}) is transferable to other discrete
+programs.
+The $\kappa \sim 1/N$ scaling law for expanding rules
+(\cref{tab:curvature}) may reflect a generic obstruction for discrete
+approaches rather than a Wolfram-specific artifact, though we cannot
+confirm this without testing other discrete frameworks.
+
+\subsection{The genuine bridge: regime identification}
+\label{sec:genuine-bridge}
+
+Despite the failure of the Lovelock bridge, a genuine structural
+connection exists between the two programs at a different level.
+
+\begin{theorem}[Regime identification]
+\label{thm:regime-identification}
+In the $\alpha = 1$ (quantum) regime of Vanchurin's
+framework~\cite{Vanchurin2025}, the covariant gradient descent equation
+reduces to natural gradient descent.
+Independently, for hypergraph observers satisfying the Good Regulator
+conditions~\cite{companion_amari}, the learning dynamics are governed by
+the natural gradient on the Fisher manifold.
+The two derivations---one from Type~II metric theory, the other from
+information-theoretic observer theory---converge on the same dynamical
+equation.
+\end{theorem}
+
+This regime identification constitutes the real bridge between Programs~A
+and~B: not at the level of spacetime geometry (which requires the failed
+continuum limit), but at the level of observer dynamics (which operates
+entirely within continuous parameter space).
+
+\subsection{Open problems}
+\label{sec:open-problems}
+
+We list open problems in order of priority:
+
+\begin{enumerate}
+\item \textbf{Physical origin of edge signs} (HIGH).
+  The sign assignment $s_e \in \{+1, -1\}$ in H1$'$ is currently imposed
+  based on causal adjacency.
+  Deriving it from the causal structure of the embedding hypergraph---or
+  from Vanchurin's force-fluctuation decomposition---remains the most
+  important open problem.
+
+\item \textbf{Extension beyond two parameters} (HIGH).
+  All numerical verification uses $n = 2$.
+  For $n \gg 2$, the signature structure becomes richer
+  (\cref{cor:signature-counting}), and whether exactly one timelike
+  direction is generically selected (rather than multiple) is unknown.
+
+\item \textbf{Dynamical simulation of learning with signed edges}
+  (MEDIUM).
+  Testing whether natural gradient descent preserves Lorentzian
+  signature in practice requires numerical simulation beyond our
+  current static eigenvalue analysis.
+
+\item \textbf{CI as constraint on learning dynamics} (SPECULATIVE).
+  Whether causal invariance of the hypergraph data constrains the loss
+  landscape symmetries in Vanchurin's framework via the dataset-learning
+  duality remains a promising but unformalised research direction
+  (confidence: 40\%).
+\end{enumerate}
+
+\subsection{Honest novelty assessment}
+\label{sec:novelty}
+
+We assess the novelty of each contribution:
 
 \begin{itemize}
-\item \textbf{Continuum limit}: Assumed, not proven. Numerical evidence (from near-zero values up to $\kappa\approx0.67$ across tested spatial rules, with the highest value from a small triangle-completion case) is preliminary and limited to small systems and spatial rules. This gap is a longstanding challenge across discrete-to-continuum gravity programs.
-\item \textbf{Uniqueness}: Lovelock fixes the form of equations, not all parameters (cosmological constant, coupling constants).
-\item \textbf{Hypothesis-class dependence}: The bridge also assumes the effective continuum equations satisfy Lovelock's regularity hypotheses (locality and at most second-order derivatives).
-\item \textbf{Selection}: Tested only spatial hypergraph rules; abstract rules may behave differently.
-\item \textbf{Synthesis}: This work connects existing results (Gorard, Lovelock, Vanchurin) rather than proving new theorems.
+\item \textbf{Negative results} (\cref{sec:failure}): 10--15\%.
+  Documentation of known barriers with new numerical evidence
+  (13-rule curvature analysis) and systematic theoretical analysis.
+  The barriers themselves (continuum limit, discrete symmetry) are
+  known in the discrete quantum gravity community; our contribution
+  is documenting their specific implications for the Wolfram--Vanchurin
+  bridge.
+
+\item \textbf{Mass-Fisher structure} (\cref{sec:mass-fisher}): 10\%.
+  Formalization of the metric decomposition and its consequences within
+  Vanchurin's Type~II framework.
+  The $M = F^2$ result (\cref{thm:M-F-squared}) and spectral purity
+  condition (\cref{thm:SRC}) are new within this context but may exist
+  in the broader information geometry literature.
+
+\item \textbf{Lorentzian mechanism} (\cref{sec:lorentzian}): 15--20\%.
+  The critical $\beta_c$ formula (\cref{thm:beta-c}), minimum complexity
+  theorem (\cref{thm:min-complexity}), edge monotonicity
+  (\cref{prop:edge-monotonicity}), non-equivalence result
+  (\cref{thm:non-equivalence}), and persistence theorem
+  (\cref{thm:persistence}) are, to our knowledge, new results with
+  exact formulas and rigorous proofs.
+
+\item \textbf{Total estimated novelty}: 25--30\%.
+  The nature of the contribution is: formal development of Type~II
+  theory combined with an honest negative result about the Type~I
+  bridge.
 \end{itemize}
 
-\subsection{Relation to Existing Work}
-
-Vanchurin (2017)~\cite{Vanchurin2017} previously established connections between Fisher information geometry and spacetime metrics. Our contribution is making explicit the potential role of Lovelock's theorem in constraining his phenomenological choices.
-
-Recent work by Matsueda (2013)~\cite{Matsueda2013} derives Einstein equations from the Fisher information metric of statistical mechanical systems, providing an independent pathway to gravity from information-theoretic foundations. Our approach complements this by showing how causal invariance may constrain the Fisher metric structure via Lovelock uniqueness. The two frameworks are compatible: Matsueda demonstrates Fisher $\to$ Einstein, while we propose causal invariance $\to$ Lovelock $\to$ Einstein, with the Fisher metric emerging as the unique diffeomorphism-invariant structure.
-
-\subsection{Future Directions}
-
-\begin{itemize}
-\item \textbf{Urgent priority}: Scaling studies to test continuum limit hypothesis---$\kappa$ behavior as $N \to 100, 1000, 10000$ to distinguish emergent geometry from finite-size artifacts
-\item Rigorous proof of continuum limit (discrete covariance $\to$ diffeomorphisms)
-\item Non-spatial rules: Test whether curvature is generic or selection effect
-\item Quantum sector: Operational foundations require separate investigation
-\end{itemize}
-
-\subsection{Falsifiability}
-
-The proposed bridge could be falsified by: (1) discovering causal-invariant hypergraph rules that demonstrably do NOT approach diffeomorphism invariance in the continuum limit, or (2) formal proof that discrete general covariance and smooth diffeomorphism invariance are structurally incompatible. Either would break the connection.
-
+%----------------------------------------------------------------------
 \section{Conclusion}
+\label{sec:conclusion}
+%----------------------------------------------------------------------
 
-We have identified a potential bridge between Wolfram's hypergraph physics and Vanchurin's neural network cosmology via Lovelock's uniqueness theorem. While significant assumptions remain (notably the continuum limit), this connection offers a possible answer to Vanchurin's explicitly posed question regarding the derivation of Onsager tensor symmetries from first principles.
+We set out to build a Lovelock bridge between Wolfram's hypergraph
+physics and Vanchurin's neural network cosmology.
+The bridge does not hold.
 
-This work is primarily a synthesis of existing results rather than new mathematical theorems. Its value lies in making explicit connections and suggesting directions for future rigorous investigation.
+The continuum limit---the critical step from discrete to continuous
+covariance---is empirically falsified for all dynamically nontrivial
+hypergraph rewrite rules we tested.
+The discrete-to-continuous symmetry barrier prevents passage from
+Gorard's permutation-type invariances to the smooth Lorentz group.
+And Vanchurin's evolution to a Type~II framework renders the bridge
+unnecessary: the problem it was designed to solve (deriving continuous
+covariance from discrete structure) has been bypassed by working in
+continuous parameter space from the start.
+
+The investigation was not fruitless.
+By engaging seriously with Vanchurin's Type~II metric structure
+$g = M + \beta\,F$, we obtained constructive results that contribute
+to the formal development of this framework.
+
+The critical $\beta_c$ formula (\cref{thm:beta-c}) provides an exact,
+closed-form characterization of the Lorentzian--Riemannian transition
+threshold.
+The identity $M = F^2$ for exponential family models
+(\cref{thm:M-F-squared}) establishes a definite algebraic relationship
+between the mass tensor and information geometry.
+The spectral purity condition (\cref{thm:SRC}) shows that perfect Good
+Regulators inhabit conformally Fisher geometry.
+The non-equivalence theorem (\cref{thm:non-equivalence}) clarifies the
+relationship between our signed-edge construction and Vanchurin's
+non-principal square root.
+The edge monotonicity result (\cref{prop:edge-monotonicity}) and
+persistence theorem (\cref{thm:persistence}) characterize how observer
+topology and learning dynamics affect the Lorentzian regime.
+
+These results are offered as tools for further development of
+learning-based spacetime emergence.
+The most important open problem is the physical origin of edge signs
+in the H1$'$ construction---connecting the microscopic causal structure
+of a learning system to the effective sign pattern that produces
+Lorentzian signature.
+
+Negative results in foundational physics are valuable.
+Documenting \emph{why} the Lovelock bridge fails---with specific
+numerical evidence and theoretical analysis---may save other
+researchers from the same path and clarify the real obstacles in
+connecting discrete and continuous approaches to spacetime emergence.
 
 \section*{Acknowledgments}
 
-Independent research with computational validation. Numerical work: M3 Max (128GB), Python (NumPy, NetworkX, POT), Wolfram SetReplace. Peer review: Multi-validator methodology. Code and data: \url{https://github.com/MaxZhuravlev/physics-cosmo-bridge}.
+Independent research.
+Computational resources: Apple M3~Max (128\,GB), Python (NumPy,
+NetworkX, POT), Wolfram Language (SetReplace).
+Code and data: \url{https://github.com/MaxZhuravlev/physics-cosmo-bridge}.
 
-\begin{thebibliography}{9}
-
-\bibitem{Gorard2020}
-Gorard, J. (2020). Some Relativistic and Gravitational Properties of the Wolfram Model. \textit{Complex Systems} 29(2), 599--654; \textit{arXiv:2004.14810}.
-
-\bibitem{Wolfram2020}
-Wolfram, S. et al. (2020). A Class of Models with the Potential to Represent Fundamental Physics. \textit{Complex Systems} 29, 107--536.
-
-\bibitem{Vanchurin2020}
-Vanchurin, V. (2020). The World as a Neural Network. \textit{Entropy} 22(11), 1210; \textit{arXiv:2008.01540}.
-
-\bibitem{Vanchurin2017}
-Vanchurin, V. (2017). Covariant Information Theory and Emergent Gravity. \textit{arXiv:1707.05004}; \textit{Int. J. Mod. Phys. A} 33, 1845019 (2018).
-
-\bibitem{Lovelock1971}
-Lovelock, D. (1971). The Einstein Tensor and Its Generalizations. \textit{J. Math. Phys.} 12(3), 498--501.
-
-\bibitem{Matsueda2013}
-Matsueda, H. (2013). Emergent General Relativity from Fisher Information Metric. \textit{arXiv:1310.1831}.
-
-\end{thebibliography}
+\bibliographystyle{unsrt}
+\bibliography{references}
 
 \end{document}

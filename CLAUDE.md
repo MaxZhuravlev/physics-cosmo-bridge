@@ -1,28 +1,50 @@
 # CLAUDE.md — structural-bridge-via-uniqueness-theorems
 
-> Conservative research workspace for a Lovelock-based synthesis bridge between Wolfram and Vanchurin cosmologies.
+> Reframed: Honest negative result about the Lovelock bridge + constructive Type II contributions.
 
 ## IDENTITY
 
 ```yaml
 project: "structural-bridge-via-uniqueness-theorems"
-short_name: "wolfram-vanchurin-bridge"
+short_name: "lovelock-bridge-reframed"
 type: theoretical-physics-research
 level: L2-project
 
 purpose: |
-  Produce a conservative synthesis note (Paper #1) that connects
-  Wolfram causal invariance and Vanchurin neural-network cosmology
-  through Gorard 2020 + Lovelock 1971, with explicit assumptions.
+  Paper #1 of the Cosmological Unification Program.
+  REFRAMED (Session 20, 2026-02-16) from original Lovelock bridge
+  synthesis into a two-part paper:
+  Part I: Why the Lovelock bridge fails (negative results)
+  Part II: Constructive Type II metric theory contributions
 
-primary_claim: |
-  If the continuum-limit step is valid, then causal invariance may
-  constrain the symmetry form of Vanchurin's Onsager tensor (Eq. 93).
+title: |
+  "Where the Lovelock Bridge Breaks: Negative Results and New
+  Directions for Connecting Discrete and Continuous Spacetime Emergence"
+
+primary_claims:
+  negative:
+    - "Continuum limit falsified numerically for all dynamically interesting rules"
+    - "Discrete-to-continuous symmetry barrier is fundamental"
+    - "Vanchurin Type II bypasses the continuum limit entirely"
+    - "Lovelock chain end-to-end probability: ~1%"
+  constructive:
+    - "Critical beta formula for Lorentzian-Riemannian transition"
+    - "M = F^2 for exponential family models"
+    - "PSD obstruction: standard M cannot produce Lorentzian signature"
+    - "Signed-edge construction (H1') vs Vanchurin non-principal sqrt"
+    - "Regime identification: natural gradient = alpha=1 in Type II"
 
 non_claims:
-  - "No new theorem is claimed"
-  - "No formal proof of continuum limit is claimed"
-  - "No full QM/Amari/arrow-of-time derivation in this paper"
+  - "No claim that signed-edge construction is physically derived"
+  - "No claim that Type II results supersede Vanchurin's work"
+  - "No cross-program correlation (rho=0.47 retracted as spurious)"
+  - "No claim about continuum limit being resolvable"
+
+reframe_history: |
+  Original (2026-02-13): Conservative Lovelock bridge synthesis note
+  Crisis (2026-02-15): Vanchurin feedback + our own numerical falsification
+  Reframe (2026-02-16): Option A — negative results + constructive Type II
+  Decision basis: Weighted score 7.65/10 vs 3.70 (as-is) vs 6.45 (merge)
 ```
 
 ## POSITION
@@ -47,69 +69,91 @@ PhysicsResearch/
 ## KEY FILES
 
 1. `output/latex/main.tex` — submission manuscript (source of truth for claims)
-2. `README.md` — practical project entrypoint
-3. `vos/value-transformation.md` — value logic and deliverables
-4. `vos/scope-boundaries.md` — explicit in/out scope
-5. `vos/integration-contract.md` — guarantees and non-guarantees
-6. `reviews/PEER_REVIEW_CRITICAL.md` — critical review baseline
+2. `output/latex/references.bib` — bibliography
+3. `README.md` — practical project entrypoint
+4. `vos/value-transformation.md` — value logic and deliverables
 
-## CORE ARGUMENT (PAPER #1)
+## CORE ARGUMENT (REFRAMED PAPER #1)
 
 ```yaml
-chain:
-  - "Causal invariance -> discrete general covariance (Gorard 2020)"
-  - "Assumed continuum limit -> diffeomorphism invariance"
-  - "Lovelock theorem in D=4 -> Einstein form uniqueness class"
-  - "Possible constraint on Vanchurin Eq. 93 symmetry structure"
+part_I_negative:
+  chain_examined:
+    - "CI -> discrete covariance (Gorard 2020, THEOREM)"
+    - "discrete covariance -> [continuum limit] -> diffeomorphism invariance (FALSIFIED)"
+    - "diffeomorphism invariance -> Lovelock (D=4) -> Einstein (THEOREM, but assumptions unmet)"
+  findings:
+    - "13 rules tested: 0/6 expanding rules converge to nonzero curvature"
+    - "kappa ~ 1/N for all dynamically interesting rules"
+    - "Discrete permutation symmetry ≠ continuous Lorentz group"
+    - "End-to-end probability: ~1%"
 
-numerical_support:
-  - "Preliminary curvature evidence from spatial hypergraph tests"
-  - "Evidence is suggestive, not a proof"
+part_II_constructive:
+  results:
+    - "PSD obstruction theorem (confidence: 98%)"
+    - "Critical beta formula: beta_c = -d_1 where d_1 = min eigenvalue of F^{-1/2}M^{H1'}F^{-1/2}"
+    - "M = F^2 for exponential family (confidence: 90%)"
+    - "Spectral purity condition under SRC (confidence: 85%)"
+    - "H1' vs non-principal sqrt non-equivalence (confidence: 80%)"
+    - "Regime identification: natural gradient = alpha=1 (confidence: 85%)"
+
+novelty_estimate: "25-30%"
+  negative_results: "10-15%"
+  mass_fisher_structure: "10%"
+  lorentzian_mechanism: "15-20%"
 ```
 
 ## CLAIM POLICY (STRICT)
 
-- Use `may`, `could`, `potential`, `preliminary` for conditional steps.
-- Never write unconditional statements about continuum-limit proof.
-- Do not claim "5 theorems proven" in project-level docs.
-- Keep exploratory QM/learning lines in archive/experience only.
+- Continuum limit is FALSIFIED, not "unproven" or "open"
+- Negative results are contributions, not failures
+- Type II results are "contributions within Vanchurin's framework"
+- Signed-edge construction is imposed, not derived
+- Golden ratio / alpha_opt results belong to Paper #3, NOT here
+- State confidence levels for all non-trivial claims
+- Use conditional framing: "IF Model A governs..." / "conditional on..."
 
 ## CURRENT STATUS
 
 ```yaml
-status: "manuscript-ready, conservative synthesis"
-last_major_update: "2026-02-15"
+status: "major-rewrite-in-progress"
+last_major_update: "2026-02-16"
+reframe_decision: "Option A (weighted score 7.65/10)"
 
 deliverables:
   - "Paper #1 LaTeX: output/latex/main.tex"
-  - "Paper #1 PDF: output/latex/main.pdf"
-  - "Curvature outputs: output/spatial_critical_results.txt"
-  - "Curvature outputs: output/multiple_spatial_curvature_results.json"
+  - "Paper #1 bibliography: output/latex/references.bib"
 
-quality:
-  automation: "Makefile + scripts + CI workflow"
-  command: "QUALITY_RUN_WOLFRAM=1 make quality"
+source_documents:
+  - "experience/insights/PAPER1-REFRAME-STRATEGY-2026-02-16.md"
+  - "experience/insights/CROSS-PROGRAM-PREDICTION-FORMAL-ANALYSIS-2026-02-16.md"
+  - "experience/insights/LORENTZIAN-MECHANISM-FORMAL-ANALYSIS-2026-02-16.md"
+  - "experience/insights/MASS-TENSOR-FORMAL-ANALYSIS-2026-02-16.md"
+  - "experience/insights/TYPE-II-FRAMEWORK-INTEGRATION.md"
+  - "experience/insights/SCALING-STUDY-RESULTS.md (in operational-qm/output/)"
 ```
 
 ## WORKING PROTOCOL
 
 1. Read `output/latex/main.tex` before changing scientific claims.
-2. Keep VOS documents synchronized with manuscript wording.
-3. Treat numerical evidence as supportive, not definitive.
-4. Record limitations and open problems explicitly.
-5. Preserve reproducibility (scripts, deterministic outputs, clear commands).
+2. All negative results must cite specific evidence (13 rules, kappa~1/N, etc.).
+3. All constructive results must state their confidence level.
+4. Do not mix Paper #3 results (alpha_opt, convergence theorem) into this paper.
+5. Maintain cross-references to companion papers (Paper #3 amari-chain).
+6. Preserve reproducibility (scripts, deterministic outputs, clear commands).
 
 ## NEXT PRIORITIES
 
-1. Final proofreading and bibliography polish for submission.
-2. Scale studies for curvature across broader rule families.
-3. Formal work on discrete-covariance -> diffeomorphism step.
-4. Optional future paper for QM/operational track in separate scope.
+1. Complete major rewrite following Option A structure.
+2. Adversarial review of rewritten manuscript.
+3. Prepare figures (bridge diagram, curvature convergence, phase diagram).
+4. Final proofread and bibliography normalization.
+5. arXiv submission.
 
 ## META
 
 ```yaml
 created: 2026-02-13
-updated: 2026-02-15
+updated: 2026-02-16
+reframed: 2026-02-16 (Session 20)
 follows: "@uu Knowledge Pyramid (minimal)"
 ```
