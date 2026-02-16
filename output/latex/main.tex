@@ -250,7 +250,7 @@ For each rule, we evolved the hypergraph to sizes $N = 5, 8, 12, 20, 50$
 (where computationally feasible) and computed the mean Ollivier--Ricci
 curvature $\bar{\kappa}(N)$ of the spatial hypergraph at each step.
 
-The results are summarized in \cref{tab:curvature}.
+The results are summarized in \cref{tab:curvature} and visualized in \cref{fig:ollivier-ricci}.
 
 \begin{table}[ht]
 \centering
@@ -283,6 +283,18 @@ The continuum limit is \emph{empirically disconfirmed} for every
 dynamically interesting rule in our sample.
 We assign confidence 85\% to this conclusion (limited by the finite
 rule sample).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{../Fig_OllivierRicci_Curvature.png}
+\caption{Ollivier--Ricci curvature convergence for 13 hypergraph rewrite
+rules. All dynamically nontrivial expanding rules show $\kappa \sim 1/N$
+decay to zero in the large-$N$ limit. Only static fixed-point rules
+($N \leq 8$, shown in plateau) converge to nonzero curvature. This
+empirically disconfirms the continuum limit for dynamically interesting
+hypergraph evolution.}
+\label{fig:ollivier-ricci}
+\end{figure}
 
 \textbf{Caveat.}
 Our sample of 13~rules is not exhaustive.
@@ -718,6 +730,18 @@ Furthermore:
 \end{enumerate}
 \end{theorem}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{../Fig1_eigenvalue_trajectories.png}
+\caption{Eigenvalue trajectories of $A = F^{-1/2} M^{(\mathrm{H1'})} F^{-1/2}$
+as a function of inverse temperature $\beta$. The most negative eigenvalue
+$d_1(\beta)$ determines the critical value $\beta_c = -d_1$ at which the
+metric $g = M + \beta F$ transitions from indefinite (Lorentzian or stronger)
+to positive definite (Riemannian). Eigenvalues shown for observer topology O3
+(path graph, 2 timelike edges) on a 2-parameter Gaussian model.}
+\label{fig:eigenvalue-trajectories}
+\end{figure}
+
 \begin{proof}
 Define $A = F^{-1/2}\, M^{(\mathrm{H1'})}\, F^{-1/2}$ (well-defined
 since $F$ is positive definite).
@@ -780,6 +804,19 @@ The Lorentzian threshold $\beta_c$ is a property of the observer
 (determined by $M$ and~$F$), not of the thermal environment.
 \end{remark}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{../Fig2_phase_diagram.png}
+\caption{Phase diagram showing Lorentzian and Riemannian regimes in the
+$(\beta, \|M^-\|)$ plane. The critical curve $\beta_c = -d_1(M, F)$
+separates indefinite signature (below, high temperature) from positive
+definite signature (above, low temperature). Observers with higher structural
+complexity (larger $\|M^-\|$, more timelike edges) have larger Lorentzian
+regimes. Data points show six observer topologies (O1--O6) from
+\cref{tab:observers}.}
+\label{fig:phase-diagram}
+\end{figure}
+
 \subsection{Topology dependence}
 \label{sec:topology}
 
@@ -821,6 +858,18 @@ Adding a timelike edge to an observer expands the Lorentzian regime:
 Adding a spacelike edge contracts it:
 $\beta_c(E_O \cup \{e_{\mathrm{new}},\, s = +1\}) \leq \beta_c(E_O)$.
 \end{proposition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{../Fig5_edge_addition_monotonicity.png}
+\caption{Edge addition monotonicity (\cref{prop:edge-monotonicity}). Adding
+timelike edges (causal connections, $s=-1$) monotonically increases $\beta_c$,
+expanding the high-temperature Lorentzian regime. Adding spacelike edges
+($s=+1$) decreases $\beta_c$, contracting the Lorentzian regime. Demonstrated
+for observer topologies O1--O6 on a 2-parameter Gaussian model. Error bars
+show numerical precision ($< 10^{-3}$).}
+\label{fig:edge-monotonicity}
+\end{figure}
 
 \begin{proof}
 Adding a timelike edge contributes $-(\nabla w_{e_{\mathrm{new}}})
@@ -982,6 +1031,9 @@ Three additional findings emerged from the computational experiments:
   $\beta_{\mathrm{eff}}$ values systematically different from $\beta_c$.
   This confirms that $\beta_c$ characterizes a \emph{geometric}
   transition (metric signature change), not a thermodynamic one.
+  See \cref{fig:specific-heat} for the systematic deviation between
+  $\beta_c$ (geometric transition) and $\beta_{\mathrm{eff}}$
+  (thermodynamic peak).
 
 \item \textbf{Learning dynamics change qualitatively at $\beta_c$.}
   Natural gradient descent with metric $g = M^{(\mathrm{H1'})} + \beta F$
@@ -989,6 +1041,8 @@ Three additional findings emerged from the computational experiments:
   timelike direction for $\beta < \beta_c$ (Lorentzian), singular
   behavior at $\beta = \beta_c$ (degenerate), and smooth convergent
   descent for $\beta > \beta_c$ (Riemannian).
+  See \cref{fig:learning-dynamics} for trajectory divergence at the
+  critical transition.
 
 \item \textbf{Multi-eigenvalue transition sequence
   (\cref{cor:signature-counting}).}
@@ -1000,6 +1054,32 @@ Three additional findings emerged from the computational experiments:
 
 Full results, including eigenvalue trajectories, phase diagrams,
 and learning dynamics traces, are available in the code repository.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{../Fig3_specific_heat_vs_beta_c.png}
+\caption{Specific heat versus $\beta_c$ for observer topologies O1--O6.
+The thermodynamic phase transition (specific heat peak, marked by circles)
+occurs at $\beta_{\mathrm{eff}}$ values systematically different from the
+geometric transition $\beta_c$ (diagonal line). This confirms that $\beta_c$
+characterizes metric signature change, not thermodynamic criticality. Data
+from Ising/Boltzmann exact enumeration on 2-parameter Gaussian model.}
+\label{fig:specific-heat}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{../Fig4_learning_dynamics.png}
+\caption{Learning dynamics qualitative change at $\beta_c$. Natural gradient
+trajectories with metric $g = M^{(\mathrm{H1'})} + \beta F$ show three
+regimes: (bottom) unstable amplification along timelike direction for
+$\beta < \beta_c$ (Lorentzian), (middle) singular behavior at
+$\beta = \beta_c$ (degenerate metric), and (top) smooth convergent descent
+for $\beta > \beta_c$ (Riemannian). Trajectories shown for observer O3
+(path graph) initialized at $\theta_0 = (0.5, 0.5)$ on a 2-parameter
+Gaussian model with simple quadratic loss.}
+\label{fig:learning-dynamics}
+\end{figure}
 
 %----------------------------------------------------------------------
 \section{Discussion}
