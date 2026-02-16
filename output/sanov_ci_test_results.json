@@ -1,0 +1,104 @@
+{
+  "test1_correlation_decay": [
+    {
+      "depth": 5,
+      "num_branches": 32,
+      "correlation": 0.48743378084297273,
+      "kl_divergence": 0.0985247166202544
+    },
+    {
+      "depth": 7,
+      "num_branches": 128,
+      "correlation": 0.510075366097472,
+      "kl_divergence": 0.040046390510695945
+    },
+    {
+      "depth": 9,
+      "num_branches": 512,
+      "correlation": 0.4851772609943603,
+      "kl_divergence": 0.013665430562286666
+    },
+    {
+      "depth": 11,
+      "num_branches": 2048,
+      "correlation": 0.5164252162469546,
+      "kl_divergence": 0.0038170000489562415
+    },
+    {
+      "depth": 13,
+      "num_branches": 8192,
+      "correlation": 0.5085984045980892,
+      "kl_divergence": 0.0009220548110596199
+    }
+  ],
+  "test2_mixing_effect": [
+    {
+      "mixing_alpha": 0.0,
+      "correlation": 0.5084366702327887,
+      "kl_divergence": 0.0042498142947080784,
+      "improvement": 0.0
+    },
+    {
+      "mixing_alpha": 0.2,
+      "correlation": 0.5164312049141471,
+      "kl_divergence": 0.0075421403263373574,
+      "improvement": -0.7746987993637567
+    },
+    {
+      "mixing_alpha": 0.4,
+      "correlation": 0.5103496393505719,
+      "kl_divergence": 0.010068282822135616,
+      "improvement": -1.3691112420306852
+    },
+    {
+      "mixing_alpha": 0.6,
+      "correlation": 0.5106740295810213,
+      "kl_divergence": 0.00820044811232228,
+      "improvement": -0.9296015175377382
+    },
+    {
+      "mixing_alpha": 0.8,
+      "correlation": 0.5122988474635628,
+      "kl_divergence": 0.007787918369082141,
+      "improvement": -0.8325314540872418
+    }
+  ],
+  "test3_convergence_analysis": {
+    "lambda_kl": 1.6856925283005693,
+    "lambda_corr": -0.9906820788342637,
+    "C_kl": 0.0008486763975855069,
+    "C_corr": 0.501500688897827,
+    "verdict": "NEGATIVE: No significant decay",
+    "confidence": "LOW (\u03bb < 0.1)"
+  },
+  "configuration": {
+    "L": 16,
+    "window_size": 4,
+    "mixing_alpha_default": 0.3,
+    "depths_test1": [
+      5,
+      7,
+      9,
+      11,
+      13
+    ],
+    "depths_test3": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "mixing_alphas": [
+      0.0,
+      0.2,
+      0.4,
+      0.6,
+      0.8
+    ]
+  }
+}
