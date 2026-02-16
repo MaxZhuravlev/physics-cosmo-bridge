@@ -1,0 +1,44 @@
+arXiv Submission Package Manifest
+Generated: 2026-02-17
+Package: output/arxiv-package.tar.gz
+Size: 3.0M (compressed)
+
+CONTENTS:
+=========
+
+1. Source Files:
+   - main.tex (88 KB) — adversarial-review-fixed version
+   - references.bib (9.1 KB) — bibliography
+   - 00README.XXX (13 bytes) — arXiv processing directive: \pdfoutput=1
+
+2. Compiled Output:
+   - main.pdf (1.3 MB) — compiled with tectonic 0.15.0
+
+3. Figures (10 files):
+   - Fig_OllivierRicci_Curvature.png
+   - Fig1_eigenvalue_trajectories.png
+   - Fig1_Purification_vs_LD.png (unused in current version)
+   - Fig2_phase_diagram.png
+   - Fig2_Theorem_Flowchart.png (unused in current version)
+   - Fig3_specific_heat_vs_beta_c.png
+   - Fig4_learning_dynamics.png
+   - Fig5_edge_addition_monotonicity.png
+   - Fig6_spectral_gap_selection.png
+   - near_diagonal_fisher_decay.png
+
+CHANGES FROM PREVIOUS PACKAGE:
+================================
+- Source: Updated main.tex with adversarial review fixes
+- Figure paths: Fixed from "../" to "figures/" for arXiv compliance
+- All required figures included
+- Self-contained and arXiv-compilable
+
+VERIFICATION:
+=============
+✓ All \includegraphics paths use "figures/" prefix
+✓ All 8 referenced figures present in package
+✓ 00README.XXX contains correct pdfoutput directive
+✓ Package extracts cleanly
+✓ Total 16 files (1 dir + 4 docs + 10 figures + 1 directive)
+
+READY FOR SUBMISSION
