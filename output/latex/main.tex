@@ -706,6 +706,51 @@ This assignment is currently imposed rather than derived; its
 physical origin is the most important open problem in this analysis
 (see \cref{sec:open-problems}).
 
+\subsection{FSF factorization for exponential families}
+\label{sec:FSF-factorization}
+
+For canonical exponential family observers, the signed mass tensor admits
+a remarkably simple factorization through the Fisher matrix.
+
+\begin{theorem}[Signed mass tensor factorization]
+\label{thm:FSF}
+For a canonical exponential family with $m$-dimensional natural parameters
+$\theta$, Fisher information matrix~$F$, and sign assignment
+$S = \operatorname{diag}(s_1, \ldots, s_m)$ with $s_e \in \{+1, -1\}$:
+\begin{equation}
+\label{eq:FSF}
+M^{(\mathrm{H1'})} = F\,S\,F\,.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By \cref{thm:M-F-squared}, the Jacobian of the mean-parameter map is
+the Fisher matrix: $\partial w_e / \partial \theta^a = F_{ea}$.
+Therefore
+\begin{equation}
+M^{(\mathrm{H1'})}_{ab}
+= \sum_e s_e \frac{\partial w_e}{\partial \theta^a}
+\frac{\partial w_e}{\partial \theta^b}
+= \sum_e F_{ae}\, S_{ee}\, F_{eb}
+= (F\,S\,F)_{ab}\,.
+\end{equation}
+\end{proof}
+
+\begin{corollary}[Signature rigidity]
+\label{cor:signature-rigidity}
+The Fisher-weighted operator
+$A = F^{-1/2}\, M^{(\mathrm{H1'})}\, F^{-1/2} = F^{1/2}\, S\, F^{1/2}$
+has exactly $q = |\{e : s_e = -1\}|$ negative eigenvalues, by
+Sylvester's law of inertia.
+Pure Lorentzian signature (exactly one negative eigenvalue of $g(\beta)$
+for all $\beta \in (0, \beta_c)$) therefore requires exactly $q = 1$.
+\end{corollary}
+
+This result eliminates free parameters from the Lorentzian mechanism:
+once the Fisher matrix~$F$ (determined by the observer's graph topology)
+and the sign assignment~$S$ are specified, the entire metric structure
+$g(\beta) = F\,S\,F + \beta\,F$ is uniquely determined.
+
 \subsection{Critical beta theorem}
 \label{sec:beta-c-theorem}
 
@@ -806,6 +851,10 @@ Since $\beta = 1/(kT)$, the Lorentzian regime corresponds to
 \emph{low} temperature (large~$\beta$).
 The Lorentzian threshold $\beta_c$ is a property of the observer
 (determined by $M$ and~$F$), not of the thermal environment.
+For exponential family observers, the FSF factorization
+(\cref{thm:FSF}) implies that $A = F^{1/2}\, S\, F^{1/2}$, so
+$\beta_c$ is determined entirely by $F$ and~$S$---no free parameters
+remain once the observer's graph topology and sign assignment are fixed.
 \end{remark}
 
 \begin{figure}[htbp]
@@ -1192,12 +1241,30 @@ We list open problems in order of priority:
 \begin{enumerate}
 \item \textbf{Physical origin of edge signs} (HIGH).
   The sign assignment $s_e \in \{+1, -1\}$ in H1$'$ is currently imposed
-  based on causal adjacency.
-  Deriving it from the causal structure of the embedding hypergraph remains
-  the most important open problem.
-  Numerical testing of the force-fluctuation sign rule yields 23\% Lorentzian
-  success rate compared to 65\% for the adjacency rule, suggesting this
-  approach may not be viable in its current form.
+  rather than derived.
+  Four approaches to deriving signs from causal structure were
+  investigated: (1)~causal relatedness, (2)~causal flow direction,
+  (3)~forward/backward path ratio, (4)~Ollivier curvature sign.
+  All four fail to produce $q = 1$ for the same structural reason:
+  the causal graph provides a binary classification (related vs.\
+  unrelated) that generically assigns $q = m$ (all edges timelike),
+  not the required $q = 1$.
+  The force-fluctuation sign rule yields 23\% Lorentzian success rate.
+  A coarse-grained causal direction approach gives $q = 1$ by
+  construction but reduces to the force-fluctuation framework.
+  Overall confidence that edge signs can be derived from CI alone:
+  30\%.
+
+\item \textbf{CI and exponential family statistics} (HIGH, newly
+  identified).
+  The FSF factorization (\cref{thm:FSF}) and $M = F^2$
+  (\cref{thm:M-F-squared}) hold specifically for canonical exponential
+  families.
+  Whether causal invariance constrains observer statistics to be
+  exponential families would close the deductive chain: CI
+  $\to$ exponential family $\to$ $M = F^2$ $\to$ FSF $\to$
+  Lorentzian.
+  This is the most important theoretical question for the program.
 
 \item \textbf{Extension beyond two parameters} (LOW, numerically confirmed).
   All rigorous verification uses $n = 2$.
@@ -1207,19 +1274,13 @@ We list open problems in order of priority:
   complete (99.1\%), random (99.0\%), and tree (97.8\%) topologies.
   Analytical proof for general $n$ remains open.
 
-\item \textbf{Dynamical simulation of learning with signed edges}
-  (MEDIUM).
-  Testing whether natural gradient descent preserves Lorentzian
-  signature in practice requires numerical simulation beyond our
-  current static eigenvalue analysis.
-
-\item \textbf{CI as constraint on learning dynamics} (SPECULATIVE, largely exhausted).
-  Causal invariance constrains reparameterization invariance, uniquely
-  selecting natural gradient dynamics.
-  Investigation of further constraints (loss function symmetries, landscape
-  topology, mass tensor structure) yielded negative results via counterexamples.
-  The dataset-learning duality conjecture remains speculative (confidence: 40\%)
-  but appears less promising than initially conjectured.
+\item \textbf{Dynamical sign selection} (MEDIUM, preliminary results).
+  Gradient descent on the energy functional
+  $E(\sigma) = (q(\sigma) - 1)^2$ with soft signs $\sigma_e \in [-1,1]$
+  evolves toward $q = 1$ on $K_3$ (98--100\% success for $\beta < \beta_c$)
+  but fails on $K_4$ ($\sim\!0$\% for Lorentzian energy).
+  The mechanism does not scale to larger observer topologies in its
+  current form.
 \end{enumerate}
 
 \subsection{Honest novelty assessment}
