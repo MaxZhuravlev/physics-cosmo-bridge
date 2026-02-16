@@ -121,7 +121,7 @@ hypotheses, then both programs are forced to produce Einstein's equations
 as the unique gravitational dynamics.
 
 In his original paper, Vanchurin~\cite{Vanchurin2020} noted that the
-symmetries of his Onsager tensor (Eq.~93 in~\cite{Vanchurin2020}) are
+symmetries of his Onsager tensor (Eq.~93 in \cite{Vanchurin2020}) are
 introduced phenomenologically, and asked whether they could be
 ``derived from first principles.''
 The Lovelock bridge was conceived as a potential answer.
@@ -192,7 +192,7 @@ theorem; Virgo et al.~\cite{Virgo2025} reformulated it for embodied
 agents in a form we use in \cref{sec:spectral-purity}.
 Chiribella et al.~\cite{Chiribella2011} derived quantum theory from
 operational axioms; this framework is used in our companion
-paper~\cite{companion_qm}.
+paper~\cite{companion_qm} (in preparation).
 
 %----------------------------------------------------------------------
 \section{The Lovelock Bridge: Statement and Failure}
@@ -706,20 +706,22 @@ This obstruction applies to all three standard hypotheses for $M$
 \begin{remark}[Comprehensive empirical validation]
 \label{rem:psd-phase-diagram}
 An exhaustive phase diagram scanning 240~configurations---observer
-sizes $m \in \{2, 3, 4, 5, 6, 7, 8, 10, 12, 15\}$,
-coupling strengths $J \in \{0.1, 0.2, 0.3, 0.5, 0.7, 1.0, 1.5, 2.0\}$,
-and three graph topologies (tree, sparse, dense)---confirms that
-Lorentzian selection ($q = 1$) achieves a win rate of exactly~$0\%$
-when $M = F^2$.
+sizes $m \in \{2, \ldots, 15\}$ (10~values), coupling strengths
+$J \in [0.1, 2.0]$ (8~values), and three graph topologies (tree,
+sparse, dense)---confirms that Lorentzian selection ($q = 1$)
+achieves a win rate of exactly~$0\%$ when $M = F^2$.
 In every configuration, $\beta_c = -1$ (no valid Lorentzian regime
-exists) because $F^{-1/2}\,M\,F^{-1/2} = F^{-1/2}\,F^2\,F^{-1/2} = F$,
-which is positive definite with no negative eigenvalues.
+exists) because $F^{-1/2} M\, F^{-1/2} = F$, which is positive
+definite with no negative eigenvalues.
 The obstruction is structural and independent of observer size,
-coupling strength, and graph topology: it holds universally
-for canonical exponential families.
-This validates the necessity of the signed-edge
-construction~H1$'$ (\cref{sec:H1-prime}) or Vanchurin's non-principal
-square root for obtaining Lorentzian signature.
+coupling strength, and graph topology: it holds universally for
+canonical exponential families where $M = F^2$.
+
+This validates the necessity of the signed-edge construction~H1$'$
+(\cref{sec:H1-prime}) or Vanchurin's non-principal square root for
+obtaining Lorentzian signature.
+A contrast experiment confirms that H1$'$ does bypass the PSD
+obstruction; see \cref{rem:signed-edge-phase-diagram}.
 \end{remark}
 
 \subsection{Modified construction H1$'$: signed edge weights}
@@ -749,6 +751,27 @@ disconnected vertices carry $s_e = +1$ (spacelike).
 This assignment is currently imposed rather than derived; its
 physical origin is the most important open problem in this analysis
 (see \cref{sec:open-problems}).
+
+\begin{remark}[H1$'$ contrast experiment: signed-edge phase diagram]
+\label{rem:signed-edge-phase-diagram}
+A contrast experiment repeating the 240-configuration phase diagram
+of \cref{rem:psd-phase-diagram} with the H1$'$ signed mass tensor
+(using Fiedler vector sign assignment) reveals a qualitatively
+different regime.
+Under H1$'$, the critical coupling $\beta_c > 0$ for most
+non-tree configurations (e.g., $\beta_c \approx 1.08$--$1.38$
+for dense graphs at weak coupling $J \leq 0.3$), confirming that
+the signed-edge construction \emph{does} bypass the PSD obstruction
+and creates a valid Lorentzian regime.
+However, the spectral gap weighting $W(q{=}1)$ equals the maximum
+$W_{\mathrm{max}}$ across all signatures---a degeneracy in which
+$q = 1$ ties with higher-$q$ signatures rather than strictly
+dominating.
+The Lorentzian regime is \emph{accessible} under H1$'$ but not
+\emph{preferentially selected} by the spectral gap mechanism alone,
+suggesting that an additional physical principle is required to
+break the degeneracy in favor of $q = 1$.
+\end{remark}
 
 \subsection{FSF factorization for exponential families}
 \label{sec:FSF-factorization}
@@ -1696,12 +1719,18 @@ We list open problems in order of priority:
   Strategy~C achieves $99.7\%$ of oracle quality on average
   (minimum $82.2\%$), with a clear physical interpretation: the edge
   carrying maximum Fisher information becomes the timelike direction.
-  Combined with the spectral gap selection mechanism
-  (\cref{sec:spectral-gap-selection}), this shows that Lorentzian
-  signature is a \emph{robust emergent property}: multiple independent
-  mechanisms converge to $q = 1$ on sparse observer graphs.
+  However, a 240-configuration contrast experiment
+  (\cref{rem:signed-edge-phase-diagram}) reveals that while H1$'$ with
+  Fiedler signs creates a valid Lorentzian regime ($\beta_c > 0$),
+  the spectral gap weighting satisfies $W(q{=}1) = W_{\max}$
+  (degeneracy with higher-$q$ signatures) rather than strict $q = 1$
+  dominance.
+  Thus, sign assignment achieves Lorentzian signature ($q = 1$ is
+  \emph{accessible}), but an additional selection principle beyond
+  spectral gap weighting may be needed to explain why $q = 1$ is
+  preferred over other valid signatures.
   Confidence that $q = 1$ is selected for physically relevant (sparse)
-  observers: $75$--$85\%$.
+  observers: $60$--$75\%$.
 
 \item \textbf{CI and exponential family statistics} (HIGH, partially
   resolved).
@@ -1930,18 +1959,22 @@ signed-edge or non-principal square root constructions.
 A systematic sign selection study (4~strategies, 52~configurations)
 shows $100\%$ Lorentzian achievement with the information flow
 strategy (maximum $F_{ee} \to$ timelike) at $99.7\%$ oracle quality.
-The spectral gap mechanism selects Lorentzian signature but is
-agnostic about spatial dimensionality: tests on $d$-dimensional
-lattices ($d = 1$--$4$) show smooth variation with~$d$ without
-singling out $d = 3 + 1$.
+However, a 240-configuration contrast experiment reveals that under
+H1$'$ with Fiedler signs, the spectral gap weighting $W(q{=}1)$
+equals $W_{\max}$ (degeneracy with higher-$q$ signatures), meaning
+the Lorentzian regime is \emph{accessible} but not preferentially
+selected by spectral gap alone
+(\cref{rem:signed-edge-phase-diagram}).
+The spectral gap mechanism is agnostic about spatial dimensionality:
+tests on $d$-dimensional lattices ($d = 1$--$4$) show smooth
+variation with~$d$ without singling out $d = 3 + 1$.
 
 These results are offered as tools for further development of
 learning-based spacetime emergence.
-The spectral gap selection mechanism suggests that the ``sign
-selection problem'' is less severe than previously thought:
-sparse observers robustly select Lorentzian signature through
-the information geometry of their internal interactions, and
-multiple independent sign assignment strategies converge to $q = 1$.
+Multiple sign assignment strategies make Lorentzian signature
+\emph{accessible}, and the PSD obstruction confirms that non-standard
+mass tensors are necessary; the remaining open question is what
+physical principle breaks the $q$-degeneracy to prefer $q = 1$.
 
 Negative results in foundational physics are valuable.
 Documenting \emph{why} the Lovelock bridge fails---with specific
