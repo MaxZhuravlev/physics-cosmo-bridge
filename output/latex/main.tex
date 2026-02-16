@@ -86,7 +86,7 @@ form of general covariance for hypergraph evolution.
 Under a conjectured continuum limit, this discrete covariance would
 yield smooth diffeomorphism invariance.
 
-\textbf{Vanchurin Neural Network Cosmology}~\cite{Vanchurin2020,Vanchurin2025,Vanchurin2025CGD}.
+\textbf{Vanchurin Neural Network Cosmology}~\cite{Vanchurin2020,Vanchurin2025,Vanchurin2025CGD,Vanchurin2024EFT}.
 Gravity emerges from entropy production and learning dynamics in trainable
 neural networks.
 In Vanchurin's original (Type~I) framework~\cite{Vanchurin2020}, the metric
@@ -111,9 +111,9 @@ hypotheses, then both programs are forced to produce Einstein's equations
 as the unique gravitational dynamics.
 
 In his original paper, Vanchurin~\cite{Vanchurin2020} noted that the
-symmetries of his Onsager tensor (Eq.~93) are introduced
-phenomenologically, and asked whether they could be ``derived from
-first principles.''
+symmetries of his Onsager tensor (Eq.~93 in~\cite{Vanchurin2020}) are
+introduced phenomenologically, and asked whether they could be
+``derived from first principles.''
 The Lovelock bridge was conceived as a potential answer.
 
 \subsection{Summary of results}
@@ -509,7 +509,8 @@ Let the observer's prediction model belong to the exponential family:
 $p_\theta(x) = h(x) \exp(\theta^T T(x) - A(\theta))$, where $T(x)$ is
 the sufficient statistic and $A(\theta)$ the log-partition function.
 If $|E_O| = \dim(T)$ (the observer has one internal edge per sufficient
-statistic component), with the bijection $e \leftrightarrow e$, and
+statistic component), with the natural bijection $e_i \leftrightarrow T_i$ (each internal
+edge corresponds to one sufficient statistic component), and
 the internal hyperedge configurations track the \emph{mean parameters}
 ($w_e(\theta) = \mathbb{E}_\theta[T_e] = \partial A / \partial\theta^e$),
 then
@@ -838,8 +839,8 @@ We have verified these results numerically for six observer topologies
 \centering
 \caption{Numerical verification of $\beta_c$ for six observer topologies
 on a 2-parameter Gaussian model ($\theta = (\mu, \log\sigma)$).
-Sign assignment: adjacent vertex indices $\to$ timelike ($s = -1$),
-non-adjacent $\to$ spacelike ($s = +1$).}
+Sign assignment: vertices connected by an edge in $G$ $\to$ timelike ($s = -1$),
+vertices not connected $\to$ spacelike ($s = +1$).}
 \label{tab:observers}
 \begin{tabular}{@{}lccccr@{}}
 \toprule
@@ -998,8 +999,7 @@ Three additional findings emerged from the computational experiments:
 \end{enumerate}
 
 Full results, including eigenvalue trajectories, phase diagrams,
-and learning dynamics traces, are available in the supplementary
-material and the code repository.
+and learning dynamics traces, are available in the code repository.
 
 %----------------------------------------------------------------------
 \section{Discussion}
@@ -1030,8 +1030,8 @@ confirm this without testing other discrete frameworks.
 Despite the failure of the Lovelock bridge, a genuine structural
 connection exists between the two programs at a different level.
 
-\begin{theorem}[Regime identification]
-\label{thm:regime-identification}
+\begin{proposition}[Regime identification]
+\label{prop:regime-identification}
 In the $\alpha = 1$ (quantum) regime of Vanchurin's
 framework~\cite{Vanchurin2025}, the covariant gradient descent equation
 reduces to natural gradient descent.
@@ -1041,7 +1041,7 @@ the natural gradient on the Fisher manifold.
 The two derivations---one from Type~II metric theory, the other from
 information-theoretic observer theory---converge on the same dynamical
 equation.
-\end{theorem}
+\end{proposition}
 
 This regime identification constitutes the real bridge between Programs~A
 and~B: not at the level of spacetime geometry (which requires the failed
@@ -1217,6 +1217,13 @@ researchers from the same path and clarify the real obstacles in
 connecting discrete and continuous approaches to spacetime emergence.
 
 \section*{Acknowledgments}
+
+The author thanks Vitaly Vanchurin for critical feedback on an earlier
+version of this manuscript, which led to the reframing around
+negative results and the Type~II constructive contributions.
+Vanchurin's distinction between Type~I and Type~II
+frameworks~\cite{Vanchurin2025} was essential in identifying why the
+original Lovelock bridge fails and where productive work remains.
 
 Independent research.
 Computational resources: Apple M3~Max (128\,GB), Python (NumPy,
