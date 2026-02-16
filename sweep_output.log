@@ -1,0 +1,91 @@
+
+============================================================
+HIGH-DIMENSIONAL β_c SIGNATURE ANALYSIS
+============================================================
+
+============================================================
+SELF-TESTS: β_c High-Dimensional Analysis
+============================================================
+
+Test 1: Topology generation
+  [PASS] Chain graph has n_vertices-1 edges
+  [PASS] Chain edges are sequential
+  [PASS] Star graph has n_vertices-1 edges
+  [PASS] Star edges all connect to hub 0
+  [PASS] Complete K_4 has 6 edges
+
+Test 2: Sign assignment
+  [PASS] Chain adjacency rule: all timelike -- got [-1, -1, -1]
+  [PASS] Star: (0,1) timelike
+
+Test 3: Fisher metric
+  [PASS] 2D Fisher is 2x2
+  [PASS] 2D Fisher diagonal
+  [PASS] 5D Fisher is 5x5
+  [PASS] 5D Fisher positive definite
+
+Test 4: Mass tensor H1'
+  [PASS] M^{H1'} is symmetric
+  [PASS] M^{H1'} with one timelike edge has ≤1 negative eigenvalue
+
+Test 5: β_c computation
+  [PASS] β_c computed
+  [PASS] A eigenvalues sorted
+  [PASS] β_c = -d_1
+
+Test 6: Signature counting
+  [PASS] No negative eigenvalues for β > β_c -- n_neg(2*β_c) = 0
+
+Test 7: Reproduce Paper #1 results (n=2)
+  [PASS] Triangle β_c ≈ 2.68 (Paper #1 O4) -- computed β_c = 2.197, expected ≈ 2.68
+
+============================================================
+SELF-TESTS: ALL PASSED ✓
+============================================================
+
+============================================================
+MAIN RESEARCH SWEEP
+============================================================
+
+[1/35] n=2, graph=chain... Lorentzian: 100.0%, <β_c>=1.134
+[2/35] n=2, graph=star... Lorentzian: 100.0%, <β_c>=2.400
+[3/35] n=2, graph=complete... Lorentzian: 100.0%, <β_c>=1.478
+[4/35] n=2, graph=random... Lorentzian: 100.0%, <β_c>=0.888
+[5/35] n=2, graph=tree... Lorentzian: 100.0%, <β_c>=1.262
+[6/35] n=3, graph=chain... Lorentzian: 77.0%, <β_c>=1.068
+[7/35] n=3, graph=star... Lorentzian: 100.0%, <β_c>=0.897
+[8/35] n=3, graph=complete... Lorentzian: 100.0%, <β_c>=1.072
+[9/35] n=3, graph=random... Lorentzian: 98.0%, <β_c>=0.312
+[10/35] n=3, graph=tree... Lorentzian: 94.0%, <β_c>=0.589
+[11/35] n=4, graph=chain... Lorentzian: 100.0%, <β_c>=1.014
+[12/35] n=4, graph=star... Lorentzian: 100.0%, <β_c>=0.994
+[13/35] n=4, graph=complete... Lorentzian: 100.0%, <β_c>=1.209
+[14/35] n=4, graph=random... Lorentzian: 100.0%, <β_c>=0.603
+[15/35] n=4, graph=tree... Lorentzian: 97.0%, <β_c>=0.790
+[16/35] n=5, graph=chain... Lorentzian: 100.0%, <β_c>=1.030
+[17/35] n=5, graph=star... Lorentzian: 100.0%, <β_c>=0.810
+[18/35] n=5, graph=complete... Lorentzian: 100.0%, <β_c>=0.896
+[19/35] n=5, graph=random... Lorentzian: 98.0%, <β_c>=0.624
+[20/35] n=5, graph=tree... Lorentzian: 100.0%, <β_c>=0.333
+[21/35] n=6, graph=chain... Lorentzian: 100.0%, <β_c>=0.903
+[22/35] n=6, graph=star... Lorentzian: 100.0%, <β_c>=0.639
+[23/35] n=6, graph=complete... Lorentzian: 95.0%, <β_c>=0.988
+[24/35] n=6, graph=random... Lorentzian: 97.0%, <β_c>=0.627
+[25/35] n=6, graph=tree... Lorentzian: 96.0%, <β_c>=0.525
+[26/35] n=8, graph=chain... Lorentzian: 100.0%, <β_c>=0.718
+[27/35] n=8, graph=star... Lorentzian: 100.0%, <β_c>=0.866
+[28/35] n=8, graph=complete... Lorentzian: 100.0%, <β_c>=0.867
+[29/35] n=8, graph=random... Lorentzian: 100.0%, <β_c>=0.615
+[30/35] n=8, graph=tree... Lorentzian: 100.0%, <β_c>=0.369
+[31/35] n=10, graph=chain... Lorentzian: 100.0%, <β_c>=0.455
+[32/35] n=10, graph=star... Lorentzian: 96.0%, <β_c>=1.042
+[33/35] n=10, graph=complete... Lorentzian: 99.0%, <β_c>=1.083
+[34/35] n=10, graph=random... Lorentzian: 100.0%, <β_c>=0.899
+[35/35] n=10, graph=tree... Lorentzian: 97.9%, <β_c>=0.451
+
+
+Results written to: /Users/Max_1/Projects/PhysicsResearch/cosmological-unification/experience/insights/BETA-C-HIGH-DIMENSIONAL-ANALYSIS-2026-02-16.md
+Total configurations analyzed: 35
+Total individual observers: 3500
+
+Done.
