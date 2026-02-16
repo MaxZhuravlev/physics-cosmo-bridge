@@ -770,6 +770,16 @@ However, the spectral gap weighting $W(q{=}1)$ equals the maximum
 $W_{\mathrm{max}}$ across all signatures---a degeneracy in which
 $q = 1$ ties with higher-$q$ signatures rather than strictly
 dominating.
+This degeneracy is an \emph{exact algebraic identity}: the signature
+matrix $\Sigma = \operatorname{diag}(s_1, \ldots, s_m)$ with
+$s_i \in \{+1, -1\}$ satisfies $\Sigma^{-1} = \Sigma$, so the
+conjugation $\Sigma\, A\, \Sigma = \Sigma\, A\, \Sigma^{-1}$ is a
+similarity transformation preserving all eigenvalues of~$A$ and hence
+$\beta_c$, $L_{\mathrm{gap}}$, and $W(q)$ for every~$q$.
+No mass tensor of the form $M = S\, f(F)\, S$ can break this
+degeneracy; signature selection must instead rely on the eigenvalue
+structure of~$A = F^{1/2}\, S\, F^{1/2}$ directly
+(\cref{cor:signature-rigidity}).
 The Lorentzian regime is \emph{accessible} under H1$'$ but not
 \emph{preferentially selected} by the spectral gap mechanism alone,
 suggesting that an additional physical principle is required to
