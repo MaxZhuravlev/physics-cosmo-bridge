@@ -61,9 +61,12 @@ matrix on tree graphs equals $\operatorname{sech}^2(J)$ times the identity,
 and derive a rigorous bound on off-diagonal Fisher entries that decay as
 $O(\tanh^{g-2}(J))$ with graph girth~$g$, with an exact adjacent-edge
 covariance formula on cycles.
-We prove that any positive definite diagonal matrix selects Lorentzian
-signature ($q = 1$) with explicit margin, and that this dominance is
-stable under perturbation (robust to off-diagonal ratio ${\sim}0.9$).
+We prove that any positive definite diagonal matrix (the structural
+case for tree observers) selects Lorentzian signature ($q = 1$) with
+explicit margin, and that this dominance is stable under perturbation
+(robust to off-diagonal ratio ${\sim}0.9$); however, the signed-edge
+construction H1$'$ creates Lorentzian \emph{accessibility} without
+preferential selection (spectral gap degeneracy).
 Universality tests across $q$-state Potts models ($q = 2$--$5$,
 72~configurations) confirm that these spectral properties extend beyond
 the Ising case to all discrete spin models.
@@ -1324,7 +1327,7 @@ For $q \geq 2$: eigenvalue $-c$ has multiplicity $\geq 2$
 \label{thm:diagonal-lorentzian}
 For any positive definite diagonal matrix
 $F = \operatorname{diag}(d_1, \ldots, d_m)$ with
-$d_1 \geq \cdots \geq d_m > 0$ and $m \geq 3$:
+$d_1 \geq \cdots \geq d_m > 0$ and $m \geq 2$:
 \begin{equation}
 \label{eq:diagonal-W-comparison}
 W(q = 1) = d_1 + d_m > d_1 - d_2 = \max_{q \geq 2}\, W(q)\,.
@@ -1397,9 +1400,12 @@ information matrix satisfies:
      {\|\operatorname{diag}(F)\|_{\text{op}}}
 \leq C(g, \Delta) \cdot \tanh^{g-2}(J)\,,
 \end{equation}
-where the effective constant $C(g, \Delta)$ grows at most linearly
-in~$g$ for fixed~$\Delta$ (verified: $C \lesssim 0.7\,g$ on cycle
-graphs with $g = 3$ to~$12$, $J = 0.1$ to~$1.0$, 50~configurations).
+where the exponent $g - 2$ is exact (from transfer matrix analysis)
+and the effective constant $C(g, \Delta)$ is empirically determined
+to grow at most linearly in~$g$ for fixed~$\Delta$
+($C \lesssim 0.7\,g$ on cycle graphs with $g = 3$ to~$12$,
+$J = 0.1$ to~$1.0$, 50~configurations; a rigorous derivation of~$C$
+remains open).
 On cycle graphs, the adjacent-edge covariance is given exactly by:
 \begin{equation}
 \label{eq:adjacent-edge-cov}
@@ -1704,7 +1710,7 @@ metric-dependent corrections without torsion.
 \subsection{Open problems}
 \label{sec:open-problems}
 
-We list open problems in order of priority:
+We list selected open problems, organized by topic:
 
 \begin{enumerate}
 \item \textbf{Physical origin of edge signs} (MEDIUM, substantially addressed).
@@ -1881,12 +1887,13 @@ We assess the novelty of each contribution:
   (\cref{cor:lorentzian-perturbation}), the near-diagonal bound with
   exact adjacent-edge formula (\cref{thm:near-diagonal-fisher}), and
   universality across Potts models
-  (\cref{rem:fisher-universality}) provide a rigorous structural
+  (\cref{rem:fisher-universality}) provide a conditional structural
   explanation for Lorentzian signature selection on sparse observer
-  graphs.
+  graphs (confidence 60--75\%; the signed-edge H1$'$ construction
+  shows spectral gap degeneracy).
   The key insight---that information-geometric properties of the Fisher
-  metric itself select $q = 1$ without requiring a dynamical sign
-  mechanism---appears new.
+  metric create Lorentzian \emph{accessibility} on sparse graphs without
+  requiring a dynamical sign mechanism---appears new.
 
 \item \textbf{Total estimated novelty}: 25--30\%.
   The nature of the contribution is: formal development of Type~II
@@ -1936,9 +1943,9 @@ topology and learning dynamics affect the Lorentzian regime.
 The Tree Fisher Identity (\cref{thm:tree-fisher}), the Lorentzian
 dominance theorem for diagonal Fisher matrices
 (\cref{thm:diagonal-lorentzian}), and its perturbation stability
-(\cref{cor:lorentzian-perturbation}) provide a rigorous structural
-explanation for why sparse observers perceive exactly one time
-dimension.
+(\cref{cor:lorentzian-perturbation}) provide a conditional structural
+explanation for why sparse observers may perceive exactly one time
+dimension (confidence 60--75\%; see \cref{sec:open-problems}).
 The near-diagonal bound with the exact adjacent-edge covariance
 formula (\cref{thm:near-diagonal-fisher}) establishes that sparse
 graphs fall in the near-diagonal regime where this dominance holds.
