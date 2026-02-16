@@ -15,6 +15,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 
@@ -534,6 +535,12 @@ pairwise correlation) to relative error $< 10^{-8}$.
 \end{proof}
 
 \begin{remark}
+The identity $J = F$ for exponential families is a well-known consequence
+of the Hessian structure of the log-partition function~\cite{Amari2016}.
+Our contribution is connecting this algebraic identity to Vanchurin's mass
+tensor decomposition, yielding the specific relationship $M = F^2$ within
+the Type~II metric framework.
+
 The condition $w_e = \mathbb{E}_\theta[T_e]$ states that the observer's
 internal structure tracks the expected sufficient statistics of its own
 predictive model---a natural requirement for a Good Regulator.
@@ -737,6 +744,20 @@ negative), so $g(\beta)$ is positive definite.
 By continuity, $d_1 + \beta_c = 0$.
 \end{proof}
 
+\begin{remark}[Prior art]
+\label{rem:beta-c-prior-art}
+The critical value $\beta_c = -d_1$ follows from standard results on
+simultaneous diagonalization of symmetric
+matrices~\cite{HornJohnson2013}.
+The physical content lies in the observer-topology-dependent
+characterization of the Lorentzian--Riemannian transition within the
+Type~II framework.
+We note that signature change in general relativity has been studied
+by Hayward~\cite{Hayward1992} and others in the context of classical
+spacetime; our result concerns signature transitions in the parameter
+space of learning systems, which is a different physical setting.
+\end{remark}
+
 \begin{corollary}[Signature counting]
 \label{cor:signature-counting}
 The number of negative eigenvalues of $g(\beta)$ equals
@@ -935,6 +956,51 @@ An observer in the Lorentzian regime at $\theta^*$ remains Lorentzian for
 a time of order $1 / |\dot{\theta}|$ (the convergence timescale).
 \end{proposition}
 
+\subsection{Computational verification of the signature transition}
+\label{sec:computational-verification}
+
+We tested the $\beta_c$ prediction (\cref{thm:beta-c}) on Ising/Boltzmann
+machines with exact enumeration across seven observer topologies
+(3--5~vertices, 2--10~edges) and five coupling strengths each, for a
+total of 35~test cases.
+The signed mass tensor $M^{(\mathrm{H1'})}$ was constructed using the
+adjacency-based sign rule (adjacent vertices $\to$ timelike,
+non-adjacent $\to$ spacelike).
+
+Of 35~cases where $M^{(\mathrm{H1'})}$ is indefinite and $\beta_c$ is
+predicted, \textbf{32 match with relative error $< 1\%$}; the
+average relative error across all tests is $2.15 \times 10^{-2}$.
+The three mismatches occur at strong coupling ($J \geq 1.0$) on
+complete graphs ($K_4$, $K_5$), where higher-order corrections to the
+quadratic approximation become significant.
+
+Three additional findings emerged from the computational experiments:
+\begin{enumerate}
+\item \textbf{Specific heat peak does not coincide with $\beta_c$.}
+  The thermodynamic phase transition (specific heat maximum) occurs at
+  $\beta_{\mathrm{eff}}$ values systematically different from $\beta_c$.
+  This confirms that $\beta_c$ characterizes a \emph{geometric}
+  transition (metric signature change), not a thermodynamic one.
+
+\item \textbf{Learning dynamics change qualitatively at $\beta_c$.}
+  Natural gradient descent with metric $g = M^{(\mathrm{H1'})} + \beta F$
+  exhibits three distinct regimes: unstable amplification along the
+  timelike direction for $\beta < \beta_c$ (Lorentzian), singular
+  behavior at $\beta = \beta_c$ (degenerate), and smooth convergent
+  descent for $\beta > \beta_c$ (Riemannian).
+
+\item \textbf{Multi-eigenvalue transition sequence
+  (\cref{cor:signature-counting}).}
+  For observers with multiple negative eigenvalues of the
+  Fisher-weighted mass tensor $A = F^{-1/2}\,M^{(\mathrm{H1'})}\,F^{-1/2}$,
+  the predicted sequence of signature transitions
+  (indefinite $\to$ Lorentzian $\to$ Riemannian) is verified exactly.
+\end{enumerate}
+
+Full results, including eigenvalue trajectories, phase diagrams,
+and learning dynamics traces, are available in the supplementary
+material and the code repository.
+
 %----------------------------------------------------------------------
 \section{Discussion}
 \label{sec:discussion}
@@ -981,6 +1047,55 @@ This regime identification constitutes the real bridge between Programs~A
 and~B: not at the level of spacetime geometry (which requires the failed
 continuum limit), but at the level of observer dynamics (which operates
 entirely within continuous parameter space).
+We note that the multiway graph framework of
+Gorard et al.~\cite{GorardNamuduriArsiwalla2021} provides a
+categorical setting in which such regime identifications can be
+formalized as functors between the multiway evolution categories of
+the two programs.
+
+\subsection{Implications of partial causal invariance for modified gravity}
+\label{sec:partial-CI}
+
+The negative results of \cref{sec:failure} concern the case where full
+CI is assumed.  A natural question is: what gravitational theory
+emerges when CI is only \emph{partially} satisfied?
+
+The connection between discrete non-commutativity and torsion is
+well-established in lattice gravity: in Regge calculus, torsion arises
+from deficit angles not accounted for by curvature
+alone~\cite{Caselle1989,Drummond1986}; in lattice gauge theory, torsion
+corresponds to the failure of the parallelogram closure condition for
+frame fields~\cite{MenottiPelissetto1987}.
+
+We conjecture that an analogous mechanism operates in hypergraph
+rewriting: when CI is violated, the non-commutativity of rewriting
+orderings produces, in any putative continuum limit, a connection that
+is not Levi-Civita.
+
+\begin{conjecture}[CI violation and metric-affine gravity]
+\label{conj:CI-MAG}
+If a hypergraph rewriting system with approximate CI (causal graphs
+agree up to $O(\epsilon)$) admits a continuum limit, the resulting
+effective gravitational theory belongs to the class of metric-affine
+gravity theories~\cite{HehlMcCreaMielkeNeeman1995}, with torsion and
+non-metricity of order~$\epsilon$.
+The specific type of CI violation determines the type of modified
+gravity: order-dependent branching produces Riemann--Cartan torsion,
+rule-subset confluence produces preferred-frame
+effects (Ho\v{r}ava--Lifshitz type), and uniform approximate CI
+produces general metric-affine corrections.
+In the limit $\epsilon \to 0$, the theory reduces to GR.
+\end{conjecture}
+
+\Cref{conj:CI-MAG} is not testable with current tools: the continuum
+limit required for its evaluation is numerically falsified for generic
+expanding rules (\cref{sec:numerical}).
+We emphasize that the deviations from GR predicted by CI violation
+(torsion, non-metricity) belong to a \emph{different} class of
+modified gravity from those predicted by deviations from natural
+gradient learning in Vanchurin's
+framework~\cite{Vanchurin2025,Vanchurin2025CGD}, which produce
+metric-dependent corrections without torsion.
 
 \subsection{Open problems}
 \label{sec:open-problems}
