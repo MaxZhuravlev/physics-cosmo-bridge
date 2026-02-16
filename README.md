@@ -1,201 +1,179 @@
-# Connecting Wolfram and Vanchurin Cosmologies: A Lovelock Bridge
+# Where the Lovelock Bridge Breaks: Negative Results and New Directions for Connecting Discrete and Continuous Spacetime Emergence
 
 **Author**: Max Zhuravlev (Independent Research)
 **Date**: February 2026
-**Status**: Preprint (submitted to arXiv physics.gen-ph)
-**Quality**: 8.7/10 (Multi-AI validated: Claude + Gemini + Analyst)
+**Status**: Preprint draft (23 pages)
 
 ---
 
-## 📄 Paper
+## Paper
 
-**Download**: [main.pdf](output/latex/main.pdf) (61 KB, 4 pages)
-
-**arXiv Package**: [arxiv-submission-final.tar.gz](output/arxiv-submission-final.tar.gz) (477 KB)
+**Download**: [main.pdf](output/latex/main.pdf) (23 pages)
 
 ---
 
-## 📝 Abstract
+## Abstract
 
-We demonstrate a formal connection between Wolfram's hypergraph physics and Vanchurin's neural network cosmology through Lovelock's uniqueness theorem, providing a possible answer to Vanchurin's explicitly stated open question regarding the derivation of Onsager tensor symmetries from first principles.
+We examine the hypothesis that Wolfram's hypergraph physics and Vanchurin's
+neural network cosmology can be connected via Lovelock's uniqueness theorem.
 
-**Key Result**: Gorard (2020) proved causal invariance → discrete general covariance. Under the working assumption of a continuum limit, this yields diffeomorphism invariance. Lovelock's theorem (1971) then uniquely determines Einstein's gravity in D=4. This may constrain Vanchurin's phenomenologically chosen Onsager tensor (Eq. 93).
+**Part I -- Negative Results:**
+1. Numerical evidence that the continuum limit fails for all dynamically
+   nontrivial hypergraph rewrite rules (13 rules tested)
+2. A fundamental barrier between discrete permutation symmetries and the
+   continuous Lorentz group required by Lovelock's theorem
+3. Vanchurin's Type II framework (2025) bypasses the continuum limit
+   entirely by working in continuous trainable parameter space
 
-**Contribution**: First formal link between Wolfram Physics Project and Vanchurin Neural Network Cosmology. Synthesis of existing results (Gorard, Lovelock, Vanchurin) making explicit a connection not previously noted in literature.
+**Part II -- Constructive Type II Contributions:**
+- Exact critical beta formula for Lorentzian--Riemannian transition
+- Mass tensor equals Fisher squared (M = F^2) for exponential family models
+- PSD obstruction: standard mass tensors cannot produce Lorentzian signature
+- Signed-edge vs non-principal square root comparison (proven non-equivalent)
+- Tree Fisher Identity: F = sech^2(J) * I on tree graphs (exact theorem)
+- Spectral gap selection: sparse observers select Lorentzian signature
+  with 100% preference (199-case numerical verification)
 
 ---
 
-## 🔍 Main Claim (Conservative)
-
-**If** the continuum limit holds (standard assumption in discrete gravity), **then** causal invariance uniquely constrains Vanchurin's Onsager tensor via:
+## Main Argument Structure
 
 ```
 Causal Invariance (Wolfram)
-  ↓ [Gorard 2020: CI ⟺ discrete covariance]
+  | [Gorard 2020: CI <=> discrete covariance]
+  v
 Discrete General Covariance
-  ↓ [Continuum limit - ASSUMED]
+  | [Continuum limit -- FALSIFIED for nontrivial rules]
+  X  <-- BRIDGE BREAKS HERE
 Diffeomorphism Invariance
-  ↓ [Lovelock 1971: unique tensor in D≤4]
-Einstein Tensor (unique)
-  ↓ [Reverse engineering]
-Onsager Tensor (Vanchurin Eq. 93)
+  | [Lovelock 1971]
+  v
+Einstein Tensor
+
+ALTERNATIVE (Type II):
+Continuous parameter space (Vanchurin 2025)
+  | [trainable weights theta]
+  v
+g = M + beta * F decomposition
+  | [PSD obstruction + signed-edge construction]
+  v
+Lorentzian signature emerges via spectral gap selection
 ```
 
-**We do NOT claim**: New theorem, proof of continuum limit, or full QM/learning derivations (future work).
+---
+
+## Key Results
+
+### Negative Results (Part I)
+- **Continuum limit falsified**: 13 hypergraph rules tested; 0/6 expanding rules converge to nonzero curvature; kappa ~ 1/N for all dynamically interesting rules
+- **Symmetry barrier**: Discrete permutation symmetry != continuous Lorentz group
+- **End-to-end probability**: ~1% for the full Lovelock bridge chain
+
+### Constructive Results (Part II)
+- **Critical beta** (Theorem): beta_c = -d_1 where d_1 is min eigenvalue of F^{-1/2} M F^{-1/2}
+- **M = F^2** (Theorem): For exponential family models with natural parameters
+- **Tree Fisher Identity** (Theorem): On tree graphs, F = sech^2(J) * I (exact diagonal)
+- **Spectral gap bound** (Theorem): L_gap(q=1) >= 1 for any positive definite F
+- **Lorentzian dominance on trees** (Corollary): W(q=1) = 2c > 0 = W(q>=2)
+- **Numerical verification**: 199 Ising Fisher matrices tested; sparse topologies show 100% q=1 preference
 
 ---
 
-## 💎 Why This Matters
+## Computational Validation
 
-Two independent physics programs derived the same gravity from completely different premises:
-- **Wolfram**: Computation without purpose (hypergraph rewriting)
-- **Vanchurin**: Learning with purpose (neural network optimization)
+All numerical experiments are reproducible:
 
-They never cited each other. We show they **must** converge: Lovelock's theorem proves there is exactly ONE gravity compatible with the required symmetry. Both programs arrive at it because mathematics leaves no alternative.
+```bash
+# Run spectral gap analysis (70 cases, original study)
+python3 src/spectral_gap_ising_analysis.py
 
-**Implication**: May suggest Wolfram describes the substrate, Vanchurin describes observer experience inside it. Same reality, different viewpoints.
+# Run large-scale verification (N=8,10,12)
+python3 src/large_scale_spectral_analysis.py
 
----
+# Run non-uniform coupling verification
+python3 src/nonuniform_tree_verification.py
 
-## 🧪 Computational Validation
+# Run tests
+python3 -m pytest tests/ -v
+```
 
-**Numerical evidence** (preliminary):
-- Spatial hypergraph tests: κ = 0.67 ± 0.03 (N=9 states)
-- 5 spatial rules: mean κ = 0.30
-- Curvature suggests non-trivial geometry
-
-**Code**: All computational experiments in `src/` directory
-
-**Reproducibility**: `make quality` runs full validation
+**Requirements**: Python 3.10+, NumPy, SciPy, NetworkX, itertools
 
 ---
 
-## 📚 References
+## Repository Structure
 
-**Key sources**:
-- Gorard, J. (2020). Complex Systems 29(2), 599-654; arXiv:2004.14810
-- Lovelock, D. (1971). J. Math. Phys. 12(3), 498-501
-- Vanchurin, V. (2020). Entropy 22(11), 1210; arXiv:2008.01540
-- Wolfram, S. et al. (2020). Complex Systems 29, 107-536
-
----
-
-## ⚠️ Limitations (Explicitly Stated)
-
-1. **Continuum limit**: Assumed, not proven (longstanding challenge)
-2. **Numerical evidence**: Preliminary (N=9, spatial rules only)
-3. **Uniqueness**: Lovelock constrains form, not all parameters
-4. **D=4**: Assumed (not derived from causal invariance)
-5. **Synthesis**: Connects existing results, proves no new theorems
-
----
-
-## 🔬 Falsifiability
-
-The proposed bridge could be falsified by:
-1. Discovering CI-hypergraph rules that do NOT approach diffeomorphisms in continuum
-2. Formal proof that discrete covariance ≠ smooth diffeomorphisms
-
----
-
-## 💻 Code & Data
-
-**Computational validation scripts**: See `src/` directory
-
-**Figures**:
-- Fig1: Purification vs LD scaling
-- Fig2: Theorem flowchart
-
-**Automation**: Makefile + CI workflow
-
-**Requirements**: Python (NumPy, NetworkX), Wolfram SetReplace (optional)
+```
+structural-bridge/
+├── README.md              # This file
+├── CLAUDE.md              # AI agent orientation
+├── output/
+│   └── latex/
+│       ├── main.tex       # LaTeX source (23 pages)
+│       ├── main.pdf       # Compiled PDF
+│       └── references.bib # Bibliography
+├── src/
+│   ├── spectral_gap_ising_analysis.py
+│   ├── large_scale_spectral_analysis.py
+│   ├── nonuniform_tree_verification.py
+│   ├── causal_typicality_v2.py
+│   └── ...
+├── tests/
+│   ├── test_spectral_gap_ising.py
+│   ├── test_nonuniform_tree_fisher.py
+│   └── ...
+├── experience/
+│   └── insights/          # Research documentation
+└── vos/                   # Value/scope definitions
+```
 
 ---
 
-## 📖 How to Cite
-
-### Before arXiv acceptance:
+## How to Cite
 
 ```bibtex
-@misc{Zhuravlev2026Lovelock,
+@misc{Zhuravlev2026LovelockBridge,
   author = {Zhuravlev, Max},
-  title = {Connecting Wolfram and Vanchurin Cosmologies: A Lovelock Bridge},
+  title = {Where the Lovelock Bridge Breaks: Negative Results and
+           New Directions for Connecting Discrete and Continuous
+           Spacetime Emergence},
   year = {2026},
   howpublished = {Preprint},
-  url = {https://github.com/MaxZhuravlev/physics-cosmo-bridge},
-  note = {Submitted to arXiv}
-}
-```
-
-### After arXiv acceptance (update to):
-
-```bibtex
-@article{Zhuravlev2026Lovelock,
-  author = {Zhuravlev, Max},
-  title = {Connecting Wolfram and Vanchurin Cosmologies: A Lovelock Bridge},
-  journal = {arXiv preprint arXiv:2602.XXXXX},
-  year = {2026},
-  eprint = {2602.XXXXX},
-  archivePrefix = {arXiv},
-  primaryClass = {physics.gen-ph},
   url = {https://github.com/MaxZhuravlev/physics-cosmo-bridge}
 }
 ```
 
 ---
 
-## 🎓 Related Work
+## Related Work
 
 This is **Paper #1** of a 4-paper research program:
 
-- **Paper #1** (this work): Lovelock bridge (gravity sector)
-- **Paper #2** (in progress): QM from purification path
-- **Paper #3** (planned): Amari learning dynamics
-- **Paper #4** (future): Unified framework
+- **Paper #1** (this work): Lovelock bridge negative results + Type II contributions
+- **Paper #2**: QM from operational composition (tensor product structure)
+- **Paper #3**: Good Regulator verification for hypergraph observers
+- **Paper #4**: Unified framework (synthesis)
 
 **Program repository**: https://github.com/MaxZhuravlev/physics-cosmo-unification
 
 ---
 
-## 🙏 Acknowledgments
+## References
 
-Research conducted with AI assistance (Claude, Anthropic; Gemini, Google; Codex, OpenAI).
-
-Computational: M3 Max (128GB), Python, Wolfram SetReplace
-
-Multi-AI validation improved quality from 6.0/10 → 8.7/10 through iterative review.
-
----
-
-## 📧 Contact
-
-**Author**: Max Zhuravlev
-**Repository**: https://github.com/MaxZhuravlev/physics-cosmo-bridge
-**Issues**: Use GitHub Issues for questions/feedback
+Key sources:
+- Gorard, J. (2020). *Some Relativistic and Gravitational Properties of the Wolfram Model*. Complex Systems 29(2), 599-654
+- Lovelock, D. (1971). *The Einstein Tensor and Its Generalizations*. J. Math. Phys. 12(3), 498-501
+- Vanchurin, V. (2020). *The World as a Neural Network*. Entropy 22(11), 1210
+- Vanchurin, V. (2024--2025). *Towards a Theory of Quantum Gravity from Neural Networks* (Type II framework)
+- Amari, S. (1998). *Natural Gradient Works Efficiently in Learning*. Neural Computation 10(2)
 
 ---
 
-## 📜 License
+## License
 
-**Paper**: arXiv perpetual non-exclusive license (or CC BY when finalized)
+**Paper**: CC BY 4.0
 **Code**: MIT License
 
 ---
 
-## 🔗 Links
-
-- **Paper PDF**: [main.pdf](output/latex/main.pdf)
-- **arXiv Package**: [arxiv-submission-final.tar.gz](output/arxiv-submission-final.tar.gz)
-- **Source Code**: [src/](src/)
-- **Computational Validation**: [output/](output/)
-- **Program Umbrella**: https://github.com/MaxZhuravlev/physics-cosmo-unification
-
----
-
-**Publication Date**: February 15, 2026
-**Version**: v1.0 (preprint)
-**Status**: Public, citable, peer feedback welcome
-
----
-
-*Conservative synthesis connecting Wolfram and Vanchurin via Lovelock's uniqueness theorem*
+*Negative results documenting why the Lovelock bridge breaks, plus constructive contributions to Type II metric theory for observers in learning systems.*
