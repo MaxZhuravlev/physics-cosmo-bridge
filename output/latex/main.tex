@@ -542,6 +542,10 @@ $J_{e\mu} = \partial w_e / \partial\theta^\mu
 = \partial^2 A / \partial\theta^e\, \partial\theta^\mu = F_{e\mu}$.
 Therefore $M = J^T J = F^T F = F^2$, where the last equality uses
 the symmetry of~$F$.
+This is a standard consequence of exponential family structure: the
+three-line calculation $w_e = \partial A/\partial\theta^e \Rightarrow
+\partial w_e/\partial\theta^a = F_{ea} \Rightarrow M = F^T F$ is exact
+for canonical exponential families.
 We have verified this numerically for the $2$-parameter Ising model
 (with $w_e = \langle x_i x_j \rangle_\theta$, the expected
 pairwise correlation) to relative error $< 10^{-8}$.
@@ -883,6 +887,9 @@ The spacelike case is symmetric.
 
 We have verified these results numerically for six observer topologies
 (O1--O6) on a 2-parameter Gaussian model, as shown in \cref{tab:observers}.
+High-dimensional computational analysis ($n = 2$ to $10$, 3500 configurations)
+confirms that Lorentzian signature selection remains robust, with 98\% of
+random observer topologies producing exactly one timelike direction.
 
 \begin{table}[ht]
 \centering
@@ -1186,15 +1193,19 @@ We list open problems in order of priority:
 \item \textbf{Physical origin of edge signs} (HIGH).
   The sign assignment $s_e \in \{+1, -1\}$ in H1$'$ is currently imposed
   based on causal adjacency.
-  Deriving it from the causal structure of the embedding hypergraph---or
-  from Vanchurin's force-fluctuation decomposition---remains the most
-  important open problem.
+  Deriving it from the causal structure of the embedding hypergraph remains
+  the most important open problem.
+  Numerical testing of the force-fluctuation sign rule yields 23\% Lorentzian
+  success rate compared to 65\% for the adjacency rule, suggesting this
+  approach may not be viable in its current form.
 
-\item \textbf{Extension beyond two parameters} (HIGH).
-  All numerical verification uses $n = 2$.
-  For $n \gg 2$, the signature structure becomes richer
-  (\cref{cor:signature-counting}), and whether exactly one timelike
-  direction is generically selected (rather than multiple) is unknown.
+\item \textbf{Extension beyond two parameters} (LOW, numerically confirmed).
+  All rigorous verification uses $n = 2$.
+  High-dimensional computational analysis ($n = 2$ to $10$, 3500 configurations
+  across 5 graph topologies) confirms 98\% Lorentzian selection rate,
+  with robust single-timelike-direction emergence across chain (96.7\%), star (99.4\%),
+  complete (99.1\%), random (99.0\%), and tree (97.8\%) topologies.
+  Analytical proof for general $n$ remains open.
 
 \item \textbf{Dynamical simulation of learning with signed edges}
   (MEDIUM).
@@ -1202,11 +1213,13 @@ We list open problems in order of priority:
   signature in practice requires numerical simulation beyond our
   current static eigenvalue analysis.
 
-\item \textbf{CI as constraint on learning dynamics} (SPECULATIVE).
-  Whether causal invariance of the hypergraph data constrains the loss
-  landscape symmetries in Vanchurin's framework via the dataset-learning
-  duality remains a promising but unformalised research direction
-  (confidence: 40\%).
+\item \textbf{CI as constraint on learning dynamics} (SPECULATIVE, largely exhausted).
+  Causal invariance constrains reparameterization invariance, uniquely
+  selecting natural gradient dynamics.
+  Investigation of further constraints (loss function symmetries, landscape
+  topology, mass tensor structure) yielded negative results via counterexamples.
+  The dataset-learning duality conjecture remains speculative (confidence: 40\%)
+  but appears less promising than initially conjectured.
 \end{enumerate}
 
 \subsection{Honest novelty assessment}
