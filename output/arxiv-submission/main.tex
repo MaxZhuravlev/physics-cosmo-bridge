@@ -754,7 +754,7 @@ M^{(\mathrm{H1'})}_{ab}
 \begin{corollary}[Signature rigidity]
 \label{cor:signature-rigidity}
 The Fisher-weighted operator
-$A = F^{2}\, M^{(\mathrm{H1'})}\, F^{2} = F^{1/2}\, S\, F^{1/2}$
+$A = F^{-1/2}\, M^{(\mathrm{H1'})}\, F^{-1/2} = F^{1/2}\, S\, F^{1/2}$
 has exactly $q = |\{e : s_e = -1\}|$ negative eigenvalues, by
 Sylvester's law of inertia.
 Pure Lorentzian signature (exactly one negative eigenvalue of $g(\beta)$
@@ -774,7 +774,7 @@ $g(\beta) = F\,S\,F + \beta\,F$ is uniquely determined.
 Let $g(\beta) = M^{(\mathrm{H1'})} + \beta\,F$ where
 $M^{(\mathrm{H1'})}$ has at least one negative eigenvalue and $F$ is
 positive definite.
-Define $A = F^{2}\, M^{(\mathrm{H1'})}\, F^{2}$ with
+Define $A = F^{-1/2}\, M^{(\mathrm{H1'})}\, F^{-1/2}$ with
 eigendecomposition $A = P D P^T$, $D = \operatorname{diag}(d_1, \ldots, d_n)$,
 $d_1 \leq d_2 \leq \cdots \leq d_n$.
 Then:
@@ -797,7 +797,7 @@ Furthermore:
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{Fig1_eigenvalue_trajectories.png}
-\caption{Eigenvalue trajectories of $A = F^{2} M^{(\mathrm{H1'})} F^{2}$
+\caption{Eigenvalue trajectories of $A = F^{-1/2} M^{(\mathrm{H1'})} F^{-1/2}$
 as a function of inverse temperature $\beta$. The most negative eigenvalue
 $d_1(\beta)$ determines the critical value $\beta_c = -d_1$ at which the
 metric $g = M + \beta F$ transitions from indefinite (Lorentzian or stronger)
@@ -807,7 +807,7 @@ to positive definite (Riemannian). Eigenvalues shown for observer topology O3
 \end{figure}
 
 \begin{proof}
-Define $A = F^{2}\, M^{(\mathrm{H1'})}\, F^{2}$ (well-defined
+Define $A = F^{-1/2}\, M^{(\mathrm{H1'})}\, F^{-1/2}$ (well-defined
 since $F$ is positive definite).
 In the $F$-orthonormal basis $y = F^{1/2}\,\theta$, the metric becomes
 $y^T (A + \beta\, I)\, y$.
@@ -1061,7 +1061,7 @@ Then
 = -v_1^T\, \frac{dA}{dt}\, v_1\,,
 \end{equation}
 where $v_1(t)$ is the unit eigenvector of
-$A(t) = F^{2}\, M^{(\mathrm{H1'})}\, F^{2}$ corresponding to its
+$A(t) = F^{-1/2}\, M^{(\mathrm{H1'})}\, F^{-1/2}$ corresponding to its
 most negative eigenvalue $d_1(t)$, and $dA/dt$ depends on the learning
 direction $\dot{\theta}$ via derivatives of both $M$ and~$F$.
 \end{theorem}
@@ -1121,7 +1121,7 @@ Three additional findings emerged from the computational experiments:
 \item \textbf{Multi-eigenvalue transition sequence
   (\cref{cor:signature-counting}).}
   For observers with multiple negative eigenvalues of the
-  Fisher-weighted mass tensor $A = F^{2}\,M^{(\mathrm{H1'})}\,F^{2}$,
+  Fisher-weighted mass tensor $A = F^{-1/2}\,M^{(\mathrm{H1'})}\,F^{-1/2}$,
   the predicted sequence of signature transitions
   (indefinite $\to$ Lorentzian $\to$ Riemannian) is verified exactly.
 \end{enumerate}
