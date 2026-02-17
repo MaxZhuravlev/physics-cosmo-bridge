@@ -44,3 +44,5 @@ output/latex/*.pdf
 # Secrets / API keys
 .env
 *.key
+output/latex/main.aux
+output/latex/main.out
