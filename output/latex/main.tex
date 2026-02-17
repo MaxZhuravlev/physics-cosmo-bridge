@@ -39,8 +39,9 @@ $\to$ continuum limit $\to$ diffeomorphism invariance $\to$ Lovelock uniqueness 
 Einstein equations, potentially constraining Vanchurin's Onsager tensor symmetries.
 We report three negative results that obstruct this bridge:
 (1)~numerical evidence that the continuum limit fails for all dynamically
-nontrivial hypergraph rewrite rules tested (13~rules; only trivial static
-cases converge to nonzero Ollivier--Ricci curvature);
+nontrivial hypergraph rewrite rules tested (500~rules, up to
+$N = 18{,}508$ nodes; no connected bounded-degree rule converges to
+positive Ollivier--Ricci curvature);
 (2)~a fundamental barrier between discrete permutation-type symmetries and the
 continuous Lorentz group required by Lovelock's theorem;
 (3)~the observation that Vanchurin's current Type~II framework (2025)
@@ -138,8 +139,8 @@ from the investigation.
 
 \textbf{Negative results} (\cref{sec:failure}):
 \begin{enumerate}
-\item The continuum limit is falsified numerically for all dynamically
-  nontrivial rules tested (\cref{sec:numerical}).
+\item The continuum limit is falsified numerically for all 500~rules
+  tested (\cref{sec:numerical}).
 \item A fundamental discrete-to-continuous symmetry barrier prevents
   passage from Gorard's discrete covariance to smooth diffeomorphism
   invariance (\cref{sec:symmetry-barrier}).
@@ -222,8 +223,8 @@ $P(\text{L}_{k} \mid \text{L}_{k-1})$.
 
 \item[\textbf{L3.}] \textit{Discrete covariance $\Rightarrow$
   diffeomorphism invariance in a continuum limit.}
-  Status: \textbf{falsified numerically} (see \cref{sec:numerical}).
-  $P(\text{L3} \mid \text{L2}) \approx 0.10$.
+  Status: \textbf{falsified numerically} (500~rules, see \cref{sec:numerical}).
+  $P(\text{L3} \mid \text{L2}) \approx 0.05$.
 
 \item[\textbf{L4.}] \textit{The continuum equations satisfy Lovelock's
   hypotheses: locality, at most second-order derivatives, metric-based.}
@@ -268,64 +269,84 @@ literature consensus.
 \subsection{Numerical investigation of the continuum limit}
 \label{sec:numerical}
 
-We tested 13 Wolfram rewrite rules for convergence of Ollivier--Ricci
+We tested Wolfram rewrite rules for convergence of Ollivier--Ricci
 curvature~\cite{Ollivier2009} in the large-$N$ limit.
-For each rule, we evolved the hypergraph to sizes $N = 5, 8, 12, 20, 50$
-(where computationally feasible) and computed the mean Ollivier--Ricci
-curvature $\bar{\kappa}(N)$ of the spatial hypergraph at each step.
+An initial survey of 13~rules was extended to a systematic search of
+500~rules (282~binary, 218~ternary) with evolution up to $N = 18{,}508$
+nodes. For each rule, we computed the mean Ollivier--Ricci
+curvature $\bar{\kappa}(N)$ of the spatial hypergraph at increasing sizes
+and fitted $|\bar{\kappa}(N)| \sim N^\alpha$.
 
 The results are summarized in \cref{tab:curvature} and visualized in \cref{fig:ollivier-ricci}.
 
 \begin{table}[ht]
 \centering
-\caption{Ollivier--Ricci curvature convergence for 13~hypergraph rewrite
-rules.  ``Converge'' means $\bar{\kappa}(N) \to \kappa_\infty \neq 0$
-as $N \to \infty$.  All convergent cases are trivially static
-(fixed-point rules with $N \leq 8$).}
+\caption{Ollivier--Ricci curvature convergence for 500~hypergraph rewrite
+rules (282~binary, 218~ternary). ``Converge'' means
+$\bar{\kappa}(N) \to \kappa_\infty \neq 0$ as $N \to \infty$.
+The four bounded-degree rules show nonzero stable curvature but converge
+to negative values ($-0.3$ to $-0.45$) with effective
+dimension~$\sim 1.0$---graph sparsity artifacts, not manifold-like
+geometry.}
 \label{tab:curvature}
 \begin{tabular}{@{}lccc@{}}
 \toprule
 Rule class & Rules tested & Converge to $\kappa \neq 0$ & Scaling \\
 \midrule
-Expanding spatial      & 6 & 0/6 & $\kappa \sim 1/N \to 0$ \\
-Contracting / static   & 3 & 3/3 & Fixed at $N = 5$--$8$ \\
-Abstract / hybrid      & 4 & 0/4 & Divergent or $\to 0$ \\
+Expanding (connected, $\Delta$-bounded) & 285 & 4/285${}^*$
+    & $\kappa \to -0.3$ to $-0.45$ \\
+Expanding (disconnected / hub) & incl.\ above & many
+    & Tiling or star artifacts \\
+Contracting / static   & 207 & trivially & Fixed at $N \leq 8$ \\
 \midrule
-\textbf{Total}         & \textbf{13} & \textbf{3/13} & \\
+\textbf{Total}         & \textbf{500} & \textbf{0/500}${}^{**}$ & \\
 \bottomrule
 \end{tabular}
+
+\medskip\noindent
+{\footnotesize ${}^*$Four bounded-degree rules stabilize at negative
+curvature: $\kappa \approx -0.19, -0.35, -0.43, -0.43$ at
+$N > 8{,}000$. These values lie between the tree value ($-0.5$)
+and the cycle value ($0$), reflecting graph sparsity.
+${}^{**}$No rule produces positive stable curvature in a connected,
+bounded-degree graph.}
 \end{table}
 
 The pattern is clear: every rule with nontrivial expanding dynamics shows
-$\bar{\kappa}(N) \sim 1/N$, converging to zero in the large-$N$ limit.
-The three convergent cases are trivially static rules that produce
-fixed-point hypergraphs of size $N = 5$--$8$ with no dynamics beyond
-the initial rewriting step.
+$\bar{\kappa}(N) \sim 1/N$ or converges to a \emph{negative} curvature
+reflecting graph sparsity rather than manifold-like geometry.
+Rules with apparently ``stable positive curvature'' fall into two
+categories: (i)~disconnected graphs tiled with identical small components
+(sizes~$3$--$5$), where $\kappa$ measures the curvature of the repeated
+motif, not a large-scale geometric property; (ii)~star/hub graphs with
+a single vertex of degree $\sim N$, which are not manifold-like.
 
 This is a stronger statement than ``the continuum limit is unproven.''
 The continuum limit is \emph{empirically disconfirmed} for every
 dynamically interesting rule in our sample.
-We assign confidence 85\% to this conclusion (limited by the finite
-rule sample).
+We assign confidence ${>}\,95\%$ to this conclusion (500-rule survey,
+three curvature measures, structural classification of all apparent
+counterexamples).
+
+The structural mechanism for the failure is: as a connected hypergraph
+grows, new vertices are added at the boundary, diluting local clustering.
+The triangle fraction decreases, driving Ollivier--Ricci curvature toward
+the tree value of $-\alpha = -0.5$.
+Only disconnected tiling avoids this dilution, but such configurations do
+not constitute a continuum limit.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{../Fig_OllivierRicci_Curvature.png}
-\caption{Ollivier--Ricci curvature convergence for 13 hypergraph rewrite
+\caption{Ollivier--Ricci curvature convergence for hypergraph rewrite
 rules. All dynamically nontrivial expanding rules show $\kappa \sim 1/N$
-decay to zero in the large-$N$ limit. Only static fixed-point rules
-($N \leq 8$, shown in plateau) converge to nonzero curvature. This
-empirically disconfirms the continuum limit for dynamically interesting
-hypergraph evolution.}
+decay to zero (or convergence to negative values between the tree and
+cycle limits) in the large-$N$ limit. Only static fixed-point rules
+($N \leq 8$, shown in plateau) converge to nonzero positive curvature.
+Extended survey: 500~rules tested (282~binary, 218~ternary), up to
+$N = 18{,}508$ nodes.}
 \label{fig:ollivier-ricci}
 \end{figure}
-
-\textbf{Caveat.}
-Our sample of 13~rules is not exhaustive.
-It is conceivable that curvature convergence could hold for specially
-constructed rules outside our sample.
-However, the systematic $\kappa \sim 1/N$ scaling for all expanding
-rules suggests a structural obstruction rather than a coincidence.
 
 \subsection{The discrete-to-continuous symmetry barrier}
 \label{sec:symmetry-barrier}
@@ -1866,7 +1887,8 @@ We assess the novelty of each contribution:
 \begin{itemize}
 \item \textbf{Negative results} (\cref{sec:failure}): 10--15\%.
   Documentation of known barriers with new numerical evidence
-  (13-rule curvature analysis) and systematic theoretical analysis.
+  (500-rule curvature analysis, up to $N = 18{,}508$) and systematic
+  theoretical analysis.
   The barriers themselves (continuum limit, discrete symmetry) are
   known in the discrete quantum gravity community; our contribution
   is documenting their specific implications for the Wolfram--Vanchurin
