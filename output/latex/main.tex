@@ -1411,11 +1411,14 @@ information matrix satisfies:
 \leq C(g, \Delta) \cdot \tanh^{g-2}(J)\,,
 \end{equation}
 where the exponent $g - 2$ is exact (from transfer matrix analysis)
-and the effective constant $C(g, \Delta)$ is empirically determined
-to grow at most linearly in~$g$ for fixed~$\Delta$
-($C \lesssim 0.7\,g$ on cycle graphs with $g = 3$ to~$12$,
-$J = 0.1$ to~$1.0$, 50~configurations; a rigorous derivation of~$C$
-remains open).
+and the effective constant satisfies
+\begin{equation}
+\label{eq:C-derived}
+C(\Delta, J) = \frac{2(\Delta - 1)\operatorname{sech}^2(J)}{(1 + \tanh^g(J))^2}\,,
+\end{equation}
+derived from the Dobrushin uniqueness condition
+(interdependence coefficient $\tanh(J)$, valid for
+$\Delta \cdot \tanh(J) < 1$).
 On cycle graphs, the adjacent-edge covariance is given exactly by:
 \begin{equation}
 \label{eq:adjacent-edge-cov}
@@ -1459,13 +1462,12 @@ By Gershgorin's theorem, the operator norm of the off-diagonal part
 is bounded by the maximum absolute row sum:
 $\|F - \operatorname{diag}(F)\|_{\text{op}} \leq
 \max_e \sum_{f \neq e} |F_{ef}|$.
-Each edge $e$ has at most $2(\Delta - 1)$ adjacent edges plus
-higher-order neighbours; summing the geometric series of decaying
-correlations gives a constant $C(g, \Delta)$ growing linearly in~$g$
-(each additional girth step adds one more shell of non-negligible
-correlations).
+Each edge $e$ has at most $2(\Delta - 1)$ adjacent edges, giving
+the dominant contribution $2(\Delta - 1) \operatorname{sech}^4(J)
+\cdot \tanh^{g-2}(J) / (1 + \tanh^g(J))^2$.
 Division by $\|\operatorname{diag}(F)\|_{\text{op}}
-= \operatorname{sech}^2(J)$ yields~\eqref{eq:near-diagonal-bound}.
+\geq \operatorname{sech}^2(J) / (1 + \tanh^g(J))^2$
+yields~\eqref{eq:near-diagonal-bound} with~\eqref{eq:C-derived}.
 
 \textit{Numerical verification.}
 On cycle graphs $C_g$ ($g = 3, \ldots, 12$), the ratio
