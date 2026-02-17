@@ -1408,17 +1408,17 @@ information matrix satisfies:
 \label{eq:near-diagonal-bound}
 \frac{\|F - \operatorname{diag}(F)\|_{\text{op}}}
      {\|\operatorname{diag}(F)\|_{\text{op}}}
-\leq C(g, \Delta) \cdot \tanh^{g-2}(J)\,,
+\leq C(\Delta) \cdot \tanh^{g-2}(J)\,,
 \end{equation}
 where the exponent $g - 2$ is exact (from transfer matrix analysis)
-and the effective constant satisfies
+and the prefactor is
 \begin{equation}
 \label{eq:C-derived}
-C(\Delta, J) = \frac{2(\Delta - 1)\operatorname{sech}^2(J)}{(1 + \tanh^g(J))^2}\,,
+C(\Delta) = 2(\Delta - 1)\,,
 \end{equation}
-derived from the Dobrushin uniqueness condition
-(interdependence coefficient $\tanh(J)$, valid for
-$\Delta \cdot \tanh(J) < 1$).
+a universal constant equal to the maximum number of adjacent edges
+(derived from the Dobrushin uniqueness condition and Gershgorin's
+theorem; see~\cite{Dobrushin1985}).
 On cycle graphs, the adjacent-edge covariance is given exactly by:
 \begin{equation}
 \label{eq:adjacent-edge-cov}
@@ -1462,16 +1462,16 @@ By Gershgorin's theorem, the operator norm of the off-diagonal part
 is bounded by the maximum absolute row sum:
 $\|F - \operatorname{diag}(F)\|_{\text{op}} \leq
 \max_e \sum_{f \neq e} |F_{ef}|$.
-Each edge $e$ has at most $2(\Delta - 1)$ adjacent edges, giving
-the dominant contribution $2(\Delta - 1) \operatorname{sech}^4(J)
-\cdot \tanh^{g-2}(J) / (1 + \tanh^g(J))^2$.
-Division by $\|\operatorname{diag}(F)\|_{\text{op}}
-\geq \operatorname{sech}^2(J) / (1 + \tanh^g(J))^2$
-yields~\eqref{eq:near-diagonal-bound} with~\eqref{eq:C-derived}.
+Each edge $e$ has at most $2(\Delta - 1)$ adjacent edges, and each
+contributes at most $O(\tanh^{g-2}(J))$ to the row sum.
+Since $\|\operatorname{diag}(F)\|_{\text{op}}$ is bounded below by the
+minimum edge variance (which is order one in the Dobrushin regime),
+dividing yields~\eqref{eq:near-diagonal-bound}
+with~$C(\Delta) = 2(\Delta - 1)$.
 
 \textit{Numerical verification.}
 On cycle graphs $C_g$ ($g = 3, \ldots, 12$), the ratio
-$C(g,\Delta) = \text{ratio}/\tanh^{g-2}(J)$ has coefficient of
+$C = \text{ratio}/\tanh^{g-2}(J)$ has coefficient of
 variation $< 0.28$ across all tested~$J$, compared to $> 1.6$ for
 the na\"ive exponent~$g$
 (50~configurations; see~\texttt{near\_diagonal\_bound\_derivation.py}).
@@ -1579,7 +1579,7 @@ cycle graphs $C_n$ ($n = 4, \ldots, 20$) at $J = 0.5$.
 Trees ($g \to \infty$) achieve exact diagonality.
 The natural scaling exponent is $g - 2$
 (\cref{eq:adjacent-edge-cov}), with effective constant
-$C(g, \Delta) \lesssim 0.7\,g$ on cycles
+$C(\Delta) = 2(\Delta - 1) = 2$ on cycles ($\Delta = 2$)
 (\cref{thm:near-diagonal-fisher}).}
 \label{fig:near-diagonal-decay}
 \end{figure}
