@@ -1,0 +1,171 @@
+\begin{thebibliography}{10}
+
+\bibitem{Wolfram2020}
+Stephen Wolfram.
+\newblock A class of models with the potential to represent fundamental
+  physics.
+\newblock {\em Complex Systems}, 29:107--536, 2020.
+
+\bibitem{Gorard2020}
+Jonathan Gorard.
+\newblock Some relativistic and gravitational properties of the {Wolfram}
+  model.
+\newblock {\em Complex Systems}, 29(2):599--654, 2020.
+
+\bibitem{Vanchurin2020}
+Vitaly Vanchurin.
+\newblock The world as a neural network.
+\newblock {\em Entropy}, 22(11):1210, 2020.
+
+\bibitem{Vanchurin2025}
+Vitaly Vanchurin.
+\newblock Geometric learning dynamics.
+\newblock 2025.
+
+\bibitem{Vanchurin2025CGD}
+Dmitry Guskov and Vitaly Vanchurin.
+\newblock Covariant gradient descent.
+\newblock 2025.
+
+\bibitem{Vanchurin2024EFT}
+Vitaly Vanchurin.
+\newblock Emergent field theories from neural networks.
+\newblock 2024.
+
+\bibitem{Lovelock1971}
+David Lovelock.
+\newblock The {Einstein} tensor and its generalizations.
+\newblock {\em Journal of Mathematical Physics}, 12(3):498--501, 1971.
+
+\bibitem{Matsueda2013}
+Hiroaki Matsueda.
+\newblock Emergent general relativity from {Fisher} information metric.
+\newblock 2013.
+
+\bibitem{Ruppeiner1979}
+George Ruppeiner.
+\newblock Thermodynamics: A {Riemannian} geometric model.
+\newblock {\em Physical Review A}, 20:1608--1613, 1979.
+
+\bibitem{Ruppeiner1995}
+George Ruppeiner.
+\newblock {Riemannian} geometry in thermodynamic fluctuation theory.
+\newblock {\em Reviews of Modern Physics}, 67:605--659, 1995.
+
+\bibitem{Janke2004}
+Wolfhard Janke, David~A. Johnston, and Ralph Kenna.
+\newblock Information geometry and phase transitions.
+\newblock {\em Physica A: Statistical Mechanics and its Applications},
+  336:181--186, 2004.
+
+\bibitem{BrodyRitz2003}
+Dorje~C. Brody and Anna Ritz.
+\newblock Information geometry of finite {Ising} models.
+\newblock {\em Journal of Geometry and Physics}, 47:207--220, 2003.
+
+\bibitem{Amari1998}
+Shun ichi Amari.
+\newblock Natural gradient works efficiently in learning.
+\newblock {\em Neural Computation}, 10(2):251--276, 1998.
+
+\bibitem{Rao1945}
+C.~Radhakrishna Rao.
+\newblock Information and the accuracy attainable in the estimation of
+  statistical parameters.
+\newblock {\em Bulletin of the Calcutta Mathematical Society}, 37:81--91, 1945.
+
+\bibitem{Ollivier2009}
+Yann Ollivier.
+\newblock Ricci curvature of {Markov} chains on metric spaces.
+\newblock {\em Journal of Functional Analysis}, 256(3):810--864, 2009.
+
+\bibitem{ConantAshby1970}
+Roger~C. Conant and W.~Ross Ashby.
+\newblock Every good regulator of a system must be a model of that system.
+\newblock {\em International Journal of Systems Science}, 1(2):89--97, 1970.
+
+\bibitem{Virgo2025}
+Nathaniel Virgo, Martin Biehl, and Simon McGregor.
+\newblock A ``good regulator theorem'' for embodied agents.
+\newblock 2025.
+\newblock Reformulation of the Conant--Ashby theorem for embodied agents with
+  boundary interactions.
+
+\bibitem{Chiribella2011}
+Giulio Chiribella, Giacomo~Mauro D'Ariano, and Paolo Perinotti.
+\newblock Informational derivation of quantum theory.
+\newblock {\em Physical Review A}, 84(1):012311, 2011.
+
+\bibitem{companion_qm}
+Max Zhuravlev.
+\newblock Quantum mechanics from operational composition: Tensor product
+  structure and local discriminability from causal invariance.
+\newblock In preparation. Paper \#2 of the Cosmological Unification Program,
+  2026.
+
+\bibitem{Amari2016}
+Shun ichi Amari.
+\newblock {\em Information Geometry and Its Applications}, volume 194 of {\em
+  Applied Mathematical Sciences}.
+\newblock Springer, 2016.
+
+\bibitem{Friston2010}
+Karl Friston.
+\newblock The free-energy principle: A unified brain theory?
+\newblock {\em Nature Reviews Neuroscience}, 11:127--138, 2010.
+
+\bibitem{HornJohnson2013}
+Roger~A. Horn and Charles~R. Johnson.
+\newblock {\em Matrix Analysis}.
+\newblock Cambridge University Press, 2nd edition, 2013.
+
+\bibitem{Hayward1992}
+Sean~A. Hayward.
+\newblock Signature change in general relativity.
+\newblock {\em Classical and Quantum Gravity}, 9:1851--1862, 1992.
+
+\bibitem{companion_amari}
+Max Zhuravlev.
+\newblock Verifying good regulator conditions for hypergraph observers.
+\newblock In preparation. Paper \#3 of the Cosmological Unification Program,
+  2026.
+
+\bibitem{GorardNamuduriArsiwalla2021}
+Jonathan Gorard, Xerxes~D. Arsiwalla, and Hatem Namuduri.
+\newblock {ZX}-calculus and extended hypergraph rewriting systems {I}: A
+  multiway approach to categorical quantum information theory.
+\newblock 2021.
+\newblock See also arXiv:2105.04057 for multiway graph applications.
+
+\bibitem{Caselle1989}
+M.~Caselle, A.~D'Adda, and L.~Magnea.
+\newblock Regge calculus as a local theory of the {Poincar\'e} group.
+\newblock {\em Physics Letters B}, 232:457--461, 1989.
+
+\bibitem{Drummond1986}
+I.~T. Drummond.
+\newblock {Regge--Palatini} calculus.
+\newblock {\em Nuclear Physics B}, 273:125--136, 1986.
+
+\bibitem{MenottiPelissetto1987}
+P.~Menotti and A.~Pelissetto.
+\newblock {Poincar\'e}, de {Sitter}, and conformal gravity on the lattice.
+\newblock {\em Physical Review D}, 35:1194--1204, 1987.
+
+\bibitem{HehlMcCreaMielkeNeeman1995}
+Friedrich~W. Hehl, J.~Dermott McCrea, Eckehard~W. Mielke, and Yuval Ne'eman.
+\newblock Metric-affine gauge theory of gravity: Field equations, {Noether}
+  identities, world spinors, and breaking of dilation invariance.
+\newblock {\em Physics Reports}, 258:1--171, 1995.
+
+\bibitem{Jaynes1957}
+Edwin~T. Jaynes.
+\newblock Information theory and statistical mechanics.
+\newblock {\em Physical Review}, 106(4):620--630, 1957.
+
+\bibitem{PopescuShortWinter2006}
+Sandu Popescu, Anthony~J. Short, and Andreas Winter.
+\newblock Entanglement and the foundations of statistical mechanics.
+\newblock {\em Nature Physics}, 2:754--758, 2006.
+
+\end{thebibliography}

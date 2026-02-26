@@ -1,0 +1,8 @@
+CLAUDE.md
+VALUE-TRACKS.yaml
+.cw/
+.DS_Store
+*.py
+*.sh
+*.json
+*.log

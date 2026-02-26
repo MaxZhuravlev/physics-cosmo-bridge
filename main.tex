@@ -1,0 +1,2046 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\geometry{margin=1in}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Where the Lovelock Bridge Breaks:\\
+Negative Results and New Directions for Connecting\\
+Discrete and Continuous Spacetime Emergence}
+
+\author{Max Zhuravlev\thanks{Independent researcher. Email: \texttt{max@vibecodium.ai}}}
+
+\date{February 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We examine the hypothesis that Wolfram's hypergraph physics and Vanchurin's
+neural network cosmology can be connected via Lovelock's uniqueness theorem.
+The proposed bridge runs: causal invariance $\to$ discrete covariance (Gorard 2020)
+$\to$ continuum limit $\to$ diffeomorphism invariance $\to$ Lovelock uniqueness $\to$
+Einstein equations, potentially constraining Vanchurin's Onsager tensor symmetries.
+We report three negative results that obstruct this bridge:
+(1)~numerical evidence that the continuum limit fails for all dynamically
+nontrivial hypergraph rewrite rules tested (500~rules, up to
+$N = 18{,}508$ nodes; no connected bounded-degree rule converges to
+positive Ollivier--Ricci curvature);
+(2)~a fundamental barrier between discrete permutation-type symmetries and the
+continuous Lorentz group required by Lovelock's theorem;
+(3)~the observation that Vanchurin's current Type~II framework (2025)
+bypasses the continuum limit entirely by working in continuous trainable
+parameter space.
+Having documented why the direct bridge fails, we turn to constructive results
+within Vanchurin's Type~II metric framework.
+We prove an exact formula for the critical inverse temperature~$\beta_c$ at
+which the observer metric transitions between Lorentzian and Riemannian
+signatures, establish that the mass tensor equals the square of the Fisher
+matrix for exponential family models, and identify a spectral purity condition
+under which mass and Fisher tensors become proportional.
+We compare our signed-edge construction for Lorentzian signature with
+Vanchurin's non-principal square root mechanism and prove they are
+non-equivalent.
+Additionally, we prove the \emph{Tree Fisher Identity}: the Ising Fisher
+matrix on tree graphs equals $\operatorname{sech}^2(J)$ times the identity,
+and derive a rigorous bound on off-diagonal Fisher entries that decay as
+$O(\tanh^{g-2}(J))$ with graph girth~$g$, with an exact adjacent-edge
+covariance formula on cycles.
+We prove that any positive definite diagonal matrix (the structural
+case for tree observers) selects Lorentzian signature ($q = 1$) with
+explicit margin, and that this dominance is stable under perturbation
+(robust to off-diagonal ratio ${\sim}0.9$); however, the signed-edge
+construction H1$'$ creates Lorentzian \emph{accessibility} without
+preferential selection (spectral gap degeneracy).
+Universality tests across $q$-state Potts models ($q = 2$--$5$,
+72~configurations) confirm that these spectral properties extend beyond
+the Ising case to all discrete spin models.
+These results contribute to the formal development of Type~II metric theory
+for observers in learning systems.
+
+\medskip
+\noindent\textbf{Keywords}: Wolfram physics, neural network cosmology,
+Lovelock theorem, negative results, Lorentzian signature, Fisher information,
+Type~II metrics
+
+\medskip
+\noindent\textbf{arXiv category}: gr-qc (cross-list: hep-th)
+\end{abstract}
+
+%----------------------------------------------------------------------
+\section{Introduction}
+\label{sec:introduction}
+%----------------------------------------------------------------------
+
+Two recent cosmological research programs have independently
+derived gravitational physics from novel axioms, yet have never been
+formally compared at a technical level.
+
+\textbf{Wolfram Hypergraph Physics}~\cite{Wolfram2020,Gorard2020}.
+Spacetime and gravity emerge from hypergraph rewriting with causal
+invariance (CI) as the fundamental axiom.
+Gorard~\cite{Gorard2020} proved that CI is equivalent to a discrete
+form of general covariance for hypergraph evolution.
+Under a conjectured continuum limit, this discrete covariance would
+yield smooth diffeomorphism invariance.
+
+\textbf{Vanchurin Neural Network Cosmology}~\cite{Vanchurin2020,Vanchurin2025,Vanchurin2025CGD,Vanchurin2024EFT}.
+Gravity emerges from entropy production and learning dynamics in trainable
+neural networks.
+In Vanchurin's original (Type~I) framework~\cite{Vanchurin2020}, the metric
+lives in the space of non-trainable variables, requiring a discrete-to-continuous
+transition analogous to the Wolfram program's continuum limit.
+In the current Type~II framework~\cite{Vanchurin2025,Vanchurin2025CGD},
+the metric lives in the continuous space of trainable parameters, bypassing
+this barrier entirely.
+
+\subsection{The Lovelock bridge hypothesis}
+\label{sec:bridge-hypothesis}
+
+Lovelock's uniqueness theorem~\cite{Lovelock1971} establishes that in four
+spacetime dimensions, the only symmetric, divergence-free, rank-2 tensor
+constructed from the metric and its first two derivatives is
+$a\,G^{\mu\nu} + b\,g^{\mu\nu}$, where $G^{\mu\nu}$ is the Einstein
+tensor.
+This theorem suggested a natural bridge between the two programs: if
+causal invariance implies diffeomorphism invariance (via a continuum
+limit), and if Vanchurin's gravitational dynamics satisfy Lovelock's
+hypotheses, then both programs are forced to produce Einstein's equations
+as the unique gravitational dynamics.
+
+In his original paper, Vanchurin~\cite{Vanchurin2020} noted that the
+symmetries of his Onsager tensor (Eq.~93 in \cite{Vanchurin2020}) are
+introduced phenomenologically, and asked whether they could be
+``derived from first principles.''
+The Lovelock bridge was conceived as a potential answer.
+
+\subsection{Summary of results}
+\label{sec:summary}
+
+The bridge hypothesis fails.
+This paper documents why, and presents constructive results that emerged
+from the investigation.
+
+\textbf{Negative results} (\cref{sec:failure}):
+\begin{enumerate}
+\item The continuum limit is falsified numerically for all 500~rules
+  tested (\cref{sec:numerical}).
+\item A fundamental discrete-to-continuous symmetry barrier prevents
+  passage from Gorard's discrete covariance to smooth diffeomorphism
+  invariance (\cref{sec:symmetry-barrier}).
+\item Vanchurin's Type~II framework bypasses the problem that the bridge
+  was designed to address (\cref{sec:lovelock-learning}).
+\end{enumerate}
+
+\textbf{Constructive results} (\cref{sec:typeII,sec:mass-fisher,sec:lorentzian,sec:spectral-gap-selection}):
+\begin{enumerate}
+\item The Type~II metric decomposes as $g_{\mu\nu} = M_{\mu\nu} +
+  \beta\,F_{\mu\nu}$, where $M$ is a structural inertia tensor and $F$ the
+  Fisher information metric (\cref{sec:metric-decomposition}).
+\item For exponential family models, $M = F^2$ exactly
+  (\cref{sec:M-equals-F-squared}).
+\item Under a Structural Reflection Condition (SRC), perfect Good Regulators
+  satisfy $M = \kappa\,F$, making the metric conformally Fisher
+  (\cref{sec:spectral-purity}).
+\item A critical inverse temperature $\beta_c$ governs the
+  Lorentzian--Riemannian transition, with exact formula
+  $\beta_c = -d_1$ where $d_1$ is the most negative eigenvalue of the
+  Fisher-weighted mass tensor (\cref{sec:beta-c-theorem}).
+\item Our signed-edge construction (H1$'$) and Vanchurin's non-principal
+  square root are non-equivalent (\cref{sec:comparison-vanchurin}).
+\item The Tree Fisher Identity shows that the Ising Fisher matrix on
+  tree graphs equals $\operatorname{sech}^2(J) \cdot I_m$; the
+  Near-Diagonal Fisher Theorem extends this to sparse graphs with
+  off-diagonal decay $O(\tanh^g(J))$; and a spectral gap selection
+  mechanism demonstrates that sparse observer graphs overwhelmingly
+  prefer Lorentzian ($q = 1$) signature, verified for dimensions up
+  to $n = 20$ (\cref{sec:spectral-gap-selection}).
+\end{enumerate}
+
+\subsection{Relation to prior work}
+\label{sec:prior-work}
+
+Gorard~\cite{Gorard2020} established the rigorous discrete covariance
+result; we do not question this theorem but show that it does not extend
+to smooth diffeomorphism invariance.
+Lovelock~\cite{Lovelock1971} proved the uniqueness theorem that our
+bridge invokes; the theorem is correct but its hypotheses are not met by
+the Wolfram program in its current state.
+Matsueda~\cite{Matsueda2013} derived Einstein equations from the Fisher
+information metric, providing an independent information-theoretic path
+to gravity.
+For information-geometric criticality context in statistical systems we use
+the thermodynamic-geometry program of Ruppeiner and follow-up finite-size
+studies~\cite{Ruppeiner1979,Ruppeiner1995,Janke2004,BrodyRitz2003}.
+Amari~\cite{Amari1998} established the natural gradient as the unique
+covariant gradient descent; this is standard and not claimed as novel.
+Rao~\cite{Rao1945} introduced the Fisher metric as a Riemannian metric
+on statistical manifolds.
+Ollivier~\cite{Ollivier2009} introduced the Ricci curvature for metric
+spaces used in our numerical tests.
+Conant and Ashby~\cite{ConantAshby1970} proved the Good Regulator
+theorem; Virgo et al.~\cite{Virgo2025} reformulated it for embodied
+agents in a form we use in \cref{sec:spectral-purity}.
+Chiribella et al.~\cite{Chiribella2011} derived quantum theory from
+operational axioms; this framework is used in our companion
+paper~\cite{companion_qm} (in preparation).
+
+%----------------------------------------------------------------------
+\section{The Lovelock Bridge: Statement and Failure}
+\label{sec:failure}
+%----------------------------------------------------------------------
+
+\subsection{Precise logical chain}
+\label{sec:logical-chain}
+
+The bridge argument consists of seven steps, labeled L1--L7.
+We state each, indicate its status, and assign a conditional probability
+$P(\text{L}_{k} \mid \text{L}_{k-1})$.
+
+\begin{enumerate}
+\item[\textbf{L1.}] \textit{Causal invariance holds for the hypergraph
+  rewriting system.}
+  Status: imposed by hypothesis.
+  $P(\text{L1}) = 0.95$ (CI is not generic; it holds for only a minority
+  of rules~\cite{Wolfram2020,Gorard2020}).
+
+\item[\textbf{L2.}] \textit{CI $\Rightarrow$ discrete general covariance.}
+  Status: \textbf{proven} (Gorard 2020~\cite{Gorard2020}).
+  $P(\text{L2} \mid \text{L1}) = 0.95$.
+
+\item[\textbf{L3.}] \textit{Discrete covariance $\Rightarrow$
+  diffeomorphism invariance in a continuum limit.}
+  Status: \textbf{falsified numerically} (500~rules, see \cref{sec:numerical}).
+  $P(\text{L3} \mid \text{L2}) \approx 0.05$.
+
+\item[\textbf{L4.}] \textit{The continuum equations satisfy Lovelock's
+  hypotheses: locality, at most second-order derivatives, metric-based.}
+  Status: \textbf{not established} for learning dynamics
+  (see \cref{sec:lovelock-learning}).
+  $P(\text{L4} \mid \text{L3}) \approx 0.30$.
+
+\item[\textbf{L5.}] \textit{The emergent energy-momentum tensor is
+  divergence-free.}
+  Status: not automatic for general learning dynamics.
+  $P(\text{L5} \mid \text{L4}) \approx 0.40$.
+
+\item[\textbf{L6.}] \textit{$D = 4$ spacetime dimensions.}
+  Status: assumed (observational, not derived from CI).
+  $P(\text{L6} \mid \text{L5}) = 0.99$.
+
+\item[\textbf{L7.}] \textit{Lovelock uniqueness $\Rightarrow$ Einstein
+  equations $\Rightarrow$ constrains Onsager tensor.}
+  Status: theorem-level, conditional on L1--L6.
+  $P(\text{L7} \mid \text{L6}) = 0.99$.
+\end{enumerate}
+
+\begin{remark}[End-to-end probability]
+\label{rem:probability}
+The end-to-end probability of the bridge holding is
+\begin{equation}
+\label{eq:bridge-probability}
+P(\text{Einstein} \mid \text{CI}) \;=\;
+\prod_{k=1}^{7} P(\text{L}_k \mid \text{L}_{k-1})
+\;\approx\; 0.95 \times 0.95 \times 0.10 \times 0.30 \times 0.40 \times 0.99 \times 0.99
+\;\approx\; 0.011\,.
+\end{equation}
+That is, conditional on causal invariance, the probability that the full
+Lovelock bridge delivers Einstein equations is approximately~$1\%$.
+The bottleneck is Step~L3 (continuum limit), followed by L4 and~L5.
+Steps~L4 and~L5 are subjective estimates reflecting the author's
+assessment of how likely learning dynamics satisfy Lovelock's
+hypotheses; they are not derived from numerical experiments or
+literature consensus.
+\end{remark}
+
+\subsection{Numerical investigation of the continuum limit}
+\label{sec:numerical}
+
+We tested Wolfram rewrite rules for convergence of Ollivier--Ricci
+curvature~\cite{Ollivier2009} in the large-$N$ limit.
+An initial survey of 13~rules was extended to a systematic search of
+500~rules (282~binary, 218~ternary) with evolution up to $N = 18{,}508$
+nodes. For each rule, we computed the mean Ollivier--Ricci
+curvature $\bar{\kappa}(N)$ of the spatial hypergraph at increasing sizes
+and fitted $|\bar{\kappa}(N)| \sim N^\alpha$.
+
+The results are summarized in \cref{tab:curvature} and visualized in \cref{fig:ollivier-ricci}.
+
+\begin{table}[ht]
+\centering
+\caption{Ollivier--Ricci curvature convergence for 500~hypergraph rewrite
+rules (282~binary, 218~ternary). ``Converge'' means
+$\bar{\kappa}(N) \to \kappa_\infty \neq 0$ as $N \to \infty$.
+The four bounded-degree rules show nonzero stable curvature but converge
+to negative values ($-0.3$ to $-0.45$) with effective
+dimension~$\sim 1.0$---graph sparsity artifacts, not manifold-like
+geometry.}
+\label{tab:curvature}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Rule class & Rules tested & Converge to $\kappa \neq 0$ & Scaling \\
+\midrule
+Expanding (connected, $\Delta$-bounded) & 285 & 4/285${}^*$
+    & $\kappa \to -0.3$ to $-0.45$ \\
+Expanding (disconnected / hub) & incl.\ above & many
+    & Tiling or star artifacts \\
+Contracting / static   & 207 & trivially & Fixed at $N \leq 8$ \\
+\midrule
+\textbf{Total}         & \textbf{500} & \textbf{0/500}${}^{**}$ & \\
+\bottomrule
+\end{tabular}
+
+\medskip\noindent
+{\footnotesize ${}^*$Four bounded-degree rules stabilize at negative
+curvature: $\kappa \approx -0.19, -0.35, -0.43, -0.43$ at
+$N > 8{,}000$. These values lie between the tree value ($-0.5$)
+and the cycle value ($0$), reflecting graph sparsity.
+${}^{**}$No rule produces positive stable curvature in a connected,
+bounded-degree graph.}
+\end{table}
+
+The pattern is clear: every rule with nontrivial expanding dynamics shows
+$\bar{\kappa}(N) \sim 1/N$ or converges to a \emph{negative} curvature
+reflecting graph sparsity rather than manifold-like geometry.
+Rules with apparently ``stable positive curvature'' fall into two
+categories: (i)~disconnected graphs tiled with identical small components
+(sizes~$3$--$5$), where $\kappa$ measures the curvature of the repeated
+motif, not a large-scale geometric property; (ii)~star/hub graphs with
+a single vertex of degree $\sim N$, which are not manifold-like.
+
+This is a stronger statement than ``the continuum limit is unproven.''
+The continuum limit is \emph{empirically disconfirmed} for every
+dynamically interesting rule in our sample.
+We assign confidence ${>}\,95\%$ to this conclusion (500-rule survey,
+three curvature measures, structural classification of all apparent
+counterexamples).
+
+The structural mechanism for the failure is: as a connected hypergraph
+grows, new vertices are added at the boundary, diluting local clustering.
+The triangle fraction decreases, driving Ollivier--Ricci curvature toward
+the tree value of $-\alpha = -0.5$.
+Only disconnected tiling avoids this dilution, but such configurations do
+not constitute a continuum limit.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig_OllivierRicci_Curvature.png}
+\caption{Ollivier--Ricci curvature convergence for hypergraph rewrite
+rules. All dynamically nontrivial expanding rules show $\kappa \sim 1/N$
+decay to zero (or convergence to negative values between the tree and
+cycle limits) in the large-$N$ limit. Only static fixed-point rules
+($N \leq 8$, shown in plateau) converge to nonzero positive curvature.
+Extended survey: 500~rules tested (282~binary, 218~ternary), up to
+$N = 18{,}508$ nodes.}
+\label{fig:ollivier-ricci}
+\end{figure}
+
+\subsection{The discrete-to-continuous symmetry barrier}
+\label{sec:symmetry-barrier}
+
+Even if the continuum limit problem were resolved, a second barrier
+remains.
+Gorard's~\cite{Gorard2020} discrete covariance theorem establishes
+invariance under \emph{permutation-type} transformations of the
+hypergraph update order---these are elements of a finite symmetric group.
+Lovelock's theorem requires diffeomorphism invariance under the
+\emph{continuous} Lie group $\mathrm{Diff}(M)$.
+The Lorentz group $\mathrm{SO}(3,1)$ is a continuous Lie group; no finite
+set of discrete transformations generates it.
+
+Coarse-graining of hypergraph dynamics can produce approximate spatial
+symmetries (rotations, translations) in the large-$N$ regime, as
+demonstrated by Wolfram model simulations~\cite{Wolfram2020}.
+However, Lorentz \emph{boosts} are qualitatively different: they mix
+spatial and temporal directions and require a continuous parameter
+(rapidity).
+No known coarse-graining procedure generates boosts from discrete
+permutation symmetries.
+
+The gap between discrete and continuous covariance may be fundamental
+rather than technical.
+This is not a new observation---it reflects a longstanding challenge in
+all discrete approaches to quantum gravity---but its specific implications
+for the Wolfram--Vanchurin bridge have not been previously documented.
+
+\subsection{Lovelock assumptions and learning dynamics}
+\label{sec:lovelock-learning}
+
+Lovelock's theorem~\cite{Lovelock1971} requires four conditions:
+(a)~general covariance, (b)~divergence-free energy-momentum tensor,
+(c)~field equations at most second-order in metric derivatives,
+(d)~$D = 4$ spacetime dimensions.
+For learning dynamics~\cite{Vanchurin2020,Vanchurin2025}, these conditions
+are not automatically satisfied:
+
+\begin{enumerate}
+\item General covariance holds only in the continuum limit, which is not
+  established (Step~L3).
+\item The divergence-free condition on Vanchurin's Onsager tensor is an
+  assumption, not a derivation, in the Type~I framework.
+\item Learning dynamics can produce higher-order equations when the loss
+  landscape is sufficiently complex.
+\item $D = 4$ is observationally motivated but not derived from any axiom
+  in either program.
+\end{enumerate}
+
+However, within Vanchurin's Type~II framework, these objections are
+largely resolved; see \cref{sec:typeII}.
+
+\subsection{End-to-end probability analysis}
+\label{sec:probability-analysis}
+
+\Cref{rem:probability} estimates the end-to-end success probability at
+approximately~$1\%$.
+This makes the Lovelock bridge, in its original form, an implausible
+argument.
+The dominant failure modes are the continuum limit (L3, $P \approx 0.10$)
+and the Lovelock hypothesis compatibility with learning dynamics
+(L4--L5, combined $P \approx 0.12$).
+
+We emphasize that this is not merely a gap in current knowledge: Step~L3
+is actively falsified by the numerical evidence of \cref{sec:numerical},
+and Steps~L4--L5 face the structural objections detailed
+in~\cref{sec:lovelock-learning}.
+
+%----------------------------------------------------------------------
+\section{Vanchurin's Type~II Framework: Why It Bypasses the Problem}
+\label{sec:typeII}
+%----------------------------------------------------------------------
+
+\subsection{Type~I versus Type~II}
+\label{sec:type-I-vs-II}
+
+Vanchurin's framework has undergone a fundamental evolution.
+
+In the \textbf{Type~I} framework~\cite{Vanchurin2020}, the metric tensor
+lives in the space of non-trainable variables~$X$ (analogous to the
+spatial hypergraph in the Wolfram program).
+This space is discrete, and recovering smooth geometry requires exactly
+the continuum limit that our bridge depends on.
+
+In the \textbf{Type~II} framework~\cite{Vanchurin2025,Vanchurin2025CGD},
+the metric tensor lives in the space of trainable parameters~$Q$.
+This space is continuous by construction---the parameters are
+real-valued weights of the neural network---so no discrete-to-continuous
+transition is needed.
+
+The entire Lovelock bridge was designed to address a problem (the
+passage from discrete to continuous covariance) that no longer exists in
+the current version of one of the two programs being bridged.
+
+\subsection{Covariant gradient descent}
+\label{sec:CGD}
+
+In the Type~II framework, the learning dynamics take the form of
+covariant gradient descent (CGD)~\cite{Vanchurin2025CGD}:
+\begin{equation}
+\label{eq:CGD}
+\dot{q}^\mu = -\gamma\, g^{\mu\nu}(q)\, F_\nu(q)\,,
+\end{equation}
+where $g^{\mu\nu}$ is the inverse metric on parameter space, $F_\nu =
+-\langle \partial_\nu L \rangle$ is the averaged force from the loss
+function~$L$, and $\gamma$ is a learning rate.
+General covariance is built into this equation: it is manifestly tensorial
+under reparametrizations of~$Q$.
+
+\subsection{Direct derivation of Einstein equations}
+\label{sec:einstein-derivation}
+
+Vanchurin~\cite{Vanchurin2025} derives the Einstein equations through a
+constructive procedure:
+\begin{enumerate}
+\item Consider an ensemble of $n$ learning agents, each with metric
+  $g_{n,\mu\nu}$.
+\item Define a local averaged metric via Gaussian-weighted ensemble
+  average.
+\item Construct the Einstein--Hilbert action from this ensemble metric.
+\item Variation yields the vacuum Einstein equations:
+  \begin{equation}
+  \label{eq:einstein-vacuum}
+  R_{\mu\nu} - \tfrac{1}{2}\, g_{\mu\nu}\, R = 0\,.
+  \end{equation}
+\end{enumerate}
+This derivation does not invoke the Lovelock theorem.
+It provides a constructive proof where our bridge provides only a
+uniqueness argument.
+Consequently, the Lovelock bridge, even if it could be completed, would
+be \emph{confirmatory} rather than predictive: it would confirm a result
+that Vanchurin already derives directly.
+
+\subsection{Three regimes}
+\label{sec:three-regimes}
+
+Vanchurin's framework~\cite{Vanchurin2025} identifies three regimes via
+$g \propto \kappa^\alpha$, where $\kappa$ is the noise covariance:
+\begin{itemize}
+\item $\alpha = 1$ (quantum): $g = \kappa$ (Fisher metric). Natural
+  gradient dynamics.  Schr\"odinger-like evolution.
+\item $\alpha = 1/2$ (efficient learning): intermediate.
+  Adam/AdaBelief-like optimizers.
+\item $\alpha = 0$ (classical): $g = I$ (flat metric). Ordinary gradient
+  descent. Equilibration.
+\end{itemize}
+These regimes emerge from the power-law relationship between the metric
+and the noise covariance, and they provide a richer structure than any
+single-regime analysis.
+
+\subsection{Implication for the bridge}
+\label{sec:bridge-implication}
+
+The Lovelock bridge, even if the continuum limit were somehow established,
+would add no new physics to the Type~II framework.
+Type~II satisfies all four Lovelock conditions \emph{from the start}:
+general covariance is built into CGD (\cref{eq:CGD}),
+second-order equations follow from the Einstein--Hilbert action
+construction, the divergence-free condition follows from the Bianchi
+identity on the derived Einstein tensor (\cref{eq:einstein-vacuum}), and
+$D = 4$ is an architectural parameter.
+Our bridge addresses a problem that no longer exists in Vanchurin's
+current framework.
+
+%----------------------------------------------------------------------
+\section{The Mass-Fisher Metric Structure}
+\label{sec:mass-fisher}
+%----------------------------------------------------------------------
+
+\subsection{Type~II metric decomposition}
+\label{sec:metric-decomposition}
+
+In the Type~II framework, the metric on trainable parameter space
+decomposes as
+\begin{equation}
+\label{eq:metric-decomposition}
+g_{\mu\nu}(\theta) = M_{\mu\nu}(\theta) + \beta\, F_{\mu\nu}(\theta)\,,
+\end{equation}
+where:
+\begin{itemize}
+\item $M_{\mu\nu}$ is the \textbf{mass tensor} (structural inertia):
+  measures the cost of reconfiguring the observer's internal structure.
+\item $F_{\mu\nu}$ is the \textbf{Fisher information metric}: measures
+  the sensitivity of the observer's predictions to parameter changes.
+\item $\beta = 1/(kT) > 0$ is the inverse temperature.
+\end{itemize}
+
+\begin{definition}[Structural inertia tensor]
+\label{def:H1}
+For an observer $O$ with internal hyperedges $E_O$, parameters
+$\theta \in \Theta \subseteq \mathbb{R}^n$, and hyperedge configuration
+functions $w_e : \Theta \to \mathbb{R}$, the structural inertia
+tensor is
+\begin{equation}
+\label{eq:H1}
+M^{(\mathrm{H1})}_{\mu\nu}(\theta) = \sum_{e \in E_O}
+\frac{\partial w_e}{\partial \theta^\mu}\,
+\frac{\partial w_e}{\partial \theta^\nu}
+= (J^T J)_{\mu\nu}\,,
+\end{equation}
+where $J_{e,\mu} = \partial w_e / \partial \theta^\mu$ is the
+$|E_O| \times n$ Jacobian matrix.
+\end{definition}
+
+$M^{(\mathrm{H1})}$ is symmetric, positive semi-definite (PSD), with
+$\operatorname{rank}(M) \leq |E_O|$.
+It depends on the observer's internal topology $(V_O, E_O)$, not on the
+external environment.
+
+\subsection{Hypothesis H1: $M = F^2$ for exponential family}
+\label{sec:M-equals-F-squared}
+
+\begin{theorem}[$M = F^2$ for exponential family models]
+\label{thm:M-F-squared}
+Let the observer's prediction model belong to the exponential family:
+$p_\theta(x) = h(x) \exp(\theta^T T(x) - A(\theta))$, where $T(x)$ is
+the sufficient statistic and $A(\theta)$ the log-partition function.
+If $|E_O| = \dim(T)$ (the observer has one internal edge per sufficient
+statistic component), with the natural bijection $e_i \leftrightarrow T_i$ (each internal
+edge corresponds to one sufficient statistic component), and
+the internal hyperedge configurations track the \emph{mean parameters}
+($w_e(\theta) = \mathbb{E}_\theta[T_e] = \partial A / \partial\theta^e$),
+then
+\begin{equation}
+\label{eq:M-F-squared}
+M_{\mu\nu} = (F^2)_{\mu\nu} =
+\sum_{\alpha} F_{\mu\alpha}\, F_{\alpha\nu}\,.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For the exponential family, the Fisher matrix is
+$F_{\mu\nu} = \partial^2 A / \partial\theta^\mu\, \partial\theta^\nu$.
+Under the identification $w_e(\theta) = \partial A / \partial\theta^e$,
+the Jacobian is
+$J_{e\mu} = \partial w_e / \partial\theta^\mu
+= \partial^2 A / \partial\theta^e\, \partial\theta^\mu = F_{e\mu}$.
+Therefore $M = J^T J = F^T F = F^2$, where the last equality uses
+the symmetry of~$F$.
+This is a standard consequence of exponential family structure: the
+three-line calculation $w_e = \partial A/\partial\theta^e \Rightarrow
+\partial w_e/\partial\theta^a = F_{ea} \Rightarrow M = F^T F$ is exact
+for canonical exponential families.
+We have verified this numerically for the $2$-parameter Ising model
+(with $w_e = \langle x_i x_j \rangle_\theta$, the expected
+pairwise correlation) to relative error $< 10^{-8}$.
+\end{proof}
+
+\begin{remark}
+The identity $J = F$ for exponential families is a well-known consequence
+of the Hessian structure of the log-partition function~\cite{Amari2016}.
+Our contribution is connecting this algebraic identity to Vanchurin's mass
+tensor decomposition, yielding the specific relationship $M = F^2$ within
+the Type~II metric framework.
+
+The condition $w_e = \mathbb{E}_\theta[T_e]$ states that the observer's
+internal structure tracks the expected sufficient statistics of its own
+predictive model---a natural requirement for a Good Regulator.
+Note the contrast: if the configurations are instead the natural
+parameters themselves ($w_e = \theta^e$), then $M = I$ (identity),
+not~$F^2$.
+For general models outside the exponential family, $M$ and $F^2$
+may differ; the deviation measures the departure from
+exponential-family structure.
+Whether $M = F^2$ extends beyond canonical exponential families
+(e.g., to marginals such as restricted Boltzmann machines) remains
+an open question requiring independent computation of the
+Jacobian $J_{ea} = \partial w_e / \partial\theta^a$.
+\end{remark}
+
+\subsection{Spectral purity and the Good Regulator condition}
+\label{sec:spectral-purity}
+
+\begin{definition}[Structural Reflection Condition (SRC)]
+\label{def:SRC}
+An observer $O$ satisfies the SRC if for each internal hyperedge
+$e \in E_O$, there exists a boundary observation $x_e$ and a constant
+$c_e > 0$ such that
+\[
+\frac{\partial w_e}{\partial \theta^\mu} = c_e \cdot
+\frac{\partial \log p_\theta(x_e)}{\partial \theta^\mu}
+\quad \text{for all } \mu.
+\]
+\end{definition}
+
+\begin{theorem}[SRC $\Rightarrow$ $M \propto F$]
+\label{thm:SRC}
+Let $O$ satisfy the SRC (\cref{def:SRC}), with the internal hyperedges in
+bijection with boundary observations and
+$c_e^2 = \kappa\, p(x_e)$ for all $e$.
+(The SRC is a formalization of the Good Regulator
+principle~\cite{ConantAshby1970,Virgo2025}---internal structure mirrors
+external dynamics---not a derivation from it.)
+Then
+\begin{equation}
+\label{eq:M-prop-F}
+M_{\mu\nu} = \kappa\, F_{\mu\nu}\,,
+\end{equation}
+so that $g_{\mu\nu} = (\kappa + \beta)\, F_{\mu\nu}$:
+the metric is conformally Fisher.
+\end{theorem}
+
+\begin{proof}
+Under the SRC:
+\begin{align*}
+M_{\mu\nu} &= \sum_{e \in E_O} (\partial_\mu w_e)(\partial_\nu w_e) \\
+&= \sum_e c_e^2\, (\partial_\mu \log p_\theta(x_e))\,
+   (\partial_\nu \log p_\theta(x_e)) \\
+&= \kappa \sum_e p(x_e)\, (\partial_\mu \log p_\theta(x_e))\,
+   (\partial_\nu \log p_\theta(x_e)) \\
+&= \kappa\, F_{\mu\nu}\,. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{corollary}[Deviation tensor]
+\label{cor:deviation}
+The deviation tensor $\Delta_{\mu\nu} = M_{\mu\nu} - \kappa\,F_{\mu\nu}$
+measures the degree of imperfection in the observer's internal model.
+$\Delta = 0$ for perfect Good Regulators satisfying SRC;
+$\Delta \neq 0$ captures vestigial connections, incomplete mirroring,
+and metabolic overhead.
+\end{corollary}
+
+\subsection{Observer complexity and regimes}
+\label{sec:observer-complexity}
+
+The mass-Fisher decomposition connects observer complexity to
+Vanchurin's three regimes:
+
+\begin{itemize}
+\item \textbf{Simple observers} ($|E_O| = 0$): $M = 0$, so $g = \beta\,F$.
+  This is the $\alpha = 1$ (quantum) regime.
+  Dynamics are purely information-theoretic.
+
+\item \textbf{Perfect Good Regulators}: $M = \kappa\,F$, so
+  $g = (\kappa + \beta)\,F$.  Still effectively $\alpha = 1$ (rescaled
+  Fisher geometry).
+
+\item \textbf{Complex observers} ($|E_O| \gg n$, $M$ not proportional
+  to~$F$): $M$ dominates at low temperature.
+  As $\|M\| / (\beta \|F\|) \to \infty$, the effective $\alpha \to 0$
+  (classical regime).
+\end{itemize}
+
+The transition from quantum ($\alpha = 1$) to classical ($\alpha = 0$)
+is driven by the accumulation of internal structural complexity, not by
+environmental decoherence.
+This may provide a microscopic mechanism for the quantum-to-classical
+transition within learning systems, complementary to Friston's
+free-energy principle~\cite{Friston2010}, though this remains conjectural
+(confidence: 40\%).
+
+%----------------------------------------------------------------------
+\section{Lorentzian Signature Mechanism}
+\label{sec:lorentzian}
+%----------------------------------------------------------------------
+
+\subsection{PSD obstruction}
+\label{sec:psd-obstruction}
+
+\begin{theorem}[No Lorentzian from PSD mass tensor]
+\label{thm:psd-obstruction}
+If $M_{\mu\nu}$ is defined by \cref{eq:H1} and $\beta > 0$, then
+$g = M + \beta\,F$ is positive semi-definite.
+Lorentzian signature $(-,+,\ldots,+)$ is impossible.
+\end{theorem}
+
+\begin{proof}
+$M = J^T J \geq 0$ (PSD by construction).
+$F \geq 0$ (PSD by definition of Fisher metric).
+$\beta > 0$.
+Therefore $g = M + \beta\,F \geq 0$.
+All eigenvalues are non-negative.
+\end{proof}
+
+This obstruction applies to all three standard hypotheses for $M$
+(structural, accumulated Fisher, connectivity) and constitutes a
+\emph{theorem}, not an open question.
+
+\begin{remark}[Comprehensive empirical validation]
+\label{rem:psd-phase-diagram}
+An exhaustive phase diagram scanning 240~configurations---observer
+sizes $m \in \{2, \ldots, 15\}$ (10~values), coupling strengths
+$J \in [0.1, 2.0]$ (8~values), and three graph topologies (tree,
+sparse, dense)---confirms that Lorentzian selection ($q = 1$)
+achieves a win rate of exactly~$0\%$ when $M = F^2$.
+In every configuration, $\beta_c = -1$ (no valid Lorentzian regime
+exists) because $F^{-1/2} M\, F^{-1/2} = F$, which is positive
+definite with no negative eigenvalues.
+The obstruction is structural and independent of observer size,
+coupling strength, and graph topology: it holds universally for
+canonical exponential families where $M = F^2$.
+
+This validates the necessity of the signed-edge construction~H1$'$
+(\cref{sec:H1-prime}) or Vanchurin's non-principal square root for
+obtaining Lorentzian signature.
+A contrast experiment confirms that H1$'$ does bypass the PSD
+obstruction; see \cref{rem:signed-edge-phase-diagram}.
+\end{remark}
+
+\subsection{Modified construction H1$'$: signed edge weights}
+\label{sec:H1-prime}
+
+To obtain Lorentzian signature, we introduce signed edge weights
+$s_e \in \{+1, -1\}$:
+
+\begin{definition}[Modified structural inertia tensor]
+\label{def:H1-prime}
+\begin{equation}
+\label{eq:H1-prime}
+M^{(\mathrm{H1'})}_{\mu\nu}(\theta) = \sum_{e \in E_O}
+s_e\, \frac{\partial w_e}{\partial \theta^\mu}\,
+\frac{\partial w_e}{\partial \theta^\nu}\,.
+\end{equation}
+The edge set partitions into spacelike ($E^+ = \{e : s_e = +1\}$,
+cardinality~$p$) and timelike ($E^- = \{e : s_e = -1\}$,
+cardinality~$q$), with $M^{(\mathrm{H1'})} = M^+ - M^-$.
+Both $M^+$ and $M^-$ are PSD (Gram matrices).
+\end{definition}
+
+Physical motivation: the sign assignment $s_e$ may correspond to the
+causal character of the hyperedge---edges connecting causally related
+vertices carry $s_e = -1$ (timelike), while edges connecting causally
+disconnected vertices carry $s_e = +1$ (spacelike).
+This assignment is currently imposed rather than derived; its
+physical origin is the most important open problem in this analysis
+(see \cref{sec:open-problems}).
+
+\begin{remark}[H1$'$ contrast experiment: signed-edge phase diagram]
+\label{rem:signed-edge-phase-diagram}
+A contrast experiment repeating the 240-configuration phase diagram
+of \cref{rem:psd-phase-diagram} with the H1$'$ signed mass tensor
+(using Fiedler vector sign assignment) reveals a qualitatively
+different regime.
+Under H1$'$, the critical coupling $\beta_c > 0$ for most
+non-tree configurations (e.g., $\beta_c \approx 1.08$--$1.38$
+for dense graphs at weak coupling $J \leq 0.3$), confirming that
+the signed-edge construction \emph{does} bypass the PSD obstruction
+and creates a valid Lorentzian regime.
+However, the spectral gap weighting $W(q{=}1)$ equals the maximum
+$W_{\mathrm{max}}$ across all signatures---a degeneracy in which
+$q = 1$ ties with higher-$q$ signatures rather than strictly
+dominating.
+This degeneracy is an \emph{exact algebraic identity}: the signature
+matrix $\Sigma = \operatorname{diag}(s_1, \ldots, s_m)$ with
+$s_i \in \{+1, -1\}$ satisfies $\Sigma^{-1} = \Sigma$, so the
+conjugation $\Sigma\, A\, \Sigma = \Sigma\, A\, \Sigma^{-1}$ is a
+similarity transformation preserving all eigenvalues of~$A$ and hence
+$\beta_c$, $L_{\mathrm{gap}}$, and $W(q)$ for every~$q$.
+No mass tensor of the form $M = S\, f(F)\, S$ can break this
+degeneracy; signature selection must instead rely on the eigenvalue
+structure of~$A = F^{1/2}\, S\, F^{1/2}$ directly
+(\cref{cor:signature-rigidity}).
+The Lorentzian regime is \emph{accessible} under H1$'$ but not
+\emph{preferentially selected} by the spectral gap mechanism alone,
+suggesting that an additional physical principle is required to
+break the degeneracy in favor of $q = 1$.
+\end{remark}
+
+\subsection{FSF factorization for exponential families}
+\label{sec:FSF-factorization}
+
+For canonical exponential family observers, the signed mass tensor admits
+a remarkably simple factorization through the Fisher matrix.
+
+\begin{theorem}[Signed mass tensor factorization]
+\label{thm:FSF}
+For a canonical exponential family with $m$-dimensional natural parameters
+$\theta$, Fisher information matrix~$F$, and sign assignment
+$S = \operatorname{diag}(s_1, \ldots, s_m)$ with $s_e \in \{+1, -1\}$:
+\begin{equation}
+\label{eq:FSF}
+M^{(\mathrm{H1'})} = F\,S\,F\,.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By \cref{thm:M-F-squared}, the Jacobian of the mean-parameter map is
+the Fisher matrix: $\partial w_e / \partial \theta^a = F_{ea}$.
+Therefore
+\begin{equation}
+M^{(\mathrm{H1'})}_{ab}
+= \sum_e s_e \frac{\partial w_e}{\partial \theta^a}
+\frac{\partial w_e}{\partial \theta^b}
+= \sum_e F_{ae}\, S_{ee}\, F_{eb}
+= (F\,S\,F)_{ab}\,.
+\end{equation}
+\end{proof}
+
+\begin{corollary}[Signature rigidity]
+\label{cor:signature-rigidity}
+The Fisher-weighted operator
+$A = F^{-1/2}\, M^{(\mathrm{H1'})}\, F^{-1/2} = F^{1/2}\, S\, F^{1/2}$
+has exactly $q = |\{e : s_e = -1\}|$ negative eigenvalues, by
+Sylvester's law of inertia.
+Pure Lorentzian signature (exactly one negative eigenvalue of $g(\beta)$
+for all $\beta \in (0, \beta_c)$) therefore requires exactly $q = 1$.
+\end{corollary}
+
+This result eliminates free parameters from the Lorentzian mechanism:
+once the Fisher matrix~$F$ (determined by the observer's graph topology)
+and the sign assignment~$S$ are specified, the entire metric structure
+$g(\beta) = F\,S\,F + \beta\,F$ is uniquely determined.
+
+\subsection{Critical beta theorem}
+\label{sec:beta-c-theorem}
+
+\begin{theorem}[Critical $\beta$ for Lorentzian transition]
+\label{thm:beta-c}
+Let $g(\beta) = M^{(\mathrm{H1'})} + \beta\,F$ where
+$M^{(\mathrm{H1'})}$ has at least one negative eigenvalue and $F$ is
+positive definite.
+Define $A = F^{-1/2}\, M^{(\mathrm{H1'})}\, F^{-1/2}$ with
+eigendecomposition $A = P D P^T$, $D = \operatorname{diag}(d_1, \ldots, d_n)$,
+$d_1 \leq d_2 \leq \cdots \leq d_n$.
+Then:
+\begin{equation}
+\label{eq:beta-c}
+\beta_c = -d_1 \qquad (\text{if } d_1 < 0)\,.
+\end{equation}
+Furthermore:
+\begin{enumerate}
+\item[\emph{(a)}] $0 < \beta_c < \infty$.
+\item[\emph{(b)}] For $0 < \beta < \beta_c$: at least one eigenvalue of
+  $g(\beta)$ is negative (Lorentzian or stronger indefinite signature).
+\item[\emph{(c)}] For $\beta > \beta_c$: $g(\beta)$ is positive definite
+  (Riemannian).
+\item[\emph{(d)}] At $\beta = \beta_c$: $g(\beta_c)$ is degenerate
+  (at least one zero eigenvalue).
+\end{enumerate}
+\end{theorem}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig1_eigenvalue_trajectories.png}
+\caption{Eigenvalue trajectories of $A = F^{-1/2} M^{(\mathrm{H1'})} F^{-1/2}$
+as a function of inverse temperature $\beta$. The most negative eigenvalue
+$d_1(\beta)$ determines the critical value $\beta_c = -d_1$ at which the
+metric $g = M + \beta F$ transitions from indefinite (Lorentzian or stronger)
+to positive definite (Riemannian). Eigenvalues shown for observer topology O3
+(path graph, 2 timelike edges) on a 2-parameter Gaussian model.}
+\label{fig:eigenvalue-trajectories}
+\end{figure}
+
+\begin{proof}
+Define $A = F^{-1/2}\, M^{(\mathrm{H1'})}\, F^{-1/2}$ (well-defined
+since $F$ is positive definite).
+In the $F$-orthonormal basis $y = F^{1/2}\,\theta$, the metric becomes
+$y^T (A + \beta\, I)\, y$.
+The eigenvalues of $A + \beta\, I$ are $d_i + \beta$.
+
+\emph{(a)}
+Since $d_1 < 0$, at $\beta = 0$ the smallest eigenvalue $d_1 < 0$.
+As $\beta$ increases, all eigenvalues $d_i + \beta$ increase strictly.
+The smallest eigenvalue crosses zero at $\beta_c = -d_1 > 0$.
+For the upper bound: for any unit vector~$u$,
+$u^T g(\beta)\, u \geq -\|M^-\| + \beta\,\lambda_{\min}(F)$,
+which is positive when $\beta > \|M^-\| / \lambda_{\min}(F) < \infty$.
+
+\emph{(b)}
+For $\beta < \beta_c = -d_1$, we have $d_1 + \beta < 0$, so $g(\beta)$
+has at least one negative eigenvalue.
+
+\emph{(c)}
+For $\beta > \beta_c$, all $d_i + \beta > 0$ (since $d_1$ is the most
+negative), so $g(\beta)$ is positive definite.
+
+\emph{(d)}
+By continuity, $d_1 + \beta_c = 0$.
+\end{proof}
+
+The eigenvalue trajectories and signature transitions are illustrated
+in \cref{fig:eigenvalue-trajectories}.
+
+\begin{remark}[Prior art]
+\label{rem:beta-c-prior-art}
+The critical value $\beta_c = -d_1$ follows from standard results on
+simultaneous diagonalization of symmetric
+matrices~\cite{HornJohnson2013}.
+The physical content lies in the observer-topology-dependent
+characterization of the Lorentzian--Riemannian transition within the
+Type~II framework.
+We note that signature change in general relativity has been studied
+by Hayward~\cite{Hayward1992} and others in the context of classical
+spacetime; our result concerns signature transitions in the parameter
+space of learning systems, which is a different physical setting.
+\end{remark}
+
+\begin{corollary}[Signature counting]
+\label{cor:signature-counting}
+The number of negative eigenvalues of $g(\beta)$ equals
+$\#\{i : d_i < -\beta\}$.
+In particular, if $d_1 < 0$ and $d_2 \geq 0$ (only one negative
+eigenvalue of~$A$), then $g$ has Lorentzian signature for all
+$\beta \in (0,\, \beta_c)$.
+If $d_2 < 0$ as well, define $\beta_{c,2} = -d_2$.
+Then $g$ has Lorentzian signature (exactly one negative eigenvalue)
+for $\beta \in (\beta_{c,2},\, \beta_c)$, and two or more negative
+eigenvalues for $\beta \in (0,\, \beta_{c,2})$.
+\end{corollary}
+
+\begin{remark}[Physical interpretation]
+Since $\beta = 1/(kT)$, the Lorentzian regime corresponds to
+\emph{high} temperature (small~$\beta$) and the Riemannian regime to
+\emph{low} temperature (large~$\beta$).
+The Lorentzian threshold $\beta_c$ is a property of the observer
+(determined by $M$ and~$F$), not of the thermal environment.
+For exponential family observers, the FSF factorization
+(\cref{thm:FSF}) implies that $A = F^{1/2}\, S\, F^{1/2}$, so
+$\beta_c$ is determined entirely by $F$ and~$S$---no free parameters
+remain once the observer's graph topology and sign assignment are fixed.
+\end{remark}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig2_phase_diagram.png}
+\caption{Phase diagram showing Lorentzian and Riemannian regimes in the
+$(\beta, \|M^-\|)$ plane. The critical curve $\beta_c = -d_1(M, F)$
+separates indefinite signature (below, high temperature) from positive
+definite signature (above, low temperature). Observers with higher structural
+complexity (larger $\|M^-\|$, more timelike edges) have larger Lorentzian
+regimes. Data points show six observer topologies (O1--O6) from
+\cref{tab:observers}.}
+\label{fig:phase-diagram}
+\end{figure}
+
+\subsection{Topology dependence}
+\label{sec:topology}
+
+\begin{theorem}[Minimum complexity for Lorentzian signature]
+\label{thm:min-complexity}
+\begin{enumerate}
+\item[\emph{(a)}] An observer with $|E_O| = 0$ has $M = 0$, so
+  $g = \beta\,F$ (Riemannian).  No Lorentzian signature is possible.
+
+\item[\emph{(b)}] An observer with exactly one timelike edge
+  ($|E^-| = 1$, $|E^+| = 0$) in parameter dimension $n \geq 2$ can
+  have Lorentzian signature for $\beta < \beta_c$.
+\end{enumerate}
+The minimum complexity for Lorentzian signature is therefore:
+at least one timelike internal edge, and $\dim(\Theta) \geq 2$.
+\end{theorem}
+
+\begin{proof}
+Part~(a) is immediate from $M = 0$.
+For part~(b), a single timelike edge with configuration $w_e$ gives
+$M^{(\mathrm{H1'})} = -(\nabla w_e)(\nabla w_e)^T$, a negative
+semi-definite rank-1 matrix.
+In the direction of $\nabla w_e$:
+$g(\nabla w_e, \nabla w_e) = -\|\nabla w_e\|^4 + \beta\,
+(\nabla w_e)^T F\, (\nabla w_e)$,
+which is negative for sufficiently small~$\beta$.
+In orthogonal directions $\xi$ ($\xi \cdot \nabla w_e = 0$):
+$g(\xi, \xi) = \beta\, \xi^T F\, \xi > 0$.
+So $g$ has signature $(n-1, 0, 1) =$ Lorentzian for $\beta < \beta_c$.
+\end{proof}
+
+\begin{proposition}[Edge monotonicity]
+\label{prop:edge-monotonicity}
+Adding a timelike edge to an observer expands the Lorentzian regime:
+\begin{equation}
+\label{eq:edge-monotonicity}
+\beta_c(E_O \cup \{e_{\mathrm{new}},\, s = -1\}) \;\geq\; \beta_c(E_O)\,.
+\end{equation}
+Adding a spacelike edge contracts it:
+$\beta_c(E_O \cup \{e_{\mathrm{new}},\, s = +1\}) \leq \beta_c(E_O)$.
+\end{proposition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{Fig5_edge_addition_monotonicity.png}
+\caption{Edge addition monotonicity (\cref{prop:edge-monotonicity}). Adding
+timelike edges (causal connections, $s=-1$) monotonically increases $\beta_c$,
+expanding the high-temperature Lorentzian regime. Adding spacelike edges
+($s=+1$) decreases $\beta_c$, contracting the Lorentzian regime. Demonstrated
+for observer topologies O1--O6 on a 2-parameter Gaussian model. Error bars
+show numerical precision ($< 10^{-3}$).}
+\label{fig:edge-monotonicity}
+\end{figure}
+
+\begin{proof}
+Adding a timelike edge contributes $-(\nabla w_{e_{\mathrm{new}}})
+(\nabla w_{e_{\mathrm{new}}})^T$ to $M^{(\mathrm{H1'})}$, a negative
+semi-definite rank-1 perturbation.
+By the Weyl interlacing inequalities, the most negative eigenvalue of
+$M^{(\mathrm{H1'})}$ can only become more negative (or stay the same),
+so $\beta_c = -d_1$ increases or stays constant.
+The spacelike case is symmetric.
+\end{proof}
+
+\begin{remark}
+\Cref{prop:edge-monotonicity} holds when $F$ is fixed independently
+of the edge addition.
+In self-consistent models where the observer's topology determines
+both $M$ and $F$ (e.g., Ising models on the observer graph),
+adding edges changes $F$, and monotonicity can be violated.
+See the computational notes accompanying this paper for an explicit
+example.
+\end{remark}
+
+We have verified these results numerically for six observer topologies
+(O1--O6) on a 2-parameter Gaussian model, as shown in \cref{tab:observers}.
+High-dimensional computational analysis ($n = 2$ to $10$, 3500 configurations)
+confirms that Lorentzian signature selection remains robust, with 98\% of
+random observer topologies producing exactly one timelike direction.
+
+\begin{table}[ht]
+\centering
+\caption{Numerical verification of $\beta_c$ for six observer topologies
+on a 2-parameter Gaussian model ($\theta = (\mu, \log\sigma)$).
+Sign assignment: vertices connected by an edge in $G$ $\to$ timelike ($s = -1$),
+vertices not connected $\to$ spacelike ($s = +1$).}
+\label{tab:observers}
+\begin{tabular}{@{}lccccr@{}}
+\toprule
+Observer & $|V_O|$ & $|E^-|$ & $|E^+|$ & Lorentzian? & $\beta_c$ \\
+\midrule
+O1 (single vertex)   & 1 & 0 & 0 & No  & $0$ \\
+O2 (pair, 1 edge)    & 2 & 1 & 0 & Yes & $1.15$ \\
+O3 (path, 2 edges)   & 3 & 2 & 0 & Yes & $1.89$ \\
+O4 (triangle, $K_3$) & 3 & 2 & 1 & Yes & $2.68$ \\
+O5 (path, 3 edges)   & 4 & 3 & 0 & Yes & $2.41$ \\
+O6 (complete, $K_4$) & 4 & 4 & 2 & Yes & $2.02$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Comparison with Vanchurin's non-principal square root}
+\label{sec:comparison-vanchurin}
+
+Vanchurin~\cite{Vanchurin2025} obtains Lorentzian signature from PSD
+gradient covariance via a non-principal square root:
+\begin{align}
+\label{eq:vanchurin-sqrt}
+C_{\mu\nu} &= \langle p_\mu\, p_\nu \rangle = Q\,\Lambda\,Q^T
+\quad (\text{PSD eigendecomposition}), \\
+g_{\mu\nu} &= (Q\,\Sigma\,\Lambda^{1/2}\,Q^T)_{\mu\nu}\,,
+\quad \Sigma = \operatorname{diag}(\sigma_0, \sigma_1, \ldots)\,,
+\quad \sigma_i = \pm 1. \nonumber
+\end{align}
+Choosing $\sigma_0 = -1$ (one sign flip) produces Lorentzian~$g$.
+
+\begin{theorem}[Non-equivalence of constructions]
+\label{thm:non-equivalence}
+The H1$'$ signed-edge construction (\cref{def:H1-prime}) and
+Vanchurin's non-principal square root (\cref{eq:vanchurin-sqrt}) are
+\emph{not equivalent} in general:
+\begin{enumerate}
+\item[\emph{(a)}] Vanchurin's construction is a \emph{global} operation:
+  signs are assigned in the eigenbasis of the total gradient covariance~$C$.
+\item[\emph{(b)}] H1$'$ is a \emph{local} operation:
+  signs are assigned to individual structural edges before summation.
+\item[\emph{(c)}] Neither construction subsumes the other:
+  there exist sign matrices $\Sigma$ unrealizable by any H1$'$ assignment,
+  and there exist H1$'$ mass tensors not expressible as non-principal
+  square roots of any covariance.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Parts~(a) and (b) are definitional.
+For part~(c), we give an explicit counterexample with $n = 2$,
+$|E_O| = 3$.
+Let $C = \operatorname{diag}(4, 1)$ (PSD covariance).
+Vanchurin's construction with $\Sigma = \operatorname{diag}(-1, +1)$
+produces $g^{(\mathrm{V})} = \operatorname{diag}(-2, 1)$.
+Now consider all H1$'$ metrics with three rank-1 terms
+$M^{(\mathrm{H1'})} = \sum_{e=1}^{3} s_e\, v_e v_e^T$.
+For $M^{(\mathrm{H1'})}$ to equal $g^{(\mathrm{V})}$
+(up to a Fisher shift), we need the $(1,1)$ entry to be negative
+and the $(2,2)$ entry to be positive.
+Since each $v_e v_e^T$ has non-negative diagonal entries, the only
+way to make the $(1,1)$ entry negative is via timelike edges
+($s_e = -1$) with $v_e$ having nonzero first component.
+But such edges also contribute negatively to the $(2,2)$ entry
+(unless $v_e = (a, 0)^T$), coupling the two signs.
+One can verify numerically that no choice of three vectors
+$v_1, v_2, v_3 \in \mathbb{R}^2$ and signs
+$s_1, s_2, s_3 \in \{+1, -1\}$ produces
+$M^{(\mathrm{H1'})} = \operatorname{diag}(-2, 1)$ exactly,
+establishing that some Vanchurin metrics are not H1$'$-realizable.
+Conversely, H1$'$ with non-aligned edge directions produces off-diagonal
+mass tensor entries that Vanchurin's diagonal construction cannot achieve.
+\end{proof}
+
+\begin{remark}
+H1$'$ and Vanchurin's construction are mathematically distinct
+\emph{formulations} that may or may not produce equivalent observables.
+H1$'$ may be interpreted as a candidate microscopic mechanism
+whose macroscopic limit could coincide with Vanchurin's non-principal
+square root; testing this requires deriving predictions that differ
+between the two approaches, which remains an open problem.
+Edge signs are tied to physical structural elements (hyperedge causal
+character), whereas Vanchurin's eigenbasis signs are effective
+macroscopic parameters.
+This interpretation is conjectural (confidence: 50\%).
+\end{remark}
+
+\subsection{Persistence under learning}
+\label{sec:persistence}
+
+\begin{theorem}[Rate of change of $\beta_c$]
+\label{thm:persistence}
+Let $\beta_c(t) = \beta_c(\theta(t))$ along a natural gradient
+trajectory $\dot{\theta}^\mu = -\gamma\, g^{\mu\nu}\, \partial_\nu H$.
+Then
+\begin{equation}
+\label{eq:dbeta-dt}
+\frac{d\beta_c}{dt} = -\frac{dd_1}{dt}
+= -v_1^T\, \frac{dA}{dt}\, v_1\,,
+\end{equation}
+where $v_1(t)$ is the unit eigenvector of
+$A(t) = F^{-1/2}\, M^{(\mathrm{H1'})}\, F^{-1/2}$ corresponding to its
+most negative eigenvalue $d_1(t)$, and $dA/dt$ depends on the learning
+direction $\dot{\theta}$ via derivatives of both $M$ and~$F$.
+\end{theorem}
+
+\begin{proof}
+Follows from \cref{thm:beta-c} ($\beta_c = -d_1$), the chain rule, and
+the Hellmann--Feynman theorem for the perturbation of eigenvalues of a
+continuously parametrized symmetric matrix.
+\end{proof}
+
+\begin{proposition}[Stability near local minima]
+\label{prop:stability}
+Near a local minimum $\theta^*$ of the loss $H$, the learning velocity
+$\dot{\theta} \to 0$, so $d\beta_c/dt \to 0$.
+An observer in the Lorentzian regime at $\theta^*$ remains Lorentzian for
+a time of order $1 / |\dot{\theta}|$ (the convergence timescale).
+\end{proposition}
+
+\subsection{Computational verification of the signature transition}
+\label{sec:computational-verification}
+
+We tested the $\beta_c$ prediction (\cref{thm:beta-c}) on Ising/Boltzmann
+machines with exact enumeration across seven observer topologies
+(3--5~vertices, 2--10~edges) and five coupling strengths each, for a
+total of 35~test cases.
+The signed mass tensor $M^{(\mathrm{H1'})}$ was constructed using the
+adjacency-based sign rule (adjacent vertices $\to$ timelike,
+non-adjacent $\to$ spacelike).
+
+Of 35~cases where $M^{(\mathrm{H1'})}$ is indefinite and $\beta_c$ is
+predicted, \textbf{32 match with relative error $< 1\%$}; the
+average relative error across all tests is $2.15 \times 10^{-2}$.
+The three mismatches occur at strong coupling ($J \geq 1.0$) on
+complete graphs ($K_4$, $K_5$), where higher-order corrections to the
+quadratic approximation become significant.
+
+Three additional findings emerged from the computational experiments:
+\begin{enumerate}
+\item \textbf{Specific heat peak does not coincide with $\beta_c$.}
+  The thermodynamic phase transition (specific heat maximum) occurs at
+  $\beta_{\mathrm{eff}}$ values systematically different from $\beta_c$.
+  This confirms that $\beta_c$ characterizes a \emph{geometric}
+  transition (metric signature change), not a thermodynamic one.
+  See \cref{fig:specific-heat} for the systematic deviation between
+  $\beta_c$ (geometric transition) and $\beta_{\mathrm{eff}}$
+  (thermodynamic peak).
+
+\item \textbf{Learning dynamics change qualitatively at $\beta_c$.}
+  Natural gradient descent with metric $g = M^{(\mathrm{H1'})} + \beta F$
+  exhibits three distinct regimes: unstable amplification along the
+  timelike direction for $\beta < \beta_c$ (Lorentzian), singular
+  behavior at $\beta = \beta_c$ (degenerate), and smooth convergent
+  descent for $\beta > \beta_c$ (Riemannian).
+  See \cref{fig:learning-dynamics} for trajectory divergence at the
+  critical transition.
+
+\item \textbf{Multi-eigenvalue transition sequence
+  (\cref{cor:signature-counting}).}
+  For observers with multiple negative eigenvalues of the
+  Fisher-weighted mass tensor $A = F^{-1/2}\,M^{(\mathrm{H1'})}\,F^{-1/2}$,
+  the predicted sequence of signature transitions
+  (indefinite $\to$ Lorentzian $\to$ Riemannian) is verified exactly.
+\end{enumerate}
+
+Full results, including eigenvalue trajectories, phase diagrams,
+and learning dynamics traces, are available in the code repository.
+
+\subsection{Spectral gap selection of Lorentzian signature}
+\label{sec:spectral-gap-selection}
+
+The preceding results establish how the Lorentzian--Riemannian transition
+depends on observer topology, but do not address \emph{which} sign
+assignment~$q$ (number of timelike edges) is physically selected.
+We introduce a spectral gap weighting that provides a conditional answer.
+
+\begin{definition}[Spectral gap weighting]
+\label{def:spectral-gap-weighting}
+For a positive definite Fisher matrix~$F$ and sign assignment~$S$ with
+$q$ negative entries, define:
+\begin{align}
+A(S) &= F^{1/2}\, S\, F^{1/2}\,, \quad
+\text{eigenvalues } d_1 \leq d_2 \leq \cdots \leq d_m\,, \\
+\beta_c(q) &= \max_{S:\,|S^-|=q} (-d_1(S))\,, \\
+L_{\mathrm{gap}}(q) &= \frac{d_2 - d_1}{|d_1|}
+\bigg|_{\text{at } S^*}\,, \\
+W(q) &= \beta_c(q) \cdot L_{\mathrm{gap}}(q)\,.
+\end{align}
+The spectral gap ratio $L_{\mathrm{gap}}$ measures how sharply the
+most negative eigenvalue is separated from the bulk spectrum.
+Lorentzian signature ($q = 1$) corresponds to a single, spectrally
+isolated timelike direction.
+\end{definition}
+
+\begin{theorem}[Spectral gap lower bound for $q = 1$]
+\label{thm:Lgap-bound}
+For any positive definite $F$ with eigenvalues
+$\lambda_1 \geq \cdots \geq \lambda_m > 0$, the sign assignment with
+$q = 1$ satisfies $L_{\mathrm{gap}}(q = 1) \geq 1$.
+For $q \geq 2$, $L_{\mathrm{gap}}$ can equal zero.
+\end{theorem}
+
+\begin{proof}
+For $q = 1$ with the $k$-th edge negative,
+$A = F - 2\,f_k f_k^T$ where $f_k = F^{1/2} e_k$.
+This is a rank-1 perturbation of the positive definite matrix~$F$.
+By the Cauchy interlacing theorem, the eigenvalues $\mu_1 \geq \cdots
+\geq \mu_m$ of $A$ satisfy $\mu_{m-1} \geq \lambda_m > 0$.
+Therefore $d_2 = \mu_{m-1} > 0$ while $d_1 = \mu_m < 0$,
+giving $L_{\mathrm{gap}} = (d_2 - d_1)/|d_1| \geq \lambda_m/|d_1| + 1
+\geq 1$.
+
+For $q = 2$ with $F = I$: $A = I - 2(e_j e_j^T + e_k e_k^T)$ has
+eigenvalues $+1$ ($m - 2$ times) and $-1$ (twice).
+The two negative eigenvalues are degenerate, so
+$L_{\mathrm{gap}} = 0$.
+\end{proof}
+
+This theorem has a clean physical interpretation: $q = 1$ produces a
+\emph{single} spectrally isolated timelike direction (large gap), while
+$q \geq 2$ produces \emph{degenerate} timelike directions that cannot
+be distinguished (zero or small gap).
+
+\begin{theorem}[Tree Fisher identity]
+\label{thm:tree-fisher}
+For an Ising model on a tree graph~$G$ (connected, acyclic) with
+uniform coupling~$J$, the Fisher information matrix in the edge
+parameterization is
+\begin{equation}
+\label{eq:tree-fisher}
+F = \operatorname{sech}^2(J)\, I_m\,,
+\end{equation}
+where $I_m$ is the $m \times m$ identity matrix.
+\end{theorem}
+
+\begin{proof}
+On a tree with $n$ vertices and $m = n - 1$ edges, fix a root vertex
+$v_0$.
+Each spin configuration $(s_1, \ldots, s_n)$ is uniquely determined by
+the reference spin $s_{v_0}$ and the edge variables
+$\sigma_e = s_i s_j$ for each edge~$e = (i,j)$.
+The Hamiltonian $H = -J \sum_e \sigma_e$ depends only on the edge
+variables, and since there are no cycles, there are no algebraic
+constraints between distinct $\sigma_e$.
+The Boltzmann distribution therefore factorizes:
+$P(\sigma_{e_1}, \ldots, \sigma_{e_{m}})
+= \prod_e P(\sigma_e)$,
+with each $\sigma_e$ an independent Bernoulli variable
+($P(\sigma_e = +1) = (1 + \tanh J)/2$).
+The Fisher matrix $F_{ab} = \operatorname{Cov}(\sigma_a, \sigma_b)
+= \delta_{ab}\, \operatorname{Var}(\sigma_e)
+= \delta_{ab}\, \operatorname{sech}^2(J)$.
+\end{proof}
+
+\begin{corollary}[Non-uniform Tree Fisher identity]
+\label{cor:tree-fisher-nonuniform}
+For an Ising model on a tree with edge-dependent couplings
+$J_e > 0$,
+\begin{equation}
+\label{eq:tree-fisher-nonuniform}
+F = \operatorname{diag}\bigl(
+  \operatorname{sech}^2(J_{e_1}),\;\ldots,\;
+  \operatorname{sech}^2(J_{e_m})
+\bigr).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+The proof of \cref{thm:tree-fisher} carries through with
+$H = -\sum_e J_e \sigma_e$: the factorization
+$P(\sigma_{e_1}, \ldots, \sigma_{e_m}) = \prod_e P(\sigma_e)$
+still holds (no cycle constraints), and each marginal gives
+$\operatorname{Var}(\sigma_e) = \operatorname{sech}^2(J_e)$.
+Verified numerically for 49~non-uniform configurations
+(paths~$P_4$--$P_6$, stars~$S_4$--$S_6$, random couplings
+$J_e \in [0.1, 2.0]$; all match to machine precision).
+\end{proof}
+
+\begin{corollary}[Absolute Lorentzian dominance on trees]
+\label{cor:tree-lorentzian}
+For $F = c\,I_m$ with $c > 0$ and $m \geq 2$:
+$W(q = 1) = 2c > 0 = W(q \geq 2)$.
+Therefore $q = 1$ is the \textbf{unique} maximizer of $W$ on tree
+observer graphs with uniform coupling, with infinite margin.
+\end{corollary}
+
+\begin{proof}
+For $F = c\,I$, every $A(S) = c\,S$.
+For $q = 1$: eigenvalues $+c$ ($m - 1$ times) and $-c$ (once),
+$\beta_c = c$, $L_{\mathrm{gap}} = 2$, $W = 2c$.
+For $q \geq 2$: eigenvalue $-c$ has multiplicity $\geq 2$
+(degenerate), $L_{\mathrm{gap}} = 0$, $W = 0$.
+\end{proof}
+
+\begin{theorem}[Lorentzian dominance for diagonal F]
+\label{thm:diagonal-lorentzian}
+For any positive definite diagonal matrix
+$F = \operatorname{diag}(d_1, \ldots, d_m)$ with
+$d_1 \geq \cdots \geq d_m > 0$ and $m \geq 2$:
+\begin{equation}
+\label{eq:diagonal-W-comparison}
+W(q = 1) = d_1 + d_m > d_1 - d_2 = \max_{q \geq 2}\, W(q)\,.
+\end{equation}
+In particular, $W(q = 1) - \max_{q \geq 2} W(q) = d_2 + d_m > 0$.
+\end{theorem}
+
+\begin{proof}
+For diagonal~$F$, the signed kernel
+$A(S) = F^{1/2}\,S\,F^{1/2} = \operatorname{diag}(s_1 d_1,
+\ldots, s_m d_m)$.
+
+\emph{Case $q = 1$}: To maximise $\beta_c = \max_k d_k$,
+negate the largest entry ($k = 1$).
+Eigenvalues: $-d_1, d_2, \ldots, d_m$.
+Then $d_1^{(\mathrm{eig})} = -d_1$,
+$d_2^{(\mathrm{eig})} = d_m$ (smallest positive),
+$L_{\mathrm{gap}} = (d_m + d_1)/d_1$,
+$W(1) = d_1 \cdot (d_m + d_1)/d_1 = d_1 + d_m$.
+
+\emph{Case $q \geq 2$}: To maximise $\beta_c$, negate the
+$q$ largest entries (indices $1, \ldots, q$).
+Eigenvalues: $-d_1, -d_2, \ldots, -d_q, d_{q+1}, \ldots, d_m$.
+The two most negative eigenvalues are $-d_1$ and~$-d_2$
+(since $d_1 \geq d_2$), giving
+$L_{\mathrm{gap}} = (d_1 - d_2)/d_1$,
+$W(q) = d_1 \cdot (d_1 - d_2)/d_1 = d_1 - d_2$.
+Note $W(q)$ is independent of~$q$ for $q \geq 2$.
+
+The margin $W(1) - W(q \geq 2) = d_2 + d_m > 0$ since
+$d_2, d_m > 0$.
+\end{proof}
+
+\begin{corollary}[Perturbation stability of Lorentzian dominance]
+\label{cor:lorentzian-perturbation}
+For a positive definite diagonal $D$ with eigenvalues
+$d_1 \geq \cdots \geq d_m > 0$ and any symmetric perturbation~$P$
+with $\|P\|_{\mathrm{op}} = 1$, there exists
+$\delta_0 = \delta_0(D) > 0$ such that
+$W(q = 1;\,D + \varepsilon P) > W(q;\,D + \varepsilon P)$ for
+all $q \geq 2$ whenever $0 \leq \varepsilon < \delta_0$.
+Numerical perturbation analysis shows that Lorentzian dominance
+persists until $\|F - \operatorname{diag}(F)\|_{\text{op}} /
+\|\operatorname{diag}(F)\|_{\text{op}} \approx 0.9$
+for typical random perturbations (50~configurations).
+\end{corollary}
+
+\begin{proof}
+By \cref{thm:diagonal-lorentzian}, $W(1; D) - \max_{q \geq 2}
+W(q; D) = d_2 + d_m > 0$.
+Since eigenvalues, and hence $\beta_c$ and $L_{\mathrm{gap}}$,
+depend continuously on the matrix entries, $W(q; D + \varepsilon P)$
+is a continuous function of~$\varepsilon$.
+At $\varepsilon = 0$ the gap is $d_2 + d_m > 0$; by continuity,
+$\delta_0 > 0$ exists such that the gap remains positive
+for $\varepsilon < \delta_0$.
+\end{proof}
+
+For graphs with cycles, the off-diagonal corrections to~$F$ are
+controlled by the girth~$g$ (shortest cycle length):
+
+\begin{theorem}[Near-diagonal Fisher for sparse graphs]
+\label{thm:near-diagonal-fisher}
+For an Ising model on a connected graph with girth~$g \geq 3$,
+maximum degree~$\Delta$, and uniform coupling~$J > 0$, the Fisher
+information matrix satisfies:
+\begin{equation}
+\label{eq:near-diagonal-bound}
+\frac{\|F - \operatorname{diag}(F)\|_{\text{op}}}
+     {\|\operatorname{diag}(F)\|_{\text{op}}}
+\leq C(\Delta) \cdot \tanh^{g-2}(J)\,,
+\end{equation}
+where the exponent $g - 2$ is exact (from transfer matrix analysis)
+and the prefactor is
+\begin{equation}
+\label{eq:C-derived}
+C(\Delta) = 2(\Delta - 1)\,,
+\end{equation}
+a universal constant equal to the maximum number of adjacent edges
+(derived from the Dobrushin uniqueness condition and Gershgorin's
+theorem; see~\cite{Dobrushin1985}).
+On cycle graphs, the adjacent-edge covariance is given exactly by:
+\begin{equation}
+\label{eq:adjacent-edge-cov}
+\operatorname{Cov}(\sigma_e, \sigma_f)
+= \frac{\tanh^{g-2}(J) \cdot \operatorname{sech}^4(J)}
+       {\bigl(1 + \tanh^g(J)\bigr)^2}\,,
+\end{equation}
+verified to machine precision for all~$g = 3, \ldots, 12$ and
+$J \in [0.1, 1.0]$.
+Trees ($g = \infty$) achieve exact diagonality
+(\cref{thm:tree-fisher}).
+Sparse graphs (large~$g$) have near-diagonal Fisher matrices, so the
+spectral gap analysis of
+\cref{thm:Lgap-bound,cor:tree-lorentzian} applies perturbatively.
+\end{theorem}
+
+\begin{proof}
+On trees, edge variables $\sigma_e = s_i s_j$ are independent
+(no algebraic constraints from cycles), giving diagonal~$F$
+(\cref{thm:tree-fisher}).
+For graphs with finite girth~$g$, correlations between edge variables
+propagate through cycles. Consider two adjacent
+edges $e = (i,j)$ and $f = (j,k)$ sharing vertex~$j$ on a
+cycle~$C_g$. The product $\sigma_e \sigma_f = s_i s_k$ connects
+vertices at graph distance~$2$, so
+$\langle \sigma_e \sigma_f \rangle$ depends on the correlation through
+a path of length~$g - 2$ around the cycle (the complement path).
+Applying the transfer matrix method on~$C_g$ gives the exact
+formula~\eqref{eq:adjacent-edge-cov}, in which the factor
+$\tanh^{g-2}(J)$ reflects correlation decay along the complement path
+and the denominator $(1 + \tanh^g(J))^2$ accounts for the cyclic
+boundary condition.
+
+For the operator norm bound, each off-diagonal entry
+$F_{ef} = \operatorname{Cov}(\sigma_e, \sigma_f)$ decays as
+$\tanh^{\ell}(J)$ where $\ell$ is the path length between the
+corresponding vertex pairs through the shortest connecting route.
+For edges sharing a vertex on a shortest cycle, $\ell = g - 2$;
+for more distant edge pairs, $\ell \geq g - 2$.
+By Gershgorin's theorem, the operator norm of the off-diagonal part
+is bounded by the maximum absolute row sum:
+$\|F - \operatorname{diag}(F)\|_{\text{op}} \leq
+\max_e \sum_{f \neq e} |F_{ef}|$.
+Each edge $e$ has at most $2(\Delta - 1)$ adjacent edges, and each
+contributes at most $O(\tanh^{g-2}(J))$ to the row sum.
+Since $\|\operatorname{diag}(F)\|_{\text{op}}$ is bounded below by the
+minimum edge variance (which is order one in the Dobrushin regime),
+dividing yields~\eqref{eq:near-diagonal-bound}
+with~$C(\Delta) = 2(\Delta - 1)$.
+
+\textit{Numerical verification.}
+On cycle graphs $C_g$ ($g = 3, \ldots, 12$), the ratio
+$C = \text{ratio}/\tanh^{g-2}(J)$ has coefficient of
+variation $< 0.28$ across all tested~$J$, compared to $> 1.6$ for
+the na\"ive exponent~$g$
+(50~configurations; see~\texttt{near\_diagonal\_bound\_derivation.py}).
+On general graphs (grids, bipartite, Petersen, Heawood), the bound
+holds with larger constants reflecting the richer cycle structure.
+\end{proof}
+
+\begin{remark}[Universality across exponential families]
+\label{rem:fisher-universality}
+The near-diagonal property and spectral gap selection were tested
+on $q$-state Potts models ($q = 2, 3, 4, 5$; 72~configurations),
+Gaussian graphical models (51~configurations), and restricted
+Boltzmann machines (RBMs; 27~configurations).
+\emph{Potts models}: Tree Fisher Identity holds (40/40 trees, all~$q$),
+$M = F^2$ holds (72/72 cases), and spectral gap selects $q_{\mathrm{neg}} = 1$
+in $94.4\%$ of cases---all three are \emph{universal} across
+discrete state Potts models.
+\emph{Gaussian models}: Tree Fisher Identity \emph{fails}
+(F is non-diagonal on trees), spectral gap selection shows no
+preference (${\sim}55\%$, barely above chance), but $M = F^2$ and
+the PSD obstruction still hold as general exponential family properties.
+\emph{RBMs} (visible marginal of an exponential family, hence
+\emph{not} itself exponential family): Tree Fisher fails ($11\%$
+diagonal) and spectral gap selection fails ($22\%$).
+The $M = F^2$ identity was not independently testable for RBMs
+because the mass tensor $M = J^T J$ requires computing the Jacobian
+of the mean-parameter map, which for marginal models differs from~$F$
+(the sufficient statistics depend on parameters through the
+conditional distribution).
+Thus the near-diagonal structure and Lorentzian signature selection
+are specific to \emph{discrete spin models}, not universal across
+all exponential families; the physically relevant case of
+discrete spacetime graphs falls in the favourable class.
+\end{remark}
+
+We verified these results numerically across 199~Ising Fisher matrices
+spanning $N = 3$ to~$12$ (7~graph topologies, multiple coupling strengths
+and random seeds):
+
+\begin{table}[ht]
+\centering
+\caption{Spectral gap weighting $W(q=1)$ vs.\ $\max_{q \geq 2} W(q)$
+across graph topologies ($N = 3$--$12$).
+Sparse topologies show $100\%$ Lorentzian
+preference; complete graphs fail at strong coupling.}
+\label{tab:spectral-gap}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Topology & $q = 1$ wins & Total cases & Percentage \\
+\midrule
+Path (tree, $N \leq 12$)    & 24 & 24 & 100\% \\
+Star (tree, $N \leq 12$)    & 24 & 24 & 100\% \\
+Cycle ($N \leq 12$)         & 24 & 24 & 100\% \\
+Random tree-like             & 53 & 55 & 96\% \\
+Random sparse (w/ cycles)    & 27 & 45 & 60\% \\
+Complete ($K_3$--$K_{12}$)  & 16 & 27 & 59\% \\
+\midrule
+\textbf{Total} & \textbf{168} & \textbf{199} & \textbf{84\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This should be compared to the success rate for \emph{generic} random
+positive definite matrices: only $19\%$ (100~random PD matrices,
+$m = 3$ to~$9$).
+The $84\%$ vs.\ $19\%$ discrepancy is explained by the near-diagonal
+structure of Ising Fisher matrices on sparse graphs
+(\cref{thm:tree-fisher,thm:near-diagonal-fisher}).
+Restricting to sparse topologies (degree~$\Delta \leq 3$,
+girth~$g \geq 4$) yields $100\%$ Lorentzian preference across all
+$N$ and~$J$ tested.
+
+The complete graph failures ($K_4$ at $J \geq 0.5$, $K_5$ at
+$J \geq 0.3$, $K_N$ at progressively weaker $J$ for $N \geq 6$)
+occur when the graph is dense enough that the
+off-diagonal corrections overcome the spectral gap advantage.
+The predicted crossover coupling is
+$J_{\mathrm{crit}} \sim 1/\sqrt{\Delta}$,
+where $\Delta$ is the maximum vertex degree; this scaling is confirmed
+by the data to a factor of~${\sim}2$.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig6_spectral_gap_selection.png}
+\caption{Spectral gap weighting $W(q = 1)$ versus $\max_{q \geq 2} W(q)$
+for Ising Fisher matrices across five topology classes
+(131~cases from an independent enumeration; see \cref{tab:spectral-gap}
+for the full 199-case analysis).
+Points above the diagonal correspond to Lorentzian ($q = 1$) preference.
+All sparse topologies (trees, cycles, tree-like, sparse with cycles) lie
+strictly above the diagonal ($100\%$); only dense complete graphs
+($K_5$--$K_8$ at strong coupling) fall below.}
+\label{fig:spectral-gap-scatter}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{near_diagonal_fisher_decay.png}
+\caption{Exponential decay of Fisher matrix off-diagonal strength with
+girth.
+Measured ratio
+$\|F - \operatorname{diag}(F)\|_{\text{op}} /
+\|\operatorname{diag}(F)\|_{\text{op}}$ versus girth~$g$ for
+cycle graphs $C_n$ ($n = 4, \ldots, 20$) at $J = 0.5$.
+Trees ($g \to \infty$) achieve exact diagonality.
+The natural scaling exponent is $g - 2$
+(\cref{eq:adjacent-edge-cov}), with effective constant
+$C(\Delta) = 2(\Delta - 1) = 2$ on cycles ($\Delta = 2$)
+(\cref{thm:near-diagonal-fisher}).}
+\label{fig:near-diagonal-decay}
+\end{figure}
+
+\begin{remark}[Physical interpretation]
+\label{rem:sparse-lorentzian}
+If physical observers have sparse internal interaction graphs
+(bounded degree, few short cycles)---as expected for systems with local
+interactions---then the Fisher metric is near-diagonal and
+$W(q = 1)$ dominates.
+This provides a \emph{structural explanation} for Lorentzian spacetime:
+sparse observers naturally perceive one time dimension, not because of
+any dynamical mechanism, but because the information geometry of
+sparse interactions singles out exactly one spectrally isolated
+direction.
+\end{remark}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig3_specific_heat_vs_beta_c.png}
+\caption{Specific heat versus $\beta_c$ for observer topologies O1--O6.
+The thermodynamic phase transition (specific heat peak, marked by circles)
+occurs at $\beta_{\mathrm{eff}}$ values systematically different from the
+geometric transition $\beta_c$ (diagonal line). This confirms that $\beta_c$
+characterizes metric signature change, not thermodynamic criticality. Data
+from Ising/Boltzmann exact enumeration on 2-parameter Gaussian model.}
+\label{fig:specific-heat}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig4_learning_dynamics.png}
+\caption{Learning dynamics qualitative change at $\beta_c$. Natural gradient
+trajectories with metric $g = M^{(\mathrm{H1'})} + \beta F$ show three
+regimes: (bottom) unstable amplification along timelike direction for
+$\beta < \beta_c$ (Lorentzian), (middle) singular behavior at
+$\beta = \beta_c$ (degenerate metric), and (top) smooth convergent descent
+for $\beta > \beta_c$ (Riemannian). Trajectories shown for observer O3
+(path graph) initialized at $\theta_0 = (0.5, 0.5)$ on a 2-parameter
+Gaussian model with simple quadratic loss.}
+\label{fig:learning-dynamics}
+\end{figure}
+
+%----------------------------------------------------------------------
+\section{Discussion}
+\label{sec:discussion}
+%----------------------------------------------------------------------
+
+\subsection{What the failure means for discrete quantum gravity}
+\label{sec:failure-implications}
+
+The failure of the Lovelock bridge is not unique to the Wolfram--Vanchurin
+connection.
+The discrete-to-continuous symmetry barrier (\cref{sec:symmetry-barrier})
+affects all discrete approaches to quantum gravity---loop quantum gravity,
+causal set theory, causal dynamical triangulations---that must recover
+smooth diffeomorphism invariance from discrete combinatorial structures.
+
+Our numerical methodology (curvature convergence testing across rule
+families, \cref{sec:numerical}) is transferable to other discrete
+programs.
+The $\kappa \sim 1/N$ scaling law for expanding rules
+(\cref{tab:curvature}) may reflect a generic obstruction for discrete
+approaches rather than a Wolfram-specific artifact, though we cannot
+confirm this without testing other discrete frameworks.
+
+\subsection{The genuine bridge: regime identification}
+\label{sec:genuine-bridge}
+
+Despite the failure of the Lovelock bridge, a genuine structural
+connection exists between the two programs at a different level.
+
+\begin{proposition}[Regime identification]
+\label{prop:regime-identification}
+In the $\alpha = 1$ (quantum) regime of Vanchurin's
+framework~\cite{Vanchurin2025}, the covariant gradient descent equation
+reduces to natural gradient descent.
+Independently, for hypergraph observers satisfying the Good Regulator
+conditions~\cite{companion_amari}, the learning dynamics are governed by
+the natural gradient on the Fisher manifold.
+The two derivations---one from Type~II metric theory, the other from
+information-theoretic observer theory---converge on the same dynamical
+equation.
+\end{proposition}
+
+This regime identification constitutes the real bridge between Programs~A
+and~B: not at the level of spacetime geometry (which requires the failed
+continuum limit), but at the level of observer dynamics (which operates
+entirely within continuous parameter space).
+We note that the multiway graph framework of
+Gorard et al.~\cite{GorardNamuduriArsiwalla2021} provides a
+categorical setting in which such regime identifications can be
+formalized as functors between the multiway evolution categories of
+the two programs.
+
+\subsection{Implications of partial causal invariance for modified gravity}
+\label{sec:partial-CI}
+
+The negative results of \cref{sec:failure} concern the case where full
+CI is assumed.  A natural question is: what gravitational theory
+emerges when CI is only \emph{partially} satisfied?
+
+The connection between discrete non-commutativity and torsion is
+well-established in lattice gravity: in Regge calculus, torsion arises
+from deficit angles not accounted for by curvature
+alone~\cite{Caselle1989,Drummond1986}; in lattice gauge theory, torsion
+corresponds to the failure of the parallelogram closure condition for
+frame fields~\cite{MenottiPelissetto1987}.
+
+We conjecture that an analogous mechanism operates in hypergraph
+rewriting: when CI is violated, the non-commutativity of rewriting
+orderings produces, in any putative continuum limit, a connection that
+is not Levi-Civita.
+
+\begin{conjecture}[CI violation and metric-affine gravity]
+\label{conj:CI-MAG}
+If a hypergraph rewriting system with approximate CI (causal graphs
+agree up to $O(\epsilon)$) admits a continuum limit, the resulting
+effective gravitational theory belongs to the class of metric-affine
+gravity theories~\cite{HehlMcCreaMielkeNeeman1995}, with torsion and
+non-metricity of order~$\epsilon$.
+The specific type of CI violation determines the type of modified
+gravity: order-dependent branching produces Riemann--Cartan torsion,
+rule-subset confluence produces preferred-frame
+effects (Ho\v{r}ava--Lifshitz type), and uniform approximate CI
+produces general metric-affine corrections.
+In the limit $\epsilon \to 0$, the theory reduces to GR.
+\end{conjecture}
+
+\Cref{conj:CI-MAG} is not testable with current tools: the continuum
+limit required for its evaluation is numerically falsified for generic
+expanding rules (\cref{sec:numerical}).
+We emphasize that the deviations from GR predicted by CI violation
+(torsion, non-metricity) belong to a \emph{different} class of
+modified gravity from those predicted by deviations from natural
+gradient learning in Vanchurin's
+framework~\cite{Vanchurin2025,Vanchurin2025CGD}, which produce
+metric-dependent corrections without torsion.
+
+\subsection{Open problems}
+\label{sec:open-problems}
+
+We list selected open problems, organized by topic:
+
+\begin{enumerate}
+\item \textbf{Physical origin of edge signs} (MEDIUM, substantially addressed).
+  The sign assignment $s_e \in \{+1, -1\}$ in H1$'$ is currently imposed
+  rather than derived.
+  A systematic study tested four strategies on 26~graph topologies
+  (52~configurations): (A)~bipartite graph coloring, (B)~Fiedler vector
+  spectral clustering, (C)~information flow (assign $s_e = -1$ to
+  the edge with maximum $F_{ee}$), and (D)~oracle (brute-force optimal).
+  All four strategies produce $q = 1$ (Lorentzian signature) in
+  $100\%$ of tested configurations.
+  Strategy~C achieves $99.7\%$ of oracle quality on average
+  (minimum $82.2\%$), with a clear physical interpretation: the edge
+  carrying maximum Fisher information becomes the timelike direction.
+  However, a 240-configuration contrast experiment
+  (\cref{rem:signed-edge-phase-diagram}) reveals that while H1$'$ with
+  Fiedler signs creates a valid Lorentzian regime ($\beta_c > 0$),
+  the spectral gap weighting satisfies $W(q{=}1) = W_{\max}$
+  (degeneracy with higher-$q$ signatures) rather than strict $q = 1$
+  dominance.
+  Thus, sign assignment achieves Lorentzian signature ($q = 1$ is
+  \emph{accessible}), but an additional selection principle beyond
+  spectral gap weighting may be needed to explain why $q = 1$ is
+  preferred over other valid signatures.
+  Confidence that $q = 1$ is selected for physically relevant (sparse)
+  observers: $60$--$75\%$.
+
+\item \textbf{CI and exponential family statistics} (HIGH, partially
+  resolved).
+  The FSF factorization (\cref{thm:FSF}) and $M = F^2$
+  (\cref{thm:M-F-squared}) hold specifically for canonical exponential
+  families.
+  Comprehensive analysis of six theoretical routes shows that causal
+  invariance \emph{alone} does not force exponential family statistics
+  (explicit counterexamples exist: mixture models, non-parametric
+  observers).
+  However, CI combined with the maximum entropy
+  principle~\cite{Jaynes1957}
+  and fixed observer topology does yield exponential family structure
+  at 55--65\% confidence.
+  A \emph{causal typicality} conjecture---that for large CI systems
+  with small observers, the Kullback--Leibler divergence from MaxEnt
+  decreases as $O(1/N)$---was tested in a redesigned v3 experiment
+  with local observers ($4{,}500$ experiments: system sizes $L = 8$--$16$,
+  observer windows $w = 2$--$4$, CI vs.\ non-CI controls).
+  CI-like dynamics improve first-order convergence rates ($71\%$ vs.\ $27\%$
+  for non-CI) and dominate second-order KL comparisons ($76\%$
+  CI-better), but do \emph{not} consistently produce lower first-order
+  KL than non-CI controls ($31\%$ CI-better).
+  The strong form of causal typicality (CI $\Rightarrow$ MaxEnt)
+  is therefore likely false ($\sim 25\%$ confidence);
+  CI improves convergence but does not force it.
+  A weaker version conditioning on global
+  constraints remains open ($\sim 40\%$ confidence), analogous to
+  canonical typicality in statistical
+  mechanics~\cite{PopescuShortWinter2006}.
+  Accepting MaxEnt as an independent epistemic axiom (55--65\%
+  confidence) is currently the most viable route.
+  This is the most important theoretical question for the program.
+
+\item \textbf{Extension beyond two parameters} (LOW, rigorously proven for
+  trees).
+  The Tree Fisher Identity and absolute Lorentzian dominance are proven
+  for arbitrary~$n$ (verified up to $n = 20$; all off-diagonal entries
+  $< 10^{-15}$, diagonal values match $\operatorname{sech}^2(J)$ to
+  machine precision).
+  General-$n$ analysis (111~cases, $n = 3$ to~$20$, 5~topologies,
+  $J \in \{0.1, 0.5, 1.0\}$) yields $98.2\%$ Lorentzian selection rate:
+  trees $100\%$ (84/84), cycles $100\%$ (24/24),
+  near-diagonal $100\%$ (81/81).
+  The two failures occur at $n = 4$ with dense graphs ($K_4$ at
+  strong coupling).
+  The success rate is independent of~$n$ for sparse topologies.
+
+\item \textbf{Dynamical sign selection} (MEDIUM, preliminary results).
+  Gradient descent on the energy functional
+  $E(\sigma) = (q(\sigma) - 1)^2$ with soft signs $\sigma_e \in [-1,1]$
+  evolves toward $q = 1$ on $K_3$ (98--100\% success for $\beta < \beta_c$)
+  but fails on $K_4$ ($\sim\!0$\% for Lorentzian energy).
+  The mechanism does not scale to larger observer topologies in its
+  current form.
+
+\item \textbf{Spatial dimensionality from information geometry} (LOW,
+  negative result).
+  Testing whether information-geometric properties of the Fisher metric
+  select a preferred spatial dimension~$d$, we computed spectral gap
+  selection, near-diagonal ratios, and $\beta_c$ for Ising observers on
+  $d$-dimensional lattice graphs ($d = 1, 2, 3, 4$; 16~configurations).
+  Results: the near-diagonal ratio increases monotonically with~$d$
+  ($0 \to 0.98 \to 1.82 \to 3.22$ at $J = 0.5$), and spectral gap
+  $q = 1$ selection \emph{weakens} with dimensionality ($100\%$ at
+  $d = 1$, $75\%$ at $d = 2$--$3$, $25\%$ at $d = 4$).
+  There is no non-trivial distinction between $d = 3$ and other
+  dimensions: the information geometry varies smoothly with~$d$
+  without singling out $d = 3$ or $d = 3 + 1$.
+  If the mechanism of \cref{sec:spectral-gap-selection} is correct,
+  it selects Lorentzian signature (one time dimension) but is
+  \emph{agnostic} about the number of spatial dimensions, which must
+  be determined by other mechanisms (topology of the observer graph,
+  embedding constraints, or dynamical considerations).
+
+\item \textbf{Physical origin of $M = F^2$} (MEDIUM, partially resolved).
+  The identity $M = F^2$ (\cref{thm:M-F-squared}) is proved
+  algebraically for exponential families, but the question of
+  \emph{which physical mechanism generates it} in actual observers
+  was investigated by testing three hypotheses against the exact
+  $M = F^2$ ground truth on 56~configurations (5~graph types,
+  $N = 3$--$6$ nodes, $J \in \{0.1, 0.3, 0.5, 1.0\}$):
+  (H1)~structural inertia ($M \propto F$ with best scaling,
+  avg.\ error~$7.1\%$),
+  (H2)~accumulated Fisher ($M$ as time-averaged Fisher along
+  gradient flow, avg.\ error~$7.6\%$), and
+  (H3)~graph connectivity ($M$ from graph Laplacian,
+  avg.\ error~$73\%$, FAILED).
+  H1 and H2 are near-exact on tree graphs (error~$< 0.3\%$) where
+  $F = \operatorname{sech}^2(J)\,I$ makes $F^2 \propto F$,
+  but degrade on cyclic and complete graphs (error~$15$--$37\%$)
+  where off-diagonal structure breaks the proportionality.
+  Graph Laplacian hypotheses (edge Laplacian squared, $B^T L^2 B$)
+  fail universally.
+  The physical mechanism that produces the exact $F^2$ structure on
+  general graphs---rather than the approximate $\alpha F$ relationship
+  valid only on trees---remains an open question for Vanchurin's
+  Type~II framework.
+
+\item \textbf{$M = F^2$ beyond exponential families} (LOW, open).
+  Whether the identity $M = F^2$ extends to marginal models (restricted
+  Boltzmann machines, mixture models) or latent variable models
+  requires computing the Jacobian independently of~$F$, which is
+  non-trivial for marginal distributions.
+  Understanding the precise conditions under which $M = F^2$ holds
+  would clarify the scope of the metric decomposition
+  $g = M + \beta\,F$.
+\end{enumerate}
+
+\subsection{Honest novelty assessment}
+\label{sec:novelty}
+
+We assess the novelty of each contribution:
+
+\begin{itemize}
+\item \textbf{Negative results} (\cref{sec:failure}): 10--15\%.
+  Documentation of known barriers with new numerical evidence
+  (500-rule curvature analysis, up to $N = 18{,}508$) and systematic
+  theoretical analysis.
+  The barriers themselves (continuum limit, discrete symmetry) are
+  known in the discrete quantum gravity community; our contribution
+  is documenting their specific implications for the Wolfram--Vanchurin
+  bridge.
+
+\item \textbf{Mass-Fisher structure} (\cref{sec:mass-fisher}): $\sim 5\%$.
+  Formalization of the metric decomposition and its consequences within
+  Vanchurin's Type~II framework.
+  The $M = F^2$ identity (\cref{thm:M-F-squared}) for canonical
+  exponential families is a standard result in information geometry
+  ($J = F$ for exponential families); our contribution is connecting
+  it to Vanchurin's mass tensor.
+  The spectral purity condition (\cref{thm:SRC}) is similarly a
+  formalization within this framework rather than a standalone
+  discovery.
+
+\item \textbf{Lorentzian mechanism} (\cref{sec:lorentzian}): 15--20\%.
+  The critical $\beta_c$ formula (\cref{thm:beta-c}), minimum complexity
+  theorem (\cref{thm:min-complexity}), edge monotonicity
+  (\cref{prop:edge-monotonicity}), non-equivalence result
+  (\cref{thm:non-equivalence}), and persistence theorem
+  (\cref{thm:persistence}) are, to our knowledge, new results with
+  exact formulas and rigorous proofs.
+
+\item \textbf{Spectral gap selection} (\cref{sec:spectral-gap-selection}):
+  10--15\%.
+  The Tree Fisher Identity (\cref{thm:tree-fisher}), the spectral gap
+  bound (\cref{thm:Lgap-bound}), diagonal Lorentzian dominance
+  (\cref{thm:diagonal-lorentzian}), perturbation stability
+  (\cref{cor:lorentzian-perturbation}), the near-diagonal bound with
+  exact adjacent-edge formula (\cref{thm:near-diagonal-fisher}), and
+  universality across Potts models
+  (\cref{rem:fisher-universality}) provide a conditional structural
+  explanation for Lorentzian signature selection on sparse observer
+  graphs (confidence 60--75\%; the signed-edge H1$'$ construction
+  shows spectral gap degeneracy).
+  The key insight---that information-geometric properties of the Fisher
+  metric create Lorentzian \emph{accessibility} on sparse graphs without
+  requiring a dynamical sign mechanism---appears new.
+
+\item \textbf{Total estimated novelty}: 25--30\%.
+  The nature of the contribution is: formal development of Type~II
+  theory combined with honest negative results about the Type~I
+  bridge and a conditional structural explanation for Lorentzian
+  signature selection.
+\end{itemize}
+
+%----------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+%----------------------------------------------------------------------
+
+We set out to build a Lovelock bridge between Wolfram's hypergraph
+physics and Vanchurin's neural network cosmology.
+The bridge does not hold.
+
+The continuum limit---the critical step from discrete to continuous
+covariance---is empirically falsified for all dynamically nontrivial
+hypergraph rewrite rules we tested.
+The discrete-to-continuous symmetry barrier prevents passage from
+Gorard's permutation-type invariances to the smooth Lorentz group.
+And Vanchurin's evolution to a Type~II framework renders the bridge
+unnecessary: the problem it was designed to solve (deriving continuous
+covariance from discrete structure) has been bypassed by working in
+continuous parameter space from the start.
+
+The investigation was not fruitless.
+By engaging seriously with Vanchurin's Type~II metric structure
+$g = M + \beta\,F$, we obtained constructive results that contribute
+to the formal development of this framework.
+
+The critical $\beta_c$ formula (\cref{thm:beta-c}) provides an exact,
+closed-form characterization of the Lorentzian--Riemannian transition
+threshold.
+The identity $M = F^2$ for exponential family models
+(\cref{thm:M-F-squared}) establishes a definite algebraic relationship
+between the mass tensor and information geometry.
+The spectral purity condition (\cref{thm:SRC}) shows that perfect Good
+Regulators inhabit conformally Fisher geometry.
+The non-equivalence theorem (\cref{thm:non-equivalence}) clarifies the
+relationship between our signed-edge construction and Vanchurin's
+non-principal square root.
+The edge monotonicity result (\cref{prop:edge-monotonicity}) and
+persistence theorem (\cref{thm:persistence}) characterize how observer
+topology and learning dynamics affect the Lorentzian regime.
+The Tree Fisher Identity (\cref{thm:tree-fisher}), the Lorentzian
+dominance theorem for diagonal Fisher matrices
+(\cref{thm:diagonal-lorentzian}), and its perturbation stability
+(\cref{cor:lorentzian-perturbation}) provide a conditional structural
+explanation for why sparse observers may perceive exactly one time
+dimension (confidence 60--75\%; see \cref{sec:open-problems}).
+The near-diagonal bound with the exact adjacent-edge covariance
+formula (\cref{thm:near-diagonal-fisher}) establishes that sparse
+graphs fall in the near-diagonal regime where this dominance holds.
+Universality across $q$-state Potts models ($q = 2$--$5$)
+confirms that these results are not Ising-specific
+(\cref{rem:fisher-universality}), while the failure for Gaussian
+graphical models clarifies the scope: discrete spin models on sparse
+graphs.
+Whether the identity $M = F^2$ extends beyond exponential families
+(e.g., to marginal models) remains open and requires independent
+computation of the mean-parameter Jacobian.
+The PSD obstruction (\cref{thm:psd-obstruction}) is validated
+comprehensively: 240~configurations spanning observer sizes
+$m = 2$--$15$, couplings $J = 0.1$--$2.0$, and three topologies
+yield a universal $0\%$ Lorentzian win rate for $M = F^2$
+(\cref{rem:psd-phase-diagram}), confirming the necessity of
+signed-edge or non-principal square root constructions.
+A systematic sign selection study (4~strategies, 52~configurations)
+shows $100\%$ Lorentzian achievement with the information flow
+strategy (maximum $F_{ee} \to$ timelike) at $99.7\%$ oracle quality.
+However, a 240-configuration contrast experiment reveals that under
+H1$'$ with Fiedler signs, the spectral gap weighting $W(q{=}1)$
+equals $W_{\max}$ (degeneracy with higher-$q$ signatures), meaning
+the Lorentzian regime is \emph{accessible} but not preferentially
+selected by spectral gap alone
+(\cref{rem:signed-edge-phase-diagram}).
+The spectral gap mechanism is agnostic about spatial dimensionality:
+tests on $d$-dimensional lattices ($d = 1$--$4$) show smooth
+variation with~$d$ without singling out $d = 3 + 1$.
+
+These results are offered as tools for further development of
+learning-based spacetime emergence.
+Multiple sign assignment strategies make Lorentzian signature
+\emph{accessible}, and the PSD obstruction confirms that non-standard
+mass tensors are necessary; the remaining open question is what
+physical principle breaks the $q$-degeneracy to prefer $q = 1$.
+
+Negative results in foundational physics are valuable.
+Documenting \emph{why} the Lovelock bridge fails---with specific
+numerical evidence and theoretical analysis---may save other
+researchers from the same path and clarify the real obstacles in
+connecting discrete and continuous approaches to spacetime emergence.
+
+\section*{Acknowledgments}
+
+The author thanks Vitaly Vanchurin for critical feedback on an earlier
+version of this manuscript, which led to the reframing around
+negative results and the Type~II constructive contributions.
+Vanchurin's distinction between Type~I and Type~II
+frameworks~\cite{Vanchurin2025} was essential in identifying why the
+original Lovelock bridge fails and where productive work remains.
+
+Independent research.
+Computational resources: Apple M3~Max (128\,GB), Python (NumPy,
+NetworkX, POT), Wolfram Language (SetReplace).
+Code and data: \url{https://github.com/MaxZhuravlev/physics-cosmo-bridge}.
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}
